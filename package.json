@@ -1,0 +1,26 @@
+{
+  "name": "blanckmedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node blanck.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SideWebz/BlanckMedia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SideWebz/BlanckMedia/issues"
+  },
+  "homepage": "https://github.com/SideWebz/BlanckMedia#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.2"
+  }
+}
