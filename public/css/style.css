@@ -53,3 +53,52 @@ body {
   padding-left: 5px !important;
   padding-right: 5px !important;
 }
+
+@media (max-width: 767.98px) {
+  .py-9 {
+    padding-top: 2rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+}
+
+
+
+
+.video-thumb {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 verhouding */
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border-radius: 0.375rem; /* afgeronde hoeken, zelfde als .rounded */
+  overflow: hidden;
+}
+
+.video-thumb .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.video-thumb .play-button:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.video-thumb .play-button::before {
+  content: "";
+  display: inline-block;
+  margin-left: 5px;
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent white;
+}

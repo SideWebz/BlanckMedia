@@ -1,7 +1,7 @@
-<section class="container py-9">
-  <div class="row align-items-center">
+<section class="container py-9 py-md-9 py-sm-1"> <!-- We maken py-sm-1 voor kleine schermen -->
+  <div class="row align-items-center text-center text-md-start"> <!-- tekst center op klein, start op md -->
     
-    <div class="col-md-6 text-white">
+    <div class="col-md-6 text-white mb-4 mb-md-0"> <!-- margin bottom op mobiel voor spacing -->
       <h2 class="fw-bold display-6 text-uppercase">Our Projects</h2>
       <h5 class="mb-2">From a blank frame to a story that sticks</h5>
       <p class="text-secondary">
@@ -10,87 +10,126 @@
       <a href="/projects" class="btn btn-pyellow rounded-pill px-4 py-2 mt-3">→ Portfolio</a>
     </div>
 
-    <div class="col-md-6 text-end">
-      <img src="/assets/images/placeholder.png" alt="Project preview" class="img-fluid" style="max-width: 250px;">
+    <div class="col-md-6 text-md-end">
+      <img src="/assets/images/placeholder.png" alt="Project preview" class="img-fluid mx-auto" style="max-width: 250px;">
     </div>
 
   </div>
 </section>
 
 <section class="container py-5">
-  <!-- Rij 1: 2 video’s -->
-  <div class="row">
+
+  <!-- Rij 1: 2 video's met thumbnails -->
+  <div class="row mb-2">
     <div class="col-md-6">
-      <video class="w-100 rounded" controls>
-        <source src="https://blanckmedia-videos.b-cdn.net/Campaignvideo%20SB%20Website.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded" 
+           style="background-image: url('/assets/images/thumbnails/STEEL & BARNETT.png');" 
+           data-video-src="https://blanckmedia-videos.b-cdn.net/Campaignvideo%20SB%20Website.mp4" 
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
     <div class="col-md-6">
-      <video class="w-100 rounded" controls>
-        <source src="https://blanckmedia-videos.b-cdn.net/Promovideo%20Gymsixteen%20Website.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded" 
+           style="background-image: url('/assets/images/thumbnails/GymSixteen.png');" 
+           data-video-src="https://blanckmedia-videos.b-cdn.net/Promovideo%20Gymsixteen%20Website.mp4" 
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Rij 2: 3 video’s -->
-  <div class="row">
+  <!-- Rij 2: 3 video's met thumbnails -->
+  <div class="row mb-2">
     <div class="col-md-4">
-      <video class="w-100 rounded" controls>
-        <source src="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded"
+           style="background-image: url('/assets/images/thumbnails/SKIFF VAULT.png');"
+           data-video-src="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4"
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
     <div class="col-md-4">
-      <video class="w-100 rounded" controls>
-        <source src="https://blanckmedia-videos.b-cdn.net/Promovideo%20Gymsixteen%20Website.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded"
+           style="background-image: url('/assets/images/thumbnails/Gutss Cuban spiced.png');"
+           data-video-src="https://blanckmedia-videos.b-cdn.net/Promovideo%20Gymsixteen%20Website.mp4"
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
     <div class="col-md-4">
-      <video class="w-100 rounded" controls>
-        <source src="https://blanckmedia-videos.b-cdn.net/Campaignvideo%20SB%20Website.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded"
+           style="background-image: url('/assets/images/thumbnails/DIY ATELIER.png');"
+           data-video-src="https://blanckmedia-videos.b-cdn.net/Campaignvideo%20SB%20Website.mp4"
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Rij 3: 2 video’s -->
-  <div class="row">
+  <!-- Rij 3: 2 video's met thumbnails -->
+  <div class="row mb-2">
     <div class="col-md-6">
-      <video class="w-100 rounded" controls>
-        <source src="https://jouwserver.com/video6.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded"
+           style="background-image: url('/assets/images/thumbnails/image 13.png');"
+           data-video-src="https://jouwserver.com/video6.mp4"
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
     <div class="col-md-6">
-      <video class="w-100 rounded" controls>
-        <source src="https://jouwserver.com/video7.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded"
+           style="background-image: url('/assets/images/thumbnails/LSP BELGIUM.png');"
+           data-video-src="https://jouwserver.com/video7.mp4"
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Rij 4: 3 video’s -->
+  <!-- Rij 4: 3 video's met thumbnails -->
   <div class="row">
     <div class="col-md-4">
-      <video class="w-100 rounded" controls>
-        <source src="https://jouwserver.com/video8.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded"
+           style="background-image: url('/assets/images/thumbnails/OPTIEK EUROLOOK.png');"
+           data-video-src="https://jouwserver.com/video8.mp4"
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
     <div class="col-md-4">
-      <video class="w-100 rounded" controls>
-        <source src="https://jouwserver.com/video9.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded"
+           style="background-image: url('/assets/images/thumbnails/TYPISCH80.png');"
+           data-video-src="https://jouwserver.com/video9.mp4"
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
     <div class="col-md-4">
-      <video class="w-100 rounded" controls>
-        <source src="https://jouwserver.com/video10.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-thumb rounded"
+           style="background-image: url('/assets/images/thumbnails/Gutss Cuban spiced.png');"
+           data-video-src="https://jouwserver.com/video10.mp4"
+           onclick="playVideo(this)">
+        <div class="play-button"></div>
+      </div>
     </div>
   </div>
+
 </section>
+
+
+
+
+<script>
+  function playVideo(el) {
+  const videoSrc = el.getAttribute('data-video-src');
+  const video = document.createElement("video");
+  video.setAttribute("src", videoSrc);
+  video.setAttribute("controls", "true");
+  video.setAttribute("autoplay", "true");
+  video.style.width = "100%";
+  video.style.borderRadius = "0.375rem";
+
+  el.parentNode.replaceChild(video, el);
+}
+</script>
