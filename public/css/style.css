@@ -3,3 +3,53 @@ body {
   background-color: #000;
 }
 
+.navbar-nav{
+  background-color: rgba(160, 160, 160, 0.452);
+  border-radius: 20px;
+  gap: 20px;
+}
+
+.nav-item{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.active{
+  background-color: white;
+  color: #000 !important;
+  border-radius: 20px;
+}
+
+.blacklink{
+  color: #000 !important;
+}
+
+.bg-dark{
+  background-color: #1A1F25 !important;
+}
+
+.py-9{
+  padding-top: 9rem !important;
+  padding-bottom: 9rem !important;
+}
+
+.btn-pyellow{
+  background-color: #C6AA60;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-pyellow:hover{
+  background-color: #ffffff;
+  color: #C6AA60;
+  font-weight: bold;
+}
+
+.col-md-6{
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.col-md-4{
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
