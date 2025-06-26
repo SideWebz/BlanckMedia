@@ -1,7 +1,7 @@
-<section class="container py-9 py-md-9 py-sm-1"> <!-- We maken py-sm-1 voor kleine schermen -->
-  <div class="row align-items-center text-center text-md-start"> <!-- tekst center op klein, start op md -->
+<section class="container py-9 py-md-9 py-sm-1">
+  <div class="row align-items-center text-center text-md-start">
     
-    <div class="col-md-6 text-white mb-4 mb-md-0"> <!-- margin bottom op mobiel voor spacing -->
+    <div class="col-md-6 text-white mb-4 mb-md-0"> 
       <h2 class="fw-bold display-6 text-uppercase">Our Projects</h2>
       <h5 class="mb-2">From a blank frame to a story that sticks</h5>
       <p class="text-secondary">
@@ -13,123 +13,80 @@
     <div class="col-md-6 text-md-end">
       <img src="/assets/images/thumbnails/Gutss Cuban spiced.png" alt="Project preview" class="img-fluid mx-auto rounded" style="max-width: 85%;">
     </div>
-
-  </div>
-</section>
-
-<section class="container py-5">
-
-  <!-- Rij 1: 2 video's met thumbnails -->
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <div class="video-thumb rounded" 
-           style="background-image: url('/assets/images/thumbnails/STEEL & BARNETT.png');" 
-           data-video-src="https://blanckmedia-videos.b-cdn.net/Campaignvideo%20SB%20Website.mp4" 
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="video-thumb rounded" 
-           style="background-image: url('/assets/images/thumbnails/GymSixteen.png');" 
-           data-video-src="https://blanckmedia-videos.b-cdn.net/Promovideo%20Gymsixteen%20Website.mp4" 
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
   </div>
 
-  <!-- Rij 2: 3 video's met thumbnails -->
-  <div class="row mb-2">
-    <div class="col-md-4">
-      <div class="video-thumb rounded"
-           style="background-image: url('/assets/images/thumbnails/SKIFF VAULT.png');"
-           data-video-src="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4"
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="video-thumb rounded"
-           style="background-image: url('/assets/images/thumbnails/Gutss Cuban spiced.png');"
-           data-video-src="https://blanckmedia-videos.b-cdn.net/Promovideo%20Gymsixteen%20Website.mp4"
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="video-thumb rounded"
-           style="background-image: url('/assets/images/thumbnails/DIY ATELIER.png');"
-           data-video-src="https://blanckmedia-videos.b-cdn.net/Campaignvideo%20SB%20Website.mp4"
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Rij 3: 2 video's met thumbnails -->
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <div class="video-thumb rounded"
-           style="background-image: url('/assets/images/thumbnails/image 13.png');"
-           data-video-src="https://jouwserver.com/video6.mp4"
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="video-thumb rounded"
-           style="background-image: url('/assets/images/thumbnails/LSP BELGIUM.png');"
-           data-video-src="https://jouwserver.com/video7.mp4"
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Rij 4: 3 video's met thumbnails -->
-  <div class="row">
-    <div class="col-md-4">
-      <div class="video-thumb rounded"
-           style="background-image: url('/assets/images/thumbnails/OPTIEK EUROLOOK.png');"
-           data-video-src="https://jouwserver.com/video8.mp4"
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="video-thumb rounded"
-           style="background-image: url('/assets/images/thumbnails/TYPISCH80.png');"
-           data-video-src="https://jouwserver.com/video9.mp4"
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="video-thumb rounded"
-           style="background-image: url('/assets/images/thumbnails/Gutss Cuban spiced.png');"
-           data-video-src="https://jouwserver.com/video10.mp4"
-           onclick="playVideo(this)">
-        <div class="play-button"></div>
-      </div>
-    </div>
-  </div>
-
+  <div class="text-center mt-5">
+  <a href="#next-section" class="scroll-down d-inline-block text-white">
+    <i class="bi bi-chevron-double-down fs-1"></i>
+  </a>
+</div>
 </section>
 
 
 
+<!-- 👇 Project Thumbnails Grid -->
+<section id="projects-gallery" class="container py-5">
+  <div class="row g-2">
+    <div class="col-md-6">
+      {{> projectThumbnail 
+        title="CUBAN SPICED" 
+        subtitle="COMMERCIAL" 
+        image="/assets/images/thumbnails/Gutss Cuban spiced.png" 
+        video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4"
+      }}
+    </div>
+    <div class="col-md-6">
+      {{> projectThumbnail 
+        title="DIY ATELIER" 
+        subtitle="COMMERCIAL" 
+        image="/assets/images/thumbnails/DIY ATELIER.png" 
+        video="https://blanckmedia-videos.b-cdn.net/Campaignvideo%20SB%20Website.mp4"
+      }}
+    </div>
 
-<script>
-  function playVideo(el) {
-  const videoSrc = el.getAttribute('data-video-src');
-  const video = document.createElement("video");
-  video.setAttribute("src", videoSrc);
-  video.setAttribute("controls", "true");
-  video.setAttribute("autoplay", "true");
-  video.style.width = "100%";
-  video.style.borderRadius = "0.375rem";
+    {{!-- Row 2 (3 cols) --}}
+    <div class="col-md-4">
+      {{> projectThumbnail title="TYPISCH80" subtitle="SOCIAL MEDIA" image="/assets/images/thumbnails/TYPISCH80.png" video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" }}
+    </div>
+    <div class="col-md-4">
+      {{> projectThumbnail title="SKIFF VAULT" subtitle="CREATIVE VIDEO" image="/assets/images/thumbnails/SKIFF VAULT.png" video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" }}
+    </div>
+    <div class="col-md-4">
+      {{> projectThumbnail title="GYMSIXTEEN" subtitle="COMMERCIAL" image="/assets/images/thumbnails/GymSixteen.png" video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" }}
+    </div>
 
-  el.parentNode.replaceChild(video, el);
-}
-</script>
+    {{!-- Row 3 (2 cols) --}}
+    <div class="col-md-6">
+      {{> projectThumbnail title="SALT & STONE" subtitle="CAMPAIGNVIDEO" image="/assets/images/thumbnails/STEEL & BARNETT.png" video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" }}
+    </div>
+    <div class="col-md-6">
+      {{> projectThumbnail title="FAMILYDAY" subtitle="EVENTVIDEO" image="/assets/images/thumbnails/image 13.png" video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" }}
+    </div>
+
+    {{!-- Row 4 (3 cols) --}}
+    <div class="col-md-4">
+      {{> projectThumbnail title="DECORATIE LIAN" subtitle="COMPANYVIDEO" image="/assets/images/thumbnails/DECORATIE LIAN.png" video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" }}
+    </div>
+    <div class="col-md-4">
+      {{> projectThumbnail title="LSP BELGIUM" subtitle="COMPANYVIDEO" image="/assets/images/thumbnails/LSP BELGIUM.png" video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" }}
+    </div>
+    <div class="col-md-4">
+      {{> projectThumbnail title="EUROLOOK" subtitle="COMPANYVIDEO" image="/assets/images/thumbnails/Gutss Cuban spiced.png" video="https://blanckmedia-videos.b-cdn.net/Skiff%20Vault%20Website.mp4" }}
+    </div>
+
+  </div>
+</section>
+
+<!-- 🔲 Modal Video Popup -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content bg-black border-0 rounded-4 overflow-hidden">
+      <div class="ratio ratio-16x9">
+        <video id="modalVideo" class="w-100 h-100" controls playsinline>
+          <source src="" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
