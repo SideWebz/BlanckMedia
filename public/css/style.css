@@ -116,21 +116,29 @@ body {
     transform: rotate(-45deg) translate(5px, -5px);
   }
 
-  #mobileMenuOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: #1A1F25;
-    z-index: 4;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: height 0.5s ease;
-  }
+body.menu-open,
+html.menu-open {
+  overflow: hidden;
+  height: 100%;
+  touch-action: none; /* voorkomt swipe-scroll op iOS */
+}
+
+#mobileMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #1A1F25;
+  z-index: 4;
+  overflow: hidden; /* voorkom scrollen in het menu zelf */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: height 0.5s ease;
+}
+
 
   #mobileMenuOverlay a {
     color: white;

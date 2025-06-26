@@ -35,81 +35,89 @@
 </script>
 
 <script>
-  const menuToggle = document.getElementById("menuToggle");
-  const clapperTop = document.getElementById("clapperTop");
+const menuToggle = document.getElementById("menuToggle");
+const clapperTop = document.getElementById("clapperTop");
 
-  // Init overlay
-  const overlay = document.createElement("div");
-  overlay.id = "mobileMenuOverlay";
-  overlay.innerHTML = `
-    <a href="/projects">Projects</a>
-    <a href="#">Over ons</a>
-    <a href="#">Contact</a>
-  `;
-  document.body.appendChild(overlay);
+// Init overlay
+const overlay = document.createElement("div");
+overlay.id = "mobileMenuOverlay";
+overlay.innerHTML = `
+  <a href="/projects">Projects</a>
+  <a href="#">Over ons</a>
+  <a href="#">Contact</a>
+`;
+document.body.appendChild(overlay);
 
-  // Zet klappertje open bij start
-  gsap.set(clapperTop, {
-    rotate: -25,
-    transformOrigin: "left center"
-  });
+// Zet klappertje open bij start
+gsap.set(clapperTop, {
+  rotate: -25,
+  transformOrigin: "left center"
+});
 
-  let menuOpen = false;
+let menuOpen = false;
 
-  menuToggle.addEventListener("click", () => {
-    menuOpen = !menuOpen;
+menuToggle.addEventListener("click", () => {
+  menuOpen = !menuOpen;
 
-    if (menuOpen) {
-      // Scroll naar boven voor nette layout
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  if (menuOpen) {
+    // Scroll naar boven voor nette layout
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
-      // Klappertje sluit
-      gsap.to(clapperTop, {
-        rotate: 0,
-        duration: 0.3,
-        ease: "power2.out"
-      });
+    // Klappertje sluit
+    gsap.to(clapperTop, {
+      rotate: 0,
+      duration: 0.3,
+      ease: "power2.out"
+    });
 
-      // Overlay verschijnt
-      gsap.to("#mobileMenuOverlay", {
-        height: "100%",
-        duration: 0.5,
-        ease: "power2.out",
-        delay: 0.1
-      });
+    // Overlay verschijnt
+    gsap.to("#mobileMenuOverlay", {
+      height: "100%",
+      duration: 0.5,
+      ease: "power2.out",
+      delay: 0.1
+    });
 
-      // Scroll blokkeren
-      document.body.style.overflow = "hidden";
+    // Scroll blokkeren via class toggling
+    document.documentElement.classList.add("menu-open");
+    document.body.classList.add("menu-open");
 
-    } else {
-      // Klappertje opent
-      gsap.to(clapperTop, {
-        rotate: -25,
-        duration: 0.3,
-        ease: "power2.in"
-      });
+  } else {
+    // Klappertje opent
+    gsap.to(clapperTop, {
+      rotate: -25,
+      duration: 0.3,
+      ease: "power2.in"
+    });
 
-      // Overlay verdwijnt
-      gsap.to("#mobileMenuOverlay", {
-        height: "0%",
-        duration: 0.5,
-        ease: "power2.in"
-      });
+    // Overlay verdwijnt
+    gsap.to("#mobileMenuOverlay", {
+      height: "0%",
+      duration: 0.5,
+      ease: "power2.in"
+    });
 
-      // Scroll toestaan
-      document.body.style.overflow = "";
-    }
-  });
+    // Scroll toestaan
+    document.documentElement.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
+  }
+});
 
-  // Menu sluiten als scherm > 992px
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 992) {
-      menuOpen = false;
-      gsap.set(clapperTop, { rotate: -25 });
-      gsap.set("#mobileMenuOverlay", { height: "0%" });
-      document.body.style.overflow = "";
-    }
-  });
+// Menu sluiten als scherm > 992px
+window.addEventListener("resize", () => {
+  if (window.innerWidth >= 992) {
+    menuOpen = false;
+
+    // Reset klappertje en overlay
+    gsap.set(clapperTop, { rotate: -25 });
+    gsap.set("#mobileMenuOverlay", { height: "0%" });
+
+    // Scroll weer toestaan
+    document.documentElement.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
+  }
+});
+
 </script>
 </body>
 </html>
