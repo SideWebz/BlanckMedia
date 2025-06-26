@@ -60,6 +60,9 @@
     menuOpen = !menuOpen;
 
     if (menuOpen) {
+      // Scroll naar boven voor nette layout
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
       // Klappertje sluit
       gsap.to(clapperTop, {
         rotate: 0,
@@ -74,6 +77,10 @@
         ease: "power2.out",
         delay: 0.1
       });
+
+      // Scroll blokkeren
+      document.body.style.overflow = "hidden";
+
     } else {
       // Klappertje opent
       gsap.to(clapperTop, {
@@ -88,6 +95,9 @@
         duration: 0.5,
         ease: "power2.in"
       });
+
+      // Scroll toestaan
+      document.body.style.overflow = "";
     }
   });
 
@@ -97,12 +107,9 @@
       menuOpen = false;
       gsap.set(clapperTop, { rotate: -25 });
       gsap.set("#mobileMenuOverlay", { height: "0%" });
+      document.body.style.overflow = "";
     }
   });
 </script>
-
-
-
-
 </body>
 </html>
