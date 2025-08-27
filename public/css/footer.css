@@ -20,3 +20,21 @@ footer{
 .thinText{
   font-weight: 100;
 }
+
+.social-icons {
+  display: flex;
+  justify-content: center; /* horizontaal centreren op mobiel */
+  gap: 0.5rem;            /* ruimte tussen iconen */
+  margin-bottom: 0.5rem;  /* ruimte boven knop */
+}
+
+.social-icons a {
+  font-size: 1.3rem;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #f5c252;          /* accentkleur op hover */
+  transform: scale(1.2);   /* lichte vergroting op hover */
+}

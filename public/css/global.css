@@ -44,3 +44,12 @@ body {
   background-color: #a58b52 !important;
   color: #fff !important;
 }
+
+/* Startpositie animaties */
+.animate-left, .animate-right {
+  opacity: 0;           /* start onzichtbaar */
+  position: relative;    /* nodig voor transform */
+}
+
+.animate-left { transform: translateX(-50px); }
+.animate-right { transform: translateX(50px); }
