@@ -5,7 +5,13 @@ const submitButton = form.querySelector('button[type="submit"]');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  formMessage.textContent = ''; // oude messages weg
+  // Bootstrap/HTML5 validatie
+  if (!form.checkValidity()) {
+    form.classList.add('was-validated'); // triggert de rode randjes + foutmeldingen
+    return; // stop -> niet versturen
+  }
+
+  formMessage.textContent = ''; 
   formMessage.classList.remove('text-success', 'text-danger');
 
   const formData = {
@@ -25,19 +31,20 @@ form.addEventListener('submit', async (e) => {
     if (res.ok) {
       formMessage.textContent = 'Uw bericht is succesvol verstuurd!';
       formMessage.classList.add('text-success');
-      submitButton.style.display = 'none'; // knop verbergen
+      submitButton.style.display = 'none';
       form.reset();
+      form.classList.remove('was-validated'); // reset styling
     } else {
       const errorText = await res.text();
       formMessage.textContent = `Er is iets fout gegaan: ${errorText}`;
       formMessage.classList.add('text-danger');
-      submitButton.style.display = 'none'; // knop ook verbergen bij fout
+      submitButton.style.display = 'none';
     }
 
   } catch(err) {
     console.error(err);
     formMessage.textContent = 'Er is iets fout gegaan bij het verzenden.';
     formMessage.classList.add('text-danger');
-    submitButton.style.display = 'none'; // knop verbergen bij fout
+    submitButton.style.display = 'none';
   }
 });

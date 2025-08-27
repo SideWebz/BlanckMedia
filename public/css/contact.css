@@ -50,3 +50,15 @@
   padding: 5px 10px !important;
 }
 
+.contact-page .row {
+  display: flex; /* forceert gelijke hoogte van beide kolommen */
+  align-items: stretch; /* beide kolommen rekken uit */
+}
+
+.contact-page iframe {
+  width: 100%;
+  height: 100%;  /* neemt de volledige hoogte van de row */
+  border-radius: 0.5rem;
+  min-height: 450px; /* optioneel, zodat op small screens het niet té klein wordt */
+}
+
