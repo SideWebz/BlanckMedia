@@ -12,3 +12,11 @@ footer{
   color: #F5C252 !important; /* kies hier je gewenste hover-kleur */
   transition: color 0.3s ease !important; /* zachte overgang */
 }
+
+.list-unstyled li a {
+  font-family: 'MonumentExtended', sans-serif;
+  font-weight: 100;
+}
+.thinText{
+  font-weight: 100;
+}

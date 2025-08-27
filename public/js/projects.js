@@ -2,8 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoModal = document.getElementById('videoModal');
   const modalVideo = document.getElementById('modalVideo');
 
-  document.querySelectorAll('.video-thumb').forEach(thumb => {
-    thumb.addEventListener('click', () => {
+  // Luister naar clicks op de hele container (image + overlay)
+  document.querySelectorAll('.position-relative').forEach(container => {
+    container.addEventListener('click', () => {
+      const thumb = container.querySelector('.video-thumb');
+      if (!thumb) return;
       const videoSrc = thumb.getAttribute('data-video');
       modalVideo.querySelector('source').src = videoSrc;
       modalVideo.load();

@@ -8,6 +8,9 @@ body {
   flex-direction: column;
 }
 
+.responsive-small-text {
+  font-size: clamp(13px, 1.5vw, 15px);
+}
 
 @font-face {
   font-family: 'MonumentExtended';
