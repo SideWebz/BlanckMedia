@@ -5,6 +5,14 @@ toggler.addEventListener('click', () => {
   toggler.classList.toggle('active'); // active class voor animatie kruis
   overlay.classList.toggle('active');  // overlay show/hide
   document.body.classList.toggle('menu-open'); // scroll lock
+
+  // Scroll naar boven als het menu wordt geopend
+  if (overlay.classList.contains('active')) {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // smooth scroll naar boven
+    });
+  }
 });
 
 // Verwijder overlay bij scherm groter dan lg
