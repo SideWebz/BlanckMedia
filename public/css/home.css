@@ -9,6 +9,12 @@
   z-index: 1; /* onder de navbar */
 }
 
+@media (max-width: 768px) {
+  .video-banner {
+    height: 55vh; /* 60% van de viewport hoogte */
+  }
+}
+
 .video-banner video {
   position: absolute;
   top: 50%;
