@@ -23,6 +23,14 @@ body {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;  /* ultrathin tot ultra bold */
+  font-style: normal;
+  font-display: swap;
+}
+
 
 .accent-color {
   color: #F5C252 !important;

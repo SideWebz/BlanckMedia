@@ -3,14 +3,15 @@
   color: #fff;       /* standaard tekst wit zodat zichtbaar */
 }
 .titel{
-    font-family: 'MonumentExtendedUltraBold', sans-serif;
+    font-family: 'MonumentExtendedUltraBold', sans-serif ;
 }
 .under-titel{
-    font-weight: 100;
+    font-weight: 300;
 }
 .small-text{
-    font-weight: lighter;
+    font-weight: 200;
 }
+
 
 .overlay-text {
   position: absolute;

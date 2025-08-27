@@ -1,6 +1,6 @@
 export const contact = (req, res) => {
   res.render('pages/contact', { 
-    title: 'Contact',
+    title: 'BlanckMedia - Contact',
     extraCss: '/css/contact.css'
   });
 };

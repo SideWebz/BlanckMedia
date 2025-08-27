@@ -1,6 +1,6 @@
 export const home = (req, res) => {
   res.render('pages/home', { 
-    title: 'Home',
+    title: 'BlanckMedia',
     extraCss: '/css/home.css'
   });
 };

@@ -20,6 +20,31 @@
   z-index: 1;
 }
 
+.video-banner .overlay {
+  position: absolute;
+  bottom: 5%;   /* afstand van onderkant video */
+  left: 3%;     /* afstand van linkerkant video */
+  text-align: left;  /* links uitlijnen */
+  color: white;
+  z-index: 2;
+}
+
+.video-banner .overlay h2 {
+  font-family: 'MonumentExtended', sans-serif;
+  font-weight: 100;
+  font-size: clamp(1rem, 2.5vw, 1.5rem); /* van 1rem tot 1.5rem */
+  margin: 0.5rem 0;
+}
+
+.video-banner .overlay h1 {
+  font-weight: 100;
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* van 1.5rem tot 2.5rem */
+  margin: 0.5rem 0;
+}
+
+
+
+
 /* === NAVBAR OP HOMEPAGE === */
 .homepage .navbar.navbar-transparent {
   position: absolute;  /* zweeft boven de video */
@@ -45,4 +70,14 @@
 /* Zorg dat de mobiele overlay boven alles komt */
 .homepage .navbar-overlay {
   z-index: 1050;
+}
+
+.video-banner .overlay .row > div {
+  width: 70%; /* desktop, col-3 */
+}
+
+@media (max-width: 768px) { /* mobiel */
+  .video-banner .overlay .row > div {
+    width: 80%; /* mobiel, col-8 */
+  }
 }
