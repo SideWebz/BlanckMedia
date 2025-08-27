@@ -1,0 +1,52 @@
+.contact-page {
+  background-color: #1A1F25;
+  color: #fff;      
+}
+.titel{
+    font-family: 'MonumentExtendedUltraBold', sans-serif ;
+}
+.under-titel{
+    font-weight: 100;
+}
+.small-text{
+    font-weight: lighter;
+}
+
+.contact-page h2 {
+  font-family: 'MonumentExtended-Regular', sans-serif;
+  color: #fff;
+}
+
+.contact-page .custom-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+  color: #fff;
+}
+
+.contact-page .custom-input::placeholder {
+  color: #ccc;
+}
+
+.contact-page .custom-input:focus {
+  box-shadow: none;
+  border-color: #0d6efd; /* accentkleur */
+}
+
+#formMessage.text-success {
+  color: #77ff96 !important; /* groen */
+  background-color: #b0ebbe3b !important;
+  border: 2px solid #77ff96 !important;
+  border-radius: 5px !important;
+  padding: 5px 10px !important;
+}
+
+#formMessage.text-danger {
+  color: #e94b5b !important; /* rood */
+  background-color: #f9c2c671 !important; /* lichtroze achtergrond voor contrast */
+  border: 2px solid #e94b5b !important; /* rode border */
+  border-radius: 5px !important;
+  padding: 5px 10px !important;
+}
+

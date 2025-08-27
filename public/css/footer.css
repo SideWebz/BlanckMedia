@@ -1,0 +1,14 @@
+footer{
+    background-color: #1A1F25;
+    margin-top: auto;
+}
+.footer-line {
+  border: none;
+  border-top: 2px solid #fff; /* maak de lijn dikker (3px) en wit */
+  opacity: 1; /* verwijdert Bootstrap’s transparantie */
+}
+/* Hover kleur voor de footer/menu links */
+.list-unstyled li a:hover {
+  color: #F5C252 !important; /* kies hier je gewenste hover-kleur */
+  transition: color 0.3s ease !important; /* zachte overgang */
+}

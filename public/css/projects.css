@@ -1,0 +1,50 @@
+.projects-page {
+  background-color: #1A1F25;
+  color: #fff;       /* standaard tekst wit zodat zichtbaar */
+}
+.titel{
+    font-family: 'MonumentExtendedUltraBold', sans-serif;
+}
+.under-titel{
+    font-weight: 100;
+}
+.small-text{
+    font-weight: lighter;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+
+.overlay-text h1 {
+  font-size: 2rem; /* pas aan voor desktop */
+  font-family: 'MonumentExtendedUltraBold', sans-serif;
+}
+
+.overlay-text p {
+  font-size: 1rem;
+}
+@media (max-width: 768px) {
+  .overlay-text h1 { font-size: 1.5rem; }
+  .overlay-text p { font-size: 0.9rem; }
+}
+
+
+.modal .btn-close {
+  z-index: 1051; /* altijd boven de video */
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.modal .btn-close:hover {
+  opacity: 1;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 2px #fff);
+}

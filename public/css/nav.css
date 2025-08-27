@@ -1,0 +1,102 @@
+.navbar-transparent {
+  background-color: #1A1F25 ; 
+  width: 100%;
+  z-index: 5;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navbar-brand {
+  position: relative;
+  z-index: 1060; /* hoger dan overlay (1050) */
+}
+
+
+.navbar-transparent .nav-link,
+.navbar-transparent .navbar-brand {
+  color: #ffffff;
+  font-weight: 100 !important;
+  font-family: 'MonumentExtended', sans-serif;
+}
+
+.navbar-transparent .nav-link:hover {
+  color: #f5c252;
+}
+
+.navbar-toggler.custom-toggler.d-lg-none {
+  border: none;          
+  background: transparent; 
+  padding: 0;             
+  width: 30px;           
+  height: 22px;          
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1051;
+}
+
+.navbar-toggler.custom-toggler.d-lg-none span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #F5C252;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler.custom-toggler.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(13px);
+}
+
+.navbar-toggler.custom-toggler.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler.custom-toggler.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-13px); 
+}
+
+.navbar-toggler.custom-toggler:focus,
+.navbar-toggler.custom-toggler:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-overlay.d-lg-none {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1A1F25;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  overflow: hidden;
+}
+
+.navbar-overlay.d-lg-none ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navbar-overlay.d-lg-none ul li {
+  margin: 20px 0;
+}
+
+.navbar-overlay.d-lg-none ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.navbar-overlay.active {
+  display: flex;
+}
+
+
+body.menu-open {
+  overflow: hidden;
+}

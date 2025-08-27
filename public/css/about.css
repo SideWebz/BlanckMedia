@@ -1,0 +1,27 @@
+.about-page {
+  background-color: #1A1F25;
+  color: #fff;      
+}
+.titel{
+    font-family: 'MonumentExtendedUltraBold', sans-serif ;
+}
+.under-titel{
+    font-weight: 100;
+}
+.small-text{
+    font-weight: lighter;
+}
+
+.about-page {
+  background-color: #1A1F25;
+}
+
+.about-page h2 {
+  font-family: 'MonumentExtended', sans-serif;
+  color: #fff;
+}
+
+.about-page p {
+  color: #ccc;
+  line-height: 1.6;
+}
