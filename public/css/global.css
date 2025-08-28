@@ -53,3 +53,25 @@ body {
 
 .animate-left { transform: translateX(-50px); }
 .animate-right { transform: translateX(50px); }
+
+
+.container {
+  width: 100%;
+  padding-left: clamp(16px, 3vw, 50px);
+  padding-right: clamp(16px, 3vw, 50px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mobile: geen max-width nodig, full width */
+@media (min-width: 576px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 90vw;
+  }
+}

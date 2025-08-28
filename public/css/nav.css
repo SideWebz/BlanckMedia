@@ -2,7 +2,7 @@
   background-color: #1A1F25 ; 
   width: 100%;
   z-index: 5;
-  padding-top: 1rem;
+  padding-top: 0.7rem;
   padding-bottom: 1rem;
 }
 
@@ -11,6 +11,24 @@
   z-index: 1060; /* hoger dan overlay (1050) */
 }
 
+  .navbar-brand-mobile{
+    display: none;
+  }
+
+.navbar-inner {
+  width: 100%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+@media (max-width: 991.98px) { /* Bootstrap breakpoint lg */
+  .navbar-brand{
+    display: none;
+  }
+  .navbar-brand-mobile{
+    display: block;
+  }
+}
 
 .navbar-transparent .nav-link,
 .navbar-transparent .navbar-brand {
