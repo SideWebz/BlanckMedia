@@ -31,7 +31,7 @@
   bottom: 5%;   /* afstand van onderkant video */
   left: 3%;     /* afstand van linkerkant video */
   text-align: left;  /* links uitlijnen */
-  color: white;
+  color: #F3F3E9; 
   z-index: 2;
 }
 
@@ -64,7 +64,7 @@
 /* Links en logo wit + leesbaar */
 .homepage .navbar .nav-link,
 .homepage .navbar .navbar-brand {
-  color: #fff;
+  color: #F3F3E9; 
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* subtiele shadow voor leesbaarheid */
 }
 

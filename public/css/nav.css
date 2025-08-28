@@ -32,7 +32,7 @@
 
 .navbar-transparent .nav-link,
 .navbar-transparent .navbar-brand {
-  color: #ffffff;
+  color: #F3F3E9; 
   font-weight: 100 !important;
   font-family: 'MonumentExtended', sans-serif;
 }
@@ -105,7 +105,7 @@
 }
 
 .navbar-overlay.d-lg-none ul li a {
-  color: #fff;
+  color: #F3F3E9; 
   text-decoration: none;
 }
 

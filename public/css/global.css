@@ -1,7 +1,7 @@
 body {
   font-family: 'Montserrat', sans-serif !important;
   background-color: #1A1F25 !important;
-  color: #fff;
+  color: #F3F3E9;
   margin: 0;
   padding: 0;
   display: flex;
@@ -74,4 +74,15 @@ body {
   .container {
     max-width: 90vw;
   }
+}
+
+.text-white{
+    color: #F3F3E9 !important; 
+}
+
+.thin-text{
+      font-weight: 300;
+}
+.bold-font{
+    font-family: 'MonumentExtended', sans-serif;
 }
