@@ -161,3 +161,25 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+.main p.fs-5 {
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.main p.fs-7 {
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+}
+
+@media (max-width: 576px) {
+  .main p.fs-5 {
+font-size: clamp(0.9rem, 2vw, 0.9rem) !important;
+}
+
+.main {
+  padding-bottom: 1rem;
+}
+.slide img {
+  max-height: 60px;
+  max-width: 125px;
+  }
+}
