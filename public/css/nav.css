@@ -28,6 +28,9 @@
   .navbar-brand-mobile{
     display: block;
   }
+  .main::before {
+    display: none;
+  }
 }
 
 .navbar-transparent .nav-link,

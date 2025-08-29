@@ -86,3 +86,7 @@ body {
 .bold-font{
     font-family: 'MonumentExtended', sans-serif;
 }
+
+.bold{
+  font-weight: 700;
+}

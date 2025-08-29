@@ -35,6 +35,31 @@
   z-index: 2;
 }
 
+.main {
+  position: relative; /* nodig voor het pseudo-element */
+  z-index: 0; /* tekst blijft erboven */
+  padding-bottom: 5rem;
+}
+
+.main::before {
+  content: "";
+  position: absolute;
+  top: -0px; /* start iets boven de tekst zodat hij aansluit */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 15vw;
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(161, 128, 27, 0.623) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+  z-index: -1; /* <<< zorgt dat hij achter de tekst komt */
+}
+
+
+
 .video-banner .overlay h2 {
   font-family: 'MonumentExtended', sans-serif;
   font-weight: 100;
@@ -88,3 +113,51 @@
   }
 }
 
+.partners{
+  margin-top: 50px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+
+.logo-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 120px; /* hoogte van de logos */
+}
+
+.slide-track {
+  display: flex;
+  width: calc(250px * 14); /* 7 logos * 2 */
+  animation: scroll 40s linear infinite;
+}
+
+.slide {
+  height: 120px;
+  width: 250px; /* vaste breedte per logo-container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.slide img {
+  max-height: 80px;
+  max-width: 200px;
+  filter: grayscale(0%); /* stijl: grijs */
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.slide img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* animatie */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
