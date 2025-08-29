@@ -15,7 +15,7 @@
   }
 }
 
-.video-banner video {
+.video-banner video  , .banner-image {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -175,6 +175,10 @@
 font-size: clamp(0.9rem, 2vw, 0.9rem) !important;
 }
 
+.video-banner {
+    height: 35vh; /* 60% van de viewport hoogte */
+  }
+
 .main {
   padding-bottom: 1rem;
 }
@@ -182,4 +186,15 @@ font-size: clamp(0.9rem, 2vw, 0.9rem) !important;
   max-height: 60px;
   max-width: 125px;
   }
+
+  .video-banner video  , .banner-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 50%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) scale(1); /* zoom om zwarte randen weg te halen */
+  z-index: 1;
+}
 }
