@@ -40,7 +40,22 @@ body {
   background-color: #F5C252 !important;
   color: #fff !important;
 }
+
+.btn-accent-color-send {
+  background-color: #F5C252 !important;
+  color: #fff !important;
+  font-size: 1.6rem;
+  font-family: 'MonumentExtended', sans-serif;
+  width: 100%;
+  padding: 10px 5px;;
+}
+
 .btn-accent-color:hover{
+  background-color: #a58b52 !important;
+  color: #fff !important;
+}
+
+.btn-accent-color-send:hover{
   background-color: #a58b52 !important;
   color: #fff !important;
 }

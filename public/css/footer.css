@@ -38,3 +38,24 @@ footer{
   color: #f5c252;          /* accentkleur op hover */
   transform: scale(1.2);   /* lichte vergroting op hover */
 }
+
+.small-text{
+  font-size: smaller;
+}
+.footertitel{
+  font-family: 'MonumentExtended', sans-serif;
+  font-weight: 100;
+  font-size: medium;
+}
+.btn-thin{
+  padding: 6px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: 'MonumentExtended', sans-serif;
+  font-weight: 50;
+  font-size: small;
+}
+
+.mb-footer{
+  margin-bottom: 35px;
+}

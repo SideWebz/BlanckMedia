@@ -6,11 +6,23 @@
     font-family: 'MonumentExtendedUltraBold', sans-serif ;
 }
 .under-titel{
+    font-family: 'MonumentExtended', sans-serif;
+}
+
+.under-titel{
     font-weight: 300;
 }
-.small-text{
-    font-weight: 200;
+.small-text {
+  font-weight: 200;
+  font-size: clamp(0.85rem, 1vw + 0.5rem, 1.2rem);
+  line-height: 1.4;
 }
+
+
+.small-text bold{
+  font-weight: 800;
+}
+
 
 .contact-page h2 {
   font-family: 'MonumentExtended-Regular', sans-serif;
@@ -61,4 +73,18 @@
   border-radius: 0.5rem;
   min-height: 450px; /* optioneel, zodat op small screens het niet té klein wordt */
 }
+.mediaicons a {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 28px;        /* grootte van de iconen */
+  color: #fff;            /* standaard wit */
+  transition: color 0.3s, transform 0.3s;
+}
 
+.mediaicons a:hover {
+  transform: scale(1.2);  /* klein zoom-effect */
+}
+
+.mediaicons a:hover {
+color: #f5c252;  
+}

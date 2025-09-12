@@ -17,46 +17,63 @@
 
 <section class="contact-page py-5">
   <div class="container">
-
-    <div class="row align-items-start g-5">
+    <div class="row g-5 align-items-stretch"><!-- stretch zorgt dat alle col even hoog zijn -->
+      
       <!-- Contact Form -->
-      <div class="col-md-8">
+      <div class="col-md-6 d-flex flex-column">
         <h2 class="mb-4 text-white">Contact Us</h2>
-<form id="contactForm" class="needs-validation" novalidate>
-  <div class="mb-3">
-    <label for="company" class="form-label text-white">Company</label>
-    <input type="text" class="form-control custom-input" id="company" name="company" placeholder="Enter your company name" required>
-    <div class="invalid-feedback">Company name is required.</div>
-  </div>
-
-  <div class="mb-3">
-    <label for="name" class="form-label text-white">Name</label>
-    <input type="text" class="form-control custom-input" id="name" name="name" placeholder="Enter your name" required>
-    <div class="invalid-feedback">Name is required.</div>
-  </div>
-
-  <div class="mb-3">
-    <label for="email" class="form-label text-white">Email address</label>
-    <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Enter your email address" required>
-    <div class="invalid-feedback">Please enter a valid email address.</div>
-  </div>
-
-  <div class="mb-3">
-    <label for="message" class="form-label text-white">Message</label>
-    <textarea class="form-control custom-input" id="message" name="message" rows="4" placeholder="Type your message here" required></textarea>
-    <div class="invalid-feedback">Your message cannot be empty.</div>
-  </div>
-
-  <div id="formMessage" class="text-white mb-3"></div>
-
-  <button type="submit" class="btn btn-accent-color mt-2">Send</button>
-</form>
+        <form id="contactForm" class="needs-validation flex-grow-1" novalidate>
+          <div class="mb-3">
+            <label for="company" class="form-label text-white">Company</label>
+            <input type="text" class="form-control custom-input" id="company" name="company" placeholder="Enter your company name" required>
+            <div class="invalid-feedback">Company name is required.</div>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label text-white">Name</label>
+            <input type="text" class="form-control custom-input" id="name" name="name" placeholder="Enter your name" required>
+            <div class="invalid-feedback">Name is required.</div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label text-white">Email address</label>
+            <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Enter your email address" required>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label text-white">Message</label>
+            <textarea class="form-control custom-input" id="message" name="message" rows="5" placeholder="Type your message here" required></textarea>
+            <div class="invalid-feedback">Your message cannot be empty.</div>
+          </div>
+          <div id="formMessage" class="text-white mb-3"></div>
+          <button type="submit" class="btn btn-accent-color-send mt-2">Send Message</button>
+        </form>
       </div>
 
-<div class="col-md-4">
-  <img class="img-fluid w-100 rounded" src="/images/contact/BlanckMedia-StandingCam.png" alt="BlanckMedia Contact Image">
-</div>
+      <!-- Contact Image -->
+      <div class="col-md-3 d-flex justify-content-center align-items-center d-none d-md-block">
+        <img class="img-fluid h-100 rounded"
+             style="max-height: 600px; object-fit: cover;"
+             src="/images/contact/BlanckMedia-StandingCam.png"
+             alt="BlanckMedia Contact Image">
+      </div>
 
-
+<div class="col-md-3 d-flex flex-column d-none d-md-flex justify-content-between">
+        <div class="mb-3 part"><h4 class="fw-bold">Get In Touch</h4>
+          <p>+32 499 16 58 18 <br>jonathan@blanckmedia.be</p>
+        </div>
+         <div class="mb-3 part">
+          <h4 class="fw-bold">Our Headquarters</h4>
+          <p>Kaleshoek 9, 8210 Zedelgem <br>Belgium</p>
+        </div>
+        <div class="mb-3 part">
+  <h4 class="fw-bold">Our Socials</h4>
+  <div class="mediaicons mt-3">
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+

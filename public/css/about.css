@@ -6,12 +6,32 @@
     font-family: 'MonumentExtendedUltraBold', sans-serif ;
 }
 .under-titel{
-    font-weight: 300;
-}
-.small-text{
-    font-weight: 200;
+    font-family: 'MonumentExtended', sans-serif;
 }
 
+.under-titel{
+    font-weight: 300;
+}
+.small-text {
+  font-weight: 200;
+  font-size: clamp(0.85rem, 1vw + 0.5rem, 1.2rem);
+  line-height: 1.4;
+}
+
+
+
+.small-text bold{
+  font-weight: 800;
+}
+.bolder{
+  font-weight: 400;
+}
+
+.fa-square{
+  font-size: clamp(0.85rem, 1vw + 0.5rem, 1.2rem);
+  margin-right: 5px;
+  color: #F5C252;
+}
 .about-page {
   background-color: #1A1F25;
 }
@@ -24,4 +44,10 @@
 .about-page p {
   color: #ccc;
   line-height: 1.6;
+}
+
+.procces-card{
+  border: solid 3px #F5C252;
+  border-radius: 5px;
+  padding:10px ;
 }
