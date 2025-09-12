@@ -198,3 +198,51 @@ font-size: clamp(0.9rem, 2vw, 0.9rem) !important;
   z-index: 1;
 }
 }
+
+
+.home-carousel-section {
+  margin-top: 50px;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.home-carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: auto; /* hoogte van de carousel */
+}
+
+.home-carousel-track {
+  display: flex;
+  width: calc(250px * 16); /* 8 afbeeldingen * 2 */
+  animation: home-scroll 40s linear infinite;
+}
+
+.home-slide {
+  height: auto;
+  width: 38vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0px;
+}
+
+.home-slide img {
+  max-height: auto;
+  max-width: 38vw;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+
+/* Animatie */
+@keyframes home-scroll {
+  0% {
+    transform: translateX(calc(-250px * 8)); /* start aan de “eind”-positie */
+  }
+  100% {
+    transform: translateX(0); /* eindigt bij 0 */
+  }
+}
+

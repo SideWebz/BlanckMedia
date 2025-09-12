@@ -59,3 +59,8 @@ footer{
 .mb-footer{
   margin-bottom: 35px;
 }
+
+.textlinks{
+  font-family: 'MonumentExtended', sans-serif;
+  font-size: 1.2rem;
+}
