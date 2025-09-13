@@ -72,6 +72,13 @@
     min-width: 0; /* Prevents overflow on small screens */
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+    .photo-row {
+        height: 200px; /* hoogte iets kleiner dan desktop */
+        gap: 0.75rem;  /* eventueel iets minder ruimte tussen foto’s */
+    }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .photo-row {
@@ -85,4 +92,12 @@
         height: 110px; /* Even smaller on mobile */
         gap: 0.25rem;
     }
+}
+
+
+.mobile-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
 }
