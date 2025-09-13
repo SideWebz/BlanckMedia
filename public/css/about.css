@@ -92,6 +92,9 @@
         height: 110px; /* Even smaller on mobile */
         gap: 0.25rem;
     }
+     .about-page {
+    padding-bottom: 1rem !important; /* alleen de onderkant kleiner */
+  }
 }
 
 
@@ -100,4 +103,8 @@
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
+}
+
+.thick{
+  font-family: 'MonumentExtended', sans-serif;
 }
