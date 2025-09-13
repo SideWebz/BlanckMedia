@@ -18,9 +18,13 @@
   line-height: 1.4;
 }
 
+.mid-text {
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1vw + 0.5rem, 1.4rem);
+  line-height: 1.4;
+}
 
-
-.small-text bold{
+.mid-text bold{
   font-weight: 800;
 }
 .bolder{
@@ -28,7 +32,7 @@
 }
 
 .fa-square{
-  font-size: clamp(0.85rem, 1vw + 0.5rem, 1.2rem);
+  font-size: clamp(0.85rem, 1vw + 0.5rem, 2rem);
   margin-right: 5px;
   color: #F5C252;
 }
@@ -50,4 +54,35 @@
   border: solid 3px #F5C252;
   border-radius: 5px;
   padding:10px ;
+}
+
+.photo-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 40vh; /* Set a consistent height for both rows */
+}
+
+.photo-row img {
+    flex: 1; /* Changed from flex-grow: 1 */
+    object-fit: cover;
+    height: 100%; /* Fill the row height */
+    border-radius: 8px;
+    min-width: 0; /* Prevents overflow on small screens */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .photo-row {
+        height: 135px; /* Smaller height on tablets */
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .photo-row {
+        height: 110px; /* Even smaller on mobile */
+        gap: 0.25rem;
+    }
 }
