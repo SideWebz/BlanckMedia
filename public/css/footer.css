@@ -45,7 +45,7 @@ footer{
 .footertitel{
   font-family: 'MonumentExtended', sans-serif;
   font-weight: 100;
-  font-size: medium;
+  font-size: 0.9rem;
 }
 .btn-thin{
   padding: 6px 20px;
@@ -63,4 +63,10 @@ footer{
 .textlinks{
   font-family: 'MonumentExtended', sans-serif;
   font-size: 1.2rem;
+}
+
+.company-info {
+  display: flex;
+  flex-direction: column; /* zet adres en knop netjes onder elkaar */
+  align-items: flex-start; /* zorg dat ze links uitgelijnd zijn */
 }
