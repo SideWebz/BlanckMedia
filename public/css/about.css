@@ -124,10 +124,6 @@
     height: 100%;
     border-radius: 8px;
     min-width: 0;
-    /* Beginstaat voor animatie */
-    transform: scaleX(0);
-    transform-origin: left center;
-    opacity: 0;
 }
 
 .mobile-grid img {
