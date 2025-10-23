@@ -12,6 +12,7 @@
 @media (max-width: 1600px) {
   .tape {
     right: 700px;
+    height: 90vh;
   }
 }
 
@@ -19,6 +20,7 @@
 @media (max-width: 1200px) {
   .tape {
     right: 400px;
+    height: 80vh;
   }
 }
 
@@ -26,6 +28,7 @@
 @media (max-width: 992px) {
   .tape {
     right: 200px;
+    height: 70vh;
   }
 }
 
@@ -33,5 +36,6 @@
 @media (max-width: 768px) {
   .tape {
     right: 50px;
+    height: 60vh;
   }
 }
