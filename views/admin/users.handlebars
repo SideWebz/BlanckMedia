@@ -1,0 +1,139 @@
+<section class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">Users Management</h1>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">+ Add User</button>
+    </div>
+
+    {{#if users.length}}
+    <div class="table-responsive">
+      <table class="table table-dark table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Voornaam</th>
+            <th>Naam</th>
+            <th>Role</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each users}}
+          <tr>
+            <td><strong>{{this.username}}</strong></td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td>
+              <span class="badge {{#if (eq this.role 'admin')}}bg-danger{{else}}bg-secondary{{/if}}">
+                {{#if (eq this.role 'admin')}}Admin{{else}}User{{/if}}
+              </span>
+            </td>
+            <td>{{formatDate this.createdAt}}</td>
+            <td>
+              <button class="btn btn-sm btn-danger" onclick="deleteUser({{this.id}})">Delete</button>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="alert alert-secondary">No users yet. Create one to get started.</div>
+    {{/if}}
+
+    <!-- Bootstrap Modal for adding user -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title">Add New User</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="addUserForm">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="firstName" class="form-label">Voornaam</label>
+                <input type="text" id="firstName" name="firstName" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Naam</label>
+                <input type="text" id="lastName" name="lastName" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Wachtwoord</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" id="isAdmin" name="isAdmin" class="form-check-input">
+                <label for="isAdmin" class="form-check-label">
+                  Make this user an Admin
+                </label>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Add User</button>
+                <button type="button" class="btn btn-outline-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="successMessage" class="alert alert-success" style="display: none;"></div>
+    <div id="errorMessage" class="alert alert-danger" style="display: none;"></div>
+  </div>
+</section>
+
+<script>
+function closeAddUserForm() {
+  const modalEl = document.getElementById('addUserModal');
+  const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+  modal.hide();
+  document.getElementById('addUserForm').reset();
+}
+
+document.getElementById('addUserForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const username = document.getElementById('username').value;
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const password = document.getElementById('password').value;
+  const isAdmin = document.getElementById('isAdmin').checked;
+
+  try {
+    const response = await fetch('/admin/users/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, firstName, lastName, password, isAdmin })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      showSuccess('User added successfully!');
+      setTimeout(() => location.reload(), 1200);
+    } else {
+      showError(data.error || 'Error adding user');
+    }
+  } catch (error) { showError('Error adding user'); }
+});
+
+function deleteUser(userId) {
+  if (confirm('Are you sure you want to delete this user?')) {
+    fetch(`/admin/users/delete/${userId}`, { method: 'POST' })
+      .then(() => { showSuccess('User deleted successfully!'); setTimeout(() => location.reload(), 1200); })
+      .catch(() => showError('Error deleting user'));
+  }
+}
+
+function showSuccess(message) {
+  const elem = document.getElementById('successMessage'); elem.textContent = message; elem.style.display = 'block';
+}
+function showError(message) {
+  const elem = document.getElementById('errorMessage'); elem.textContent = message; elem.style.display = 'block';
+}
+</script>

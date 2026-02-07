@@ -1,0 +1,8 @@
+/* Work page styles */
+/* ==================================================
+   HEADER ARROW ICON
+   ================================================== */
+
+.page-header__title--with-icon::before {
+  background-image: url('/svg/BlanckMedia-OrangeArrow.svg');
+}

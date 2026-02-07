@@ -1,142 +1,130 @@
-.about-page {
-  background-color: #1A1F25;
-  color: #F3F3E9;      
-}
-.titel{
-    font-family: 'MonumentExtendedUltraBold', sans-serif ;
-}
-.under-titel{
-    font-family: 'MonumentExtended', sans-serif;
-}
+/* ===========================
+   BRAND STORIES CARDS
+=========================== */
 
-.under-titel{
-    font-weight: 300;
-}
-.small-text {
-  font-weight: 200;
-  font-size: clamp(0.85rem, 1vw + 0.5rem, 1.2rem);
-  line-height: 1.4;
-}
-
-.mid-text {
-  font-weight: 300;
-  font-size: clamp(0.95rem, 1vw + 0.5rem, 1.4rem);
-  line-height: 1.4;
-}
-
-.mid-text bold{
-  font-weight: 800;
-}
-.bolder{
-  font-weight: 400;
-}
-
-.fa-square{
-  font-size: clamp(0.85rem, 1vw + 0.5rem, 2rem);
-  margin-right: 5px;
-  color: #F5C252;
-}
-.about-page {
-  background-color: #1A1F25;
-}
-
-.about-page h2 {
-  font-family: 'MonumentExtended', sans-serif;
-  color: #fff;
-}
-
-.about-page p {
-  color: #ccc;
-  line-height: 1.6;
-}
-
-.procces-card{
-  border: solid 3px #F5C252;
-  border-radius: 5px;
-  padding:10px ;
-}
-
-.photo-row {
+.brand-card {
+    position: relative;
+    padding: clamp(7px, 4vw, 20px);
+    border-radius: 2rem;
+    background: #1b1b1b;
+    min-height: clamp(120px, 15vw, 180px);
+    overflow: hidden;
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    height: 40vh; /* Set a consistent height for both rows */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.photo-row img {
-    flex: 1; /* Changed from flex-grow: 1 */
+/* BIG NUMBER */
+.brand-bg-number {
+    font-family: "Syne", system-ui, sans-serif;
+    position: absolute;
+    bottom: -75px;
+    left: -50px;
+    font-size: clamp(220px, 22vw, 280px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    background: linear-gradient(180deg, #ff8a00, #ff5f00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.9;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* TITLE */
+.brand-card-title {
+    position: relative;
+    z-index: 2;
+    font-family: "PP-Monument_Extd_BLACK", system-ui, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    text-align: center;
+    font-size: clamp(1.2rem, 2.5vw, 2.1rem);
+    color: #ffffff;
+    max-width: 100%;
+    margin: 0;
+}
+
+/* HOVER FEEL */
+.brand-card:hover .brand-bg-number {
+    opacity: 1;
+}
+
+.sub-title {
+    font-size: clamp(1.0rem, 2vw, 2rem);
+}
+
+/* ===========================
+   TEAM MEMBER CARDS - FIXED
+=========================== */
+
+.team-card {
+    background-color: #1b1b1b;
+}
+
+/* Image column styling */
+.team-card .col-md-4 {
+    padding: 1rem;
+}
+
+.team-img {
+    border-radius: 2rem;
     object-fit: cover;
-    height: 100%; /* Fill the row height */
-    border-radius: 8px;
-    min-width: 0; /* Prevents overflow on small screens */
+    width: 100%;
+    max-width: 350px; /* prevents image from getting too large */
 }
 
-@media (max-width: 1024px) and (min-width: 769px) {
-    .photo-row {
-        height: 200px; /* hoogte iets kleiner dan desktop */
-        gap: 0.75rem;  /* eventueel iets minder ruimte tussen foto’s */
-    }
+/* Text column styling */
+.team-card .col-md-8 {
+    padding: 2rem;
+    display: flex;
 }
 
-/* Responsive adjustments */
+.text-column {
+    width: 100%;
+    max-width: 100% !important; /* override inline style */
+}
+
+.team-name {
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.team-role {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 500;
+    color: #ff8a00;
+    margin-bottom: 1rem;
+}
+
+.team-description {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+
+/* MOBILE: stack image above text */
 @media (max-width: 768px) {
-    .photo-row {
-        height: 135px; /* Smaller height on tablets */
-        gap: 0.5rem;
+    .team-card .row {
+        gap: 0;
     }
-}
-
-@media (max-width: 576px) {
-    .photo-row {
-        height: 110px; /* Even smaller on mobile */
-        gap: 0.25rem;
+    
+    .team-card .col-md-4,
+    .team-card .col-md-8 {
+        padding: 1rem;
     }
-     .about-page {
-    padding-bottom: 1rem !important; /* alleen de onderkant kleiner */
-  }
-}
-
-
-.mobile-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.thick{
-  font-family: 'MonumentExtended', sans-serif;
-}
-
-
-.photo-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    overflow: hidden; /* Belangrijk voor de animatie */
-}
-
-.photo-row img {
-    flex: 1;
-    object-fit: cover;
-    height: 100%;
-    border-radius: 8px;
-    min-width: 0;
-}
-
-.mobile-grid img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    /* Beginstaat voor mobiele animatie */
-    transform: scale(0.8);
-    opacity: 0;
-}
-
-.section-title {
-    opacity: 0;
-    transform: translateY(30px);
+    
+    .team-img {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .text-column {
+        text-align: center !important;
+    }
 }

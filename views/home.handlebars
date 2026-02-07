@@ -1,0 +1,109 @@
+<div class="page-header page-header--image page-header--home" {{#if (eq header.type 'image')}}style="background-image: url('{{header.image_path}}');"{{/if}}>
+  {{#if (eq header.type 'video')}}
+    {{#if header.video_url}}
+      <video autoplay muted playsinline loop class="page-header--video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+        <source src="{{header.video_url}}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    {{/if}}
+  {{/if}}
+</div>
+
+
+<section class="position-relative" id="latest-work">
+
+<div class="text-center mt-5">
+  <img src="./svg/arrow-down.svg" alt="Scroll down" class="scroll-arrow">
+</div>
+
+  
+  <div class="container text-center mt-9 mb-10 caps">
+    <p>We are a video production company <br> that tells powerful stories.</p>
+  </div>
+  
+  <div class="container text-center mt-5">
+    <h2 class="mb-4">LATEST WORK</h2>
+    
+    {{#if homeSlots}}
+    <div class="row g-3 mb-5">
+      {{#each homeSlots}}
+      <div class="col-4">
+        {{#if (eq this.type 'image')}}
+          {{#if this.image_path}}
+            {{#if this.projectId}}
+              <a href="/projects/{{this.projectId}}" class="home-media-link">
+                <img src="{{this.image_path}}" alt="Media Slot {{this.id}}" class="w-100 rounded-4 home-media-image home-media-item">
+              </a>
+            {{else}}
+              <img src="{{this.image_path}}" alt="Media Slot {{this.id}}" class="w-100 rounded-4 home-media-item">
+            {{/if}}
+          {{else}}
+            <div class="w-100 rounded-4 bg-secondary home-media-item" style="display: flex; align-items: center; justify-content: center;">
+              <span class="text-muted">No image</span>
+            </div>
+          {{/if}}
+        {{else if (eq this.type 'video')}}
+          {{#if this.video_url}}
+            {{#if this.projectId}}
+              <a href="/projects/{{this.projectId}}" class="home-media-link">
+                <video autoplay muted loop playsinline class="w-100 rounded-4 home-media-image home-media-item">
+                  <source src="{{this.video_url}}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </a>
+            {{else}}
+              <video autoplay muted loop playsinline class="w-100 rounded-4 home-media-item">
+                <source src="{{this.video_url}}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            {{/if}}
+          {{else}}
+            <div class="w-100 rounded-4 bg-secondary home-media-item" style="display: flex; align-items: center; justify-content: center;">
+              <span class="text-muted">No video</span>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div class="row g-3 mb-5">
+      <div class="col-4">
+        <img src="./images/work-1.png" alt="Work 1" class="w-100 rounded-4 home-media-item">
+      </div>
+      <div class="col-4">
+        <img src="./images/work-2.png" alt="Work 2" class="w-100 rounded-4 home-media-item">
+      </div>
+      <div class="col-4">
+        <img src="./images/work-3.png" alt="Work 3" class="w-100 rounded-4 home-media-item">
+      </div>
+    </div>
+    {{/if}}
+    
+    <div class="mb-9 mt-10">
+      <p class="mb-1 caps">high-quality visual campaigns across all platforms.</p>
+      <b class="mb-4 caps">Commercials // Social media // Brand stories</b>
+    </div>
+
+    <a href="https://calendly.com/blanckmedia"
+     class="btn-primary mb-0"
+     target="_blank"
+     rel="noopener noreferrer">
+      Plan Meeting
+    </a>
+  </div>
+</section>
+
+
+<script>
+  // Selecteer het pijltje
+  const arrow = document.querySelector('.scroll-arrow');
+
+  arrow.addEventListener('click', () => {
+    // Scroll naar de section met id="latest-work"
+    const target = document.querySelector('#latest-work');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>

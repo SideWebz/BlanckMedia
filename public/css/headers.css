@@ -1,0 +1,614 @@
+/* ==================================================
+   UNIFIED HEADER SYSTEM
+   
+   This file provides a consistent header framework
+   across all pages: home, work, contact, services,
+   and project pages.
+   
+   ================================================== */
+
+:root {
+  /* Header Height Variables */
+  --header-height-mobile: 25vh;
+  --header-height-tablet: 35vh;
+  --header-height-desktop: 60vh;
+
+  /* Reduced heights for headers with additional content */
+  --header-height-content-mobile: 50vh;
+  --header-height-content-tablet: 55vh;
+  --header-height-content-desktop: 60vh;
+
+  /* Text/padding spacing */
+  --header-padding-mobile: clamp(1rem, 8vw, 1rem);
+  --header-padding-tablet: clamp(3rem, 10vw, 6rem);
+  --header-padding-desktop: clamp(4rem, 12vw, 8rem);
+
+  /* Mobile navbar considerations */
+  --navbar-padding: 20px;
+  --navbar-height: 50px;
+}
+
+/* ==================================================
+   BASE HEADER CLASS
+   ================================================== */
+
+.page-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Mobile: Increased header height */
+@media (max-width: 767px) {
+  .page-header {
+    min-height: var(--header-height-mobile);
+    padding: var(--header-padding-mobile);
+    padding-top: calc(var(--header-padding-mobile) + 100px); /* Extra space from navbar */
+  }
+}
+
+/* Tablet: Medium height */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .page-header {
+    min-height: var(--header-height-tablet);
+    padding: var(--header-padding-tablet);
+    padding-top: var(--header-padding-tablet);
+  }
+}
+
+/* Desktop: Standard height */
+@media (min-width: 1200px) {
+  .page-header {
+    min-height: var(--header-height-desktop);
+    padding: var(--header-padding-desktop);
+    padding-top: var(--header-padding-desktop);
+  }
+}
+
+/* ==================================================
+   HEADER VARIANTS
+   ================================================== */
+
+/* Image Background Header */
+.page-header--image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* No Background Header (text/content only) */
+.page-header--no-image {
+  background: transparent;
+  min-height: auto;
+  padding-top: var(--header-padding-mobile);
+  padding-bottom: var(--header-padding-mobile);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 768px) {
+  .page-header--no-image {
+    padding-top: var(--header-padding-tablet);
+    padding-bottom: var(--header-padding-tablet);
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-header--no-image {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* ==================================================
+   HEADER CONTENT CONTAINER
+   ================================================== */
+
+.page-header__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  position: relative;
+  z-index: 10;
+}
+
+/* Left-aligned variant (for contact page) */
+.page-header__content--left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* ==================================================
+   PAGE TITLE STYLING
+   ================================================== */
+
+.page-header__title {
+  font-family: "Brand-Regular", system-ui, sans-serif;
+  font-size: clamp(1.6rem, 6vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Left-aligned title */
+.page-header__title--left {
+  justify-content: flex-start;
+}
+
+/* Title with icon/arrow */
+.page-header__title--with-icon::before {
+  content: '';
+  display: inline-block;
+  width: clamp(30px, 5vw, 50px);
+  height: clamp(30px, 5vw, 50px);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+/* ==================================================
+   PAGE SUBTITLE / DESCRIPTION
+   ================================================== */
+
+.page-header__subtitle {
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  margin: 0;
+  max-width: 600px;
+}
+
+/* ==================================================
+   HEADER TABS / ACTIONS
+   ================================================== */
+
+.page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  justify-content: center;
+  width: 100%;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+.page-header__actions--mobile-stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .page-header__actions--mobile-stack {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Tab buttons in header */
+.page-header__tab-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.5rem, 1vw, 1.0rem) clamp(1rem, 2vw, 1.5rem);
+  border-radius: 9999px;
+  border: 2px solid #ffffff;
+  background-color: transparent;
+  color: #ffffff;
+  font-family: "Brand-UltraBold", system-ui, sans-serif;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.page-header__tab-button:hover {
+  background-color: #ffffff;
+  color: #020617;
+}
+
+.page-header__tab-button.active {
+  background-color: #ffffff;
+  color: #020617;
+}
+
+/* ==================================================
+   CONTACT INFO SECTION
+   ================================================== */
+
+.page-header__contact-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* Single contact person */
+.page-header__contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+@media (min-width: 768px) {
+  .page-header__contact-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.page-header__contact-person {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  flex: 1;
+}
+
+.page-header__contact-image {
+  width: clamp(60px, 10vw, 80px);
+  height: clamp(60px, 10vw, 80px);
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.page-header__contact-name {
+  font-family: "Brand-Regular", system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.25rem 0;
+}
+
+.page-header__contact-role {
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.page-header__contact-info {
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(0.9rem, 1.8vw, 1rem) !important;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .page-header__contact-info {
+    text-align: right;
+  }
+}
+
+.page-header__contact-info p {
+  margin: 0;
+  line-height: 1.5;
+    font-size: clamp(0.9rem, 1.8vw, 1rem) !important;
+}
+
+/* ==================================================
+   ABOUT INFO SECTION
+   ================================================== */
+
+.page-header__about-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.page-header__about-content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
+}
+
+@media (max-width: 1199px) {
+  .page-header__about-content {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-header__about-content {
+    max-width: 80%;
+  }
+}
+
+.page-header__about-title {
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 200;
+  line-height: 1.3;
+  color: #fff;
+  margin: 0;
+}
+
+.page-header__about-description {
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* ==================================================
+   DECORATIVE ELEMENTS
+   ================================================== */
+
+/* Arrow icon styling */
+.page-header__arrow-icon {
+  width: clamp(30px, 5vw, 50px);
+  height: clamp(30px, 5vw, 50px);
+  flex-shrink: 0;
+}
+
+/* ==================================================
+   BACKGROUND OVERLAY (optional)
+   ================================================== */
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Remove overlay for text-only headers */
+.page-header--no-image::before {
+  display: none;
+}
+
+/* ==================================================
+   RESPONSIVE HELPERS
+   ================================================== */
+
+@media (max-width: 767px) {
+  /* Ensure titles wrap properly on mobile */
+  .page-header__title {
+    word-break: break-word;
+  }
+
+  /* Stack contact sections vertically on mobile */
+  .page-header__contact-item {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  /* Increase spacing for mobile readability */
+  .page-header {
+    padding-top: max(var(--header-padding-mobile), calc(var(--navbar-height) + 5rem));
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  /* Tablet adjustments */
+  .page-header__actions--mobile-stack {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+.page-header__actions--grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  justify-items: stretch;
+  width: 100%;
+}
+
+/* Derde button centered op tweede rij */
+.page-header__actions--grid .page-header__tab-button:nth-child(3) {
+  grid-column: 1 / -1;
+  max-width: 300px;
+  justify-self: center;
+}
+
+/* Vanaf tablet: alles op één rij */
+@media (min-width: 768px) {
+  .page-header__actions--grid {
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    width: auto;
+  }
+  
+  .page-header__actions--grid .page-header__tab-button:nth-child(3) {
+    grid-column: auto;
+    max-width: none;
+  }
+}
+
+/* Compact header for contact page */
+.page-header--contact {
+  padding-bottom: clamp(1.5rem, 4vw, 3rem) !important;
+}
+
+/* Mobile: Keep navbar spacing intact */
+@media (max-width: 767px) {
+  .page-header--contact {
+    padding-top: max(var(--header-padding-mobile), calc(var(--navbar-height) + 5rem)) !important;
+  }
+  
+  .page-header__contact-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .page-header__contact-name {
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+  }
+  
+  .page-header__contact-role {
+    font-size: 0.75rem !important;
+  }
+  
+  .page-header__contact-info {
+    font-size: 0.75rem !important;
+  }
+  
+  .page-header__contact-info p {
+        font-size: 0.75rem !important;
+    margin: 0.2rem 0;
+    line-height: 1.4;
+  }
+  
+  .page-header__contact-section {
+    gap: 1rem;
+  }
+  
+  .page-header__contact-item {
+    gap: 0.75rem;
+  }
+  
+  .page-header__title {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .page-header--contact {
+  }
+  
+  .page-header__contact-image {
+    width: 65px;
+    height: 65px;
+  }
+  
+  .page-header__contact-info {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+/* Keep icon next to title on mobile */
+@media (max-width: 767px) {
+  .page-header__title--with-icon {
+    flex-wrap: nowrap;
+  }
+  
+  .page-header__title--with-icon::before {
+    width: clamp(25px, 4vw, 35px);
+    height: clamp(25px, 4vw, 35px);
+  }
+}
+
+
+/* Home page header - taller on desktop */
+.page-header--home {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  .page-header--home {
+    min-height: 35vh;
+    padding: var(--header-padding-mobile);
+    padding-top: calc(var(--header-padding-mobile) + 100px);
+  }
+}
+
+
+.crop-bottom{
+  padding-bottom: 3rem;
+  padding-top: 10rem;
+}
+
+
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .page-header--home {
+    min-height: 55vh;
+    padding: var(--header-padding-tablet);
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-header--home {
+    min-height: 80vh;
+    padding: var(--header-padding-desktop);
+  }
+}
+
+/* Work page header - medium height */
+.page-header--work {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  .page-header--work {
+    min-height: 25vh;
+    padding: var(--header-padding-mobile);
+    padding-top: max(var(--header-padding-mobile), calc(var(--navbar-height) + 2rem)) !important;
+    padding-bottom: var(--header-padding-mobile);
+    
+  }
+    .crop-bottom{
+  padding-bottom: 3rem;
+  padding-top: 7rem;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .page-header--work {
+    min-height: 40vh;
+    padding: var(--header-padding-tablet);
+  }
+
+  .crop-bottom{
+  padding-bottom: 3rem;
+  padding-top: 8rem;
+}
+}
+
+@media (min-width: 1200px) {
+  .page-header--work {
+    min-height: 60vh;
+    padding: var(--header-padding-desktop);
+  }
+}
+
+.font-ultra{
+  font-family: "Brand-UltraBold", system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  margin-bottom: 0;
+}
+
+.no-gap {
+  gap: 0 !important;
+}

@@ -1,0 +1,72 @@
+<section class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">{{#if project}}Edit Project{{else}}New Project{{/if}}</h1>
+      <a href="/admin/projects" class="btn btn-outline-secondary">Back to Projects</a>
+    </div>
+
+    <form id="projectForm">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input id="title" name="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="slug" class="form-label">Slug (optional)</label>
+        <input id="slug" name="slug" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="brand" class="form-label">Brand</label>
+        <div class="input-group">
+          <input 
+            id="brand" 
+            name="brand" 
+            class="form-control" 
+            required 
+            placeholder="Type to search or enter new brand..."
+            list="brands-list"
+            autocomplete="off"
+          >
+          <datalist id="brands-list">
+            {{#each brands}}
+              <option value="{{this}}">
+            {{/each}}
+          </datalist>
+        </div>
+        <small class="form-text text-muted">Select from existing or type a new brand name</small>
+      </div>
+      <div class="mb-3">
+        <label for="coverImageFile" class="form-label">Cover Image (upload)</label>
+        <input type="file" id="coverImageFile" accept="image/*" class="form-control">
+        <input type="hidden" id="coverImage" name="coverImage">
+      </div>
+
+      <hr>
+      <h3>Sections</h3>
+      <p>Choose a section type and upload images. Videos use links.</p>
+
+      <div class="mb-3 d-flex gap-2 align-items-center">
+        <select id="sectionType" class="form-select w-auto">
+          <option value="VideoText">Video + Text</option>
+          <option value="CollageHeader">CollageHeader (6-10 images + brand text)</option>
+          <option value="Reels">Reels (3-4 vertical video links)</option>
+          <option value="WebVideos">WebVideos (3-6 horizontal video links)</option>
+          <option value="Results">Results (image + text)</option>
+          <option value="Collage">Collage (6-10 images)</option>
+          <option value="TextSection">Text Section (text only)</option>
+        </select>
+        <button type="button" class="btn btn-secondary" onclick="addSection()">Add Section</button>
+      </div>
+
+      <div id="sectionsContainer"></div>
+
+      <input type="hidden" id="sectionsInput" name="sections">
+
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Save Project</button>
+        <a href="/admin/projects" class="btn btn-outline-secondary ms-2">Cancel</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src="/js/admin-projects.js"></script>

@@ -1,0 +1,418 @@
+﻿<section class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">Manage Home Page</h1>
+      <a href="/admin/dashboard" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="mb-5">
+      <h2 class="mb-3">Page Header</h2>
+      <p class="text-muted mb-4">Upload an image or video URL for the page header. Videos will autoplay without controls.</p>
+      
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <form id="headerForm" class="header-form">
+            
+            <!-- Media Type Selector -->
+            <div class="mb-3">
+              <label for="headerType" class="form-label">Media Type</label>
+              <select id="headerType" class="form-select" onchange="toggleHeaderFields()">
+                <option value="image" {{#if (eq header.type 'image')}}selected{{/if}}>Image</option>
+                <option value="video" {{#if (eq header.type 'video')}}selected{{/if}}>Video</option>
+              </select>
+            </div>
+
+            <!-- Image Upload (conditional) -->
+            <div id="headerImageFields" class="mb-3" style="display: {{#if (eq header.type 'image')}}block{{else}}none{{/if}};">
+              <label for="headerImageFile" class="form-label">Upload Image</label>
+              <input type="file" id="headerImageFile" accept="image/*" class="form-control" onchange="uploadHeaderImage(this.files[0])">
+              {{#if header.image_path}}
+                <div class="mt-3">
+                  <img src="{{header.image_path}}" alt="Header" class="img-fluid rounded" style="max-height: 300px; width: 100%; object-fit: cover;">
+                </div>
+              {{/if}}
+              <input type="hidden" id="headerImagePath" name="image_path" value="{{header.image_path}}">
+            </div>
+
+            <!-- Video URL (conditional) -->
+            <div id="headerVideoFields" class="mb-3" style="display: {{#if (eq header.type 'video')}}block{{else}}none{{/if}};">
+              <label for="headerVideoUrl" class="form-label">Video URL</label>
+              <input 
+                type="text" 
+                id="headerVideoUrl" 
+                name="video_url" 
+                class="form-control" 
+                placeholder="https://example.com/video.mp4"
+                value="{{header.video_url}}"
+                onchange="updateHeaderVideoPreview()"
+              >
+              <small class="text-muted d-block mt-1">Must be a valid video file (.mp4, .webm, .mov)</small>
+              {{#if header.video_url}}
+                <div class="mt-3">
+                  <label class="form-label">Preview</label>
+                  <video width="100%" height="auto" autoplay muted playsinline style="max-height: 300px; object-fit: cover; border-radius: 0.5rem;">
+                    <source src="{{header.video_url}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              {{/if}}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100">Save Header</button>
+          </form>
+
+          <!-- Status message -->
+          <div id="headerMessage" class="mt-3" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <!-- Slots Section -->
+    <div>
+      <h2 class="mb-3">Home Page Slots</h2>
+      <p class="text-muted mb-4">Configure up to 3 media slots for the home page. Each slot can be an image or autoplay video.</p>
+
+      <div class="row g-4">
+        {{#each slots}}
+        <div class="col-md-6 col-lg-4">
+          <div class="card bg-dark text-white">
+            <div class="card-header">
+              <h5 class="mb-0">Slot {{this.id}}</h5>
+            </div>
+            <div class="card-body">
+              <form id="slotForm{{this.id}}" class="slot-form" data-slot-id="{{this.id}}">
+                
+                <!-- Project Selection -->
+                <div class="mb-3">
+                  <label for="projectId{{this.id}}" class="form-label">Link to Project</label>
+                  <select id="projectId{{this.id}}" class="form-select" name="projectId">
+                    <option value="">-- No Project --</option>
+                    {{#each ../projects}}
+                      <option value="{{this.id}}" {{#if (eq ../this.projectId this.id)}}selected{{/if}}>
+                        {{this.title}}
+                      </option>
+                    {{/each}}
+                  </select>
+                  <small class="text-muted d-block mt-1">Select a project to link this image. When clicked, users will navigate to this project.</small>
+                </div>
+
+                <!-- Media Type Selector -->
+                <div class="mb-3">
+                  <label for="type{{this.id}}" class="form-label">Media Type</label>
+                  <select id="type{{this.id}}" class="form-select" data-slot-id="{{this.id}}" onchange="toggleMediaFields(this.getAttribute('data-slot-id'))">
+                    <option value="image" {{#if (eq this.type 'image')}}selected{{/if}}>Image</option>
+                    <option value="video" {{#if (eq this.type 'video')}}selected{{/if}}>Video</option>
+                  </select>
+                </div>
+
+                <!-- Image Upload (conditional) -->
+                <div id="imageFields{{this.id}}" class="mb-3" style="display: {{#if (eq this.type 'image')}}block{{else}}none{{/if}};">
+                  <label for="imageFile{{this.id}}" class="form-label">Upload Image</label>
+                  <input type="file" id="imageFile{{this.id}}" accept="image/*" class="form-control" onchange="uploadSlotImage({{this.id}}, this.files[0])">
+                  {{#if this.image_path}}
+                    <div class="mt-3">
+                      <img src="{{this.image_path}}" alt="Slot {{this.id}}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
+                    </div>
+                  {{/if}}
+                  <input type="hidden" id="imagePath{{this.id}}" name="image_path" value="{{this.image_path}}">
+                </div>
+
+                <!-- Video URL (conditional) -->
+                <div id="videoFields{{this.id}}" class="mb-3" style="display: {{#if (eq this.type 'video')}}block{{else}}none{{/if}};">
+                  <label for="videoUrl{{this.id}}" class="form-label">Video URL</label>
+                  <input 
+                    type="text" 
+                    id="videoUrl{{this.id}}" 
+                    name="video_url" 
+                    class="form-control" 
+                    placeholder="https://example.com/video.mp4"
+                    value="{{this.video_url}}"
+                    onchange="updateVideoPreview({{this.id}})"
+                  >
+                  <small class="text-muted d-block mt-1">Must be a valid video file (.mp4, .webm, .mov)</small>
+                  {{#if this.video_url}}
+                    <div class="mt-3">
+                      <label class="form-label">Preview</label>
+                      <video width="100%" height="auto" controls style="max-height: 200px; object-fit: cover; border-radius: 0.5rem;">
+                        <source src="{{this.video_url}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  {{/if}}
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100">Save Slot</button>
+              </form>
+
+              <!-- Status message -->
+              <div id="message{{this.id}}" class="mt-3" style="display: none;"></div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleHeaderFields() {
+  const type = document.getElementById('headerType').value;
+  const imageFields = document.getElementById('headerImageFields');
+  const videoFields = document.getElementById('headerVideoFields');
+
+  if (type === 'image') {
+    imageFields.style.display = 'block';
+    videoFields.style.display = 'none';
+  } else {
+    imageFields.style.display = 'none';
+    videoFields.style.display = 'block';
+  }
+}
+
+async function uploadHeaderImage(file) {
+  if (!file) return;
+
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const res = await fetch('/admin/upload', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await res.json();
+    if (res.ok && data.url) {
+      document.getElementById('headerImagePath').value = data.url;
+      
+      const preview = document.createElement('div');
+      preview.className = 'mt-3';
+      preview.innerHTML = '<img src="' + data.url + '" alt="Header" class="img-fluid rounded" style="max-height: 300px; width: 100%; object-fit: cover;">';
+      
+      const existingPreview = document.querySelector('#headerImageFields img');
+      if (existingPreview) {
+        existingPreview.parentElement.replaceChild(preview.firstElementChild, existingPreview);
+      } else {
+        document.getElementById('headerImageFields').appendChild(preview);
+      }
+      
+      showHeaderMessage('Image uploaded successfully', 'success');
+    } else {
+      showHeaderMessage(data.error || 'Upload failed', 'danger');
+    }
+  } catch (err) {
+    showHeaderMessage('Upload error', 'danger');
+  }
+}
+
+function updateHeaderVideoPreview() {
+  const url = document.getElementById('headerVideoUrl').value;
+  const videoFields = document.getElementById('headerVideoFields');
+  
+  const existingPreview = videoFields.querySelector('video');
+  if (existingPreview) {
+    existingPreview.parentElement.remove();
+  }
+
+  if (url) {
+    const previewDiv = document.createElement('div');
+    previewDiv.className = 'mt-3';
+    previewDiv.innerHTML = '<label class="form-label">Preview</label><video width="100%" height="auto" autoplay muted playsinline style="max-height: 300px; object-fit: cover; border-radius: 0.5rem;"><source src="' + url + '" type="video/mp4">Your browser does not support the video tag.</video>';
+    videoFields.appendChild(previewDiv);
+  }
+}
+
+function showHeaderMessage(message, type) {
+  const msgEl = document.getElementById('headerMessage');
+  msgEl.className = 'alert alert-' + type + ' py-2 mb-0';
+  msgEl.textContent = message;
+  msgEl.style.display = 'block';
+  
+  setTimeout(() => {
+    msgEl.style.display = 'none';
+  }, 3000);
+}
+
+document.getElementById('headerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const type = document.getElementById('headerType').value;
+  const imagePath = document.getElementById('headerImagePath').value;
+  const videoUrl = document.getElementById('headerVideoUrl').value;
+
+  const body = {
+    type: type,
+    image_path: imagePath || null,
+    video_url: videoUrl || null
+  };
+
+  try {
+    const res = await fetch('/admin/home/header', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      showHeaderMessage('Header saved successfully!', 'success');
+    } else {
+      showHeaderMessage(data.error || 'Error saving header', 'danger');
+    }
+  } catch (err) {
+    showHeaderMessage('Error saving header', 'danger');
+  }
+});
+
+function toggleMediaFields(slotId) {
+  const type = document.getElementById('type' + slotId).value;
+  const imageFields = document.getElementById('imageFields' + slotId);
+  const videoFields = document.getElementById('videoFields' + slotId);
+
+  if (type === 'image') {
+    imageFields.style.display = 'block';
+    videoFields.style.display = 'none';
+  } else {
+    imageFields.style.display = 'none';
+    videoFields.style.display = 'block';
+  }
+}
+
+async function uploadSlotImage(slotId, file) {
+  if (!file) return;
+
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const res = await fetch('/admin/upload', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await res.json();
+    if (res.ok && data.url) {
+      document.getElementById('imagePath' + slotId).value = data.url;
+      
+      const preview = document.createElement('div');
+      preview.className = 'mt-3';
+      preview.innerHTML = '<img src="' + data.url + '" alt="Slot ' + slotId + '" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">';
+      
+      const existingPreview = document.querySelector('#imageFields' + slotId + ' img');
+      if (existingPreview) {
+        existingPreview.parentElement.replaceChild(preview.firstElementChild, existingPreview);
+      } else {
+        document.getElementById('imageFields' + slotId).appendChild(preview);
+      }
+      
+      showMessage(slotId, 'Image uploaded successfully', 'success');
+    } else {
+      showMessage(slotId, data.error || 'Upload failed', 'danger');
+    }
+  } catch (err) {
+    showMessage(slotId, 'Upload error', 'danger');
+  }
+}
+
+function updateVideoPreview(slotId) {
+  const url = document.getElementById('videoUrl' + slotId).value;
+  const videoFields = document.getElementById('videoFields' + slotId);
+  
+  const existingPreview = videoFields.querySelector('video');
+  if (existingPreview) {
+    existingPreview.parentElement.remove();
+  }
+
+  if (url) {
+    const previewDiv = document.createElement('div');
+    previewDiv.className = 'mt-3';
+    previewDiv.innerHTML = '<label class="form-label">Preview</label><video width="100%" height="auto" controls style="max-height: 200px; object-fit: cover; border-radius: 0.5rem;"><source src="' + url + '" type="video/mp4">Your browser does not support the video tag.</video>';
+    videoFields.appendChild(previewDiv);
+  }
+}
+
+function showMessage(slotId, message, type) {
+  const msgEl = document.getElementById('message' + slotId);
+  msgEl.className = 'alert alert-' + type + ' py-2 mb-0';
+  msgEl.textContent = message;
+  msgEl.style.display = 'block';
+  
+  setTimeout(() => {
+    msgEl.style.display = 'none';
+  }, 3000);
+}
+
+document.querySelectorAll('.slot-form').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const slotId = form.dataset.slotId;
+    const type = document.getElementById('type' + slotId).value;
+    const imagePath = document.getElementById('imagePath' + slotId).value;
+    const videoUrl = document.getElementById('videoUrl' + slotId).value;
+    const projectId = document.getElementById('projectId' + slotId).value;
+
+    const body = {
+      type: type,
+      image_path: imagePath || null,
+      video_url: videoUrl || null,
+      projectId: projectId || null
+    };
+
+    try {
+      const res = await fetch('/admin/home/slot/' + slotId, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        showMessage(slotId, 'Slot saved successfully!', 'success');
+      } else {
+        showMessage(slotId, data.error || 'Error saving slot', 'danger');
+      }
+    } catch (err) {
+      showMessage(slotId, 'Error saving slot', 'danger');
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  toggleHeaderFields();
+  document.querySelectorAll('.slot-form').forEach(form => {
+    const slotId = form.dataset.slotId;
+    toggleMediaFields(parseInt(slotId));
+  });
+});
+</script>
+
+<style>
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+</style>

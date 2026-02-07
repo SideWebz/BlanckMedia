@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1768474900000,
+    "username": "ruvades",
+    "firstName": "Rune",
+    "lastName": "Van der Stuyft",
+    "password": "$2a$10$GqsjRnEnxD5Wr8c.t/QyD.KWeCML4n4OAUU0R.6zpwbyf3uxVWZqy",
+    "role": "admin",
+    "createdAt": "2026-01-15T11:08:20.000Z"
+  },
+  {
+    "id": 1768475557166,
+    "username": "blanckmedia",
+    "firstName": "Jonathan",
+    "lastName": "Blanckaert",
+    "password": "$2a$10$1S6DzwmvNWMrKGjMDuj2n.YdtU/Zi3bbwuhqAE/EIIjCc4yUGpHqK",
+    "role": "admin",
+    "createdAt": "2026-01-15T11:12:37.166Z"
+  }
+]

@@ -1,0 +1,74 @@
+/* ===========================
+   BRAND STORIES CARDS
+=========================== */
+
+.brand-card {
+    position: relative;
+    padding: clamp(32px, 4vw, 48px);
+    border-radius: 2rem;
+    background: #1b1b1b;
+    min-height: 280px;
+    overflow: hidden;
+}
+
+/* BIG NUMBER */
+.brand-bg-number {
+  font-family: "Syne", system-ui, sans-serif;
+    position: absolute;
+    bottom: -80px;
+    right: 20px;
+
+    font-size: clamp(220px, 22vw, 250px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05em;
+
+    background: linear-gradient(180deg, #ff8a00, #ff5f00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0.9;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* LEFT VERSION */
+.brand-bg-number.left {
+    left: 15px;
+    right: auto;
+}
+
+/* TEXT ABOVE NUMBER */
+.brand-card-title,
+.brand-text {
+    position: relative;
+    z-index: 2;
+}
+
+.brand-card-title {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.brand-text {
+    margin-top: 3rem;
+    max-width: 60%;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .brand-text {
+        max-width: 100%;
+    }
+
+    .brand-bg-number {
+    font-size: clamp(270px, 5vw, 300px);
+        bottom: -70px;
+    }
+}

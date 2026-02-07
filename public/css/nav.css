@@ -1,126 +1,285 @@
-.navbar-transparent {
-  background-color: #1A1F25 ; 
+/* ----------------------------- */
+/* DESKTOP NAVBAR                */
+/* ----------------------------- */
+.navbar {
+  position: absolute;
+  top: 20px;
   width: 100%;
-  z-index: 5;
-  padding-top: 0.7rem;
-  padding-bottom: 1rem;
+  background: transparent;
+  z-index: 1000;
 }
 
-.navbar-brand {
+.navbar-brand img {
+  height: 18px;
+  object-fit: contain;
+}
+
+/* Nav links desktop */
+.nav-link {
   position: relative;
-  z-index: 1060; /* hoger dan overlay (1050) */
+  color: #F3F3E9;       /* wit */
+  font-size: 1.1rem;
+  padding-bottom: 6px;
+  transition: color 0.2s ease;
+  font-family: "Brand-Light", system-ui, sans-serif;
 }
 
-  .navbar-brand-mobile{
-    display: none;
-  }
-
-.navbar-inner {
-  width: 100%;
-  padding-left: 3%;
-  padding-right: 3%;
-}
-
-@media (max-width: 991.98px) { /* Bootstrap breakpoint lg */
-  .navbar-brand{
-    display: none;
-  }
-  .navbar-brand-mobile{
-    display: block;
-  }
-  .main::before {
-    display: none;
-  }
-}
-
-.navbar-transparent .nav-link,
-.navbar-transparent .navbar-brand {
-  color: #F3F3E9; 
-  font-weight: 100 !important;
-  font-family: 'MonumentExtended', sans-serif;
-}
-
-.navbar-transparent .nav-link:hover {
-  color: #f5c252;
-}
-
-.navbar-toggler.custom-toggler.d-lg-none {
-  border: none;          
-  background: transparent; 
-  padding: 0;             
-  width: 30px;           
-  height: 22px;          
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 1051;
-}
-
-.navbar-toggler.custom-toggler.d-lg-none span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background-color: #F5C252;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.navbar-toggler.custom-toggler.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(13px);
-}
-
-.navbar-toggler.custom-toggler.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.navbar-toggler.custom-toggler.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-13px); 
-}
-
-.navbar-toggler.custom-toggler:focus,
-.navbar-toggler.custom-toggler:active {
-  outline: none;
-  box-shadow: none;
-}
-
-.navbar-overlay.d-lg-none {
-  position: fixed;
-  top: 0;
+/* Underline on hover & active desktop */
+.nav-link::after {
+  color: #c6c6c6 !important;
+  content: "";
+  position: absolute;
   left: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  background-color: #1A1F25;
+  height: 3px;
+  background: #F3F3E9;   /* wit */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: rgb(255 255 255);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* Desktop: nav-link hover */
+.navbar-nav .nav-link:hover {
+  color: #c6c6c6; /* lichtgrijs bij hover */
+}
+
+
+/* Spacing desktop */
+.navbar-nav .nav-item {
+  margin-left: 20px;
+}
+
+.navbar-nav .nav-item:first-child {
+  margin-left: 0;
+}
+
+/* Verberg icons op desktop */
+.menu-items .menu-icon {
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1050;
-  overflow: hidden;
 }
 
-.navbar-overlay.d-lg-none ul {
-  list-style: none;
-  padding: 0;
+/* ----------------------------- */
+/* MOBILE / TABLET NAVBAR & MENU */
+/* ----------------------------- */
+@media (max-width: 991px) {
+
+.navbar-brand img {
+  height: 12px;
+  object-fit: contain;
 }
 
-.navbar-overlay.d-lg-none ul li {
-  margin: 20px 0;
+/* Zorg dat het icon soepel kan draaien */
+.menu-items .nav-link .menu-icon {
+  transition: transform 0.3s ease;
+  display: inline-block; /* al aanwezig */
 }
 
-.navbar-overlay.d-lg-none ul li a {
-  color: #F3F3E9; 
-  text-decoration: none;
+/* Hover: draai 45° naar rechts */
+.menu-items .nav-link:hover .menu-icon {
+  transform: rotate(45deg);
+}
+
+/* Active / clicked: draai ook 45° */
+.menu-items .nav-link.active .menu-icon,
+.menu-items .nav-link.show .menu-icon {
+  transform: rotate(45deg);
 }
 
 
-.navbar-overlay.active {
-  display: flex;
+
+  .navbar-nav .nav-link:hover {
+  color: #000000; /* lichtgrijs bij hover */
+}
+
+  /* Hamburger button */
+  .navbar-toggler {
+    border: none;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    background: transparent;
+    z-index: 1100;
+  }
+
+
+  .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: rgb(0, 0, 0);
 }
 
 
-body.menu-open {
-  overflow: hidden;
-  position: fixed;  
-  width: 100%;
-  top: 0;     
+  .navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .navbar-toggler-icon {
+    display: none;
+  }
+
+  /* Hamburger lijnen */
+  .navbar-toggler span,
+  .navbar-toggler::before,
+  .navbar-toggler::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+    background: #fff; /* wit als menu dicht */
+  }
+
+  .navbar-toggler::before { top: 8px; }
+  .navbar-toggler span { top: 14px; }
+  .navbar-toggler::after { top: 20px; }
+
+  /* Menu open → hamburger zwart */
+  .navbar-toggler[aria-expanded="true"] span,
+  .navbar-toggler[aria-expanded="true"]::before,
+  .navbar-toggler[aria-expanded="true"]::after {
+    background: #000;
+  }
+
+  .navbar-toggler[aria-expanded="true"]::before {
+    top: 14px;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .navbar-toggler[aria-expanded="true"] span {
+    opacity: 0;
+  }
+
+  .navbar-toggler[aria-expanded="true"]::after {
+    top: 14px;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+
+  /* Fullscreen overlay */
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #F3F3E9; /* wit */
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow: hidden;
+    z-index: 1050;
+  }
+
+  .navbar-collapse.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Flex container voor overlay content */
+  .mobile-menu-content {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Verticale afbeelding links (mobiel only) */
+  .overlay-image {
+    flex: 0 0 40%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .overlay-image img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+  }
+
+  /* Menu items rechts */
+  .menu-items {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20vh 2rem 2rem 2rem; /* top padding ~30% */
+    list-style: none;
+    margin: 0;
+    gap: 2rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .menu-items .nav-link {
+    font-size: 1.8rem;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding-right: 2rem; /* ruimte voor icon */
+  }
+
+  .menu-items .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 3px;
+    background: #000;
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+  }
+
+  .menu-items .nav-link:hover::after,
+  .menu-items .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  /* Icon naast link mobiel */
+  .menu-items .nav-link .menu-icon {
+    display: inline-block;
+    flex-shrink: 0;
+    margin-left: 10px;
+  }
+
+  .menu-items .nav-link .menu-icon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Reset ul padding / margin voor mobile overlay menu */
+  .menu-items {
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .menu-items .nav-item {
+    margin-left: 0;
+  }
+
+  /* Prevent scroll when menu open */
+  body.menu-open {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
 }

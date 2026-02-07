@@ -1,0 +1,144 @@
+<section>
+
+  <!-- ================= HEADER ================= -->
+  <div class="page-header page-header--no-image page-header--contact mb-5">
+    <div class="container">
+      <div class="page-header__content page-header__content--left">
+        <h1 class="page-header__title page-header__title--left">ABOUT</h1>
+
+        <div class="page-header__about-section">
+          <div class="page-header__about-content">
+            <h2 class="page-header__about-title">We create visual campaigns for brands that care about what they stand for.</h2>
+            <p class="page-header__about-description">We listen, think along with you, and translate your values into videos that truly connect with your audience. We approach every project personally, from the first conversation to the final edit. Always with passion, an eye for quality, and respect for your story.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-9">
+
+    <h4 class="sub-title mb-4 text-white">Who you'll be working with</h4>
+
+    <!-- MEMBER 1: image left, text right -->
+    <div class="team-card mb-5 p-4 rounded-5">
+<div class="row justify-content-between align-items-center">
+        <div class="col-md-4">
+          <img src="/images/Jonathan-Face.jpg" class="team-img" alt="Jonathan Blanckaert">
+        </div>
+        <div class="col-md-7">
+          <div class="text-column text-white pe-md-4">
+            <h2 class="team-name">Jonathan Blanckaert</h2>
+            <h3 class="team-role">Founder // Cinematographer</h3>
+            <p class="team-description">
+              I'm Jonathan, founder of blanckmedia and a cinematographer with a passion for strong storytelling. What started as a love for visual creation and narrative grew into a production company that helps brands present themselves in an authentic and visually powerful way. I believe great video should not only look beautiful, but also truly reflect your identity, your values, and your audience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEMBER 2: text left, image right -->
+    <div class="team-card mb-5 p-4 rounded-5">
+<div class="row justify-content-between align-items-center">
+        <div class="col-md-7 order-md-1">
+          <div class="text-column text-white text-md-end ps-md-4">
+            <h2 class="team-name">Niels Cloetens</h2>
+            <h3 class="team-role">Manager // Lead Photographer</h3>
+            <p class="team-description">
+              I'm Niels, a photographer who discovered his passion for capturing meaningful moments at a young age. Photography has become an extension of my personal life, and today I bring that same mindset to my work at blanckmedia, where I help grow the company and turn stories into powerful images.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 order-md-2">
+          <img src="/images/Niels-Face.jpg" class="team-img" alt="Niels Cloetens">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container">
+    <h4 class="sub-title">What do we offer?</h4>
+    
+    <div class="row g-4">
+      <div class="col-12 col-md-6">
+        <div class="brand-card dark fade-card" data-target="/services#commercials">
+          <span class="brand-bg-number left">01</span>
+          <h2 class="brand-card-title">COMMERCIALS</h2>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="brand-card dark fade-card" data-target="/services#social">
+          <span class="brand-bg-number left">02</span>
+          <h2 class="brand-card-title">SOCIAL MEDIA</h2>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="brand-card dark fade-card" data-target="/services#brand">
+          <span class="brand-bg-number left">03</span>
+          <h2 class="brand-card-title">BRAND STORIES</h2>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 mb-5">
+        <div class="brand-card dark fade-card" data-target="/services#brand">
+          <span class="brand-bg-number left">04</span>
+          <h2 class="brand-card-title">COMPANYVIDEOS</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* FADE + SLIDE IN */
+gsap.utils.toArray(".brand-card").forEach((card, index) => {
+
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: "top 85%",
+      toggleActions: "play none none none"
+    },
+    opacity: 0,
+    y: 60,
+    duration: 0.9,
+    ease: "power3.out",
+    delay: index * 0.1
+  });
+
+});
+
+/* SUBTLE NUMBER MOTION */
+gsap.utils.toArray(".brand-bg-number").forEach(number => {
+  gsap.from(number, {
+    scrollTrigger: {
+      trigger: number.closest(".brand-card"),
+      start: "top 85%"
+    },
+    y: 40,
+    duration: 1,
+    ease: "power3.out"
+  });
+});
+
+/* CLICK NAVIGATION USING DATA-TARGET */
+document.querySelectorAll(".brand-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const target = card.getAttribute("data-target");
+    if (target) {
+      window.location.href = target;
+    }
+  });
+});
+
+</script>

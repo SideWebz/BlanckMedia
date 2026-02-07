@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid px-3 px-sm-5">
+    <a class="navbar-brand" href="/">
+      <img src="/logo/BLANCKMEDIA-Logo.png" alt="Blanck Media" style="object-fit:contain;">
+    </a>
+
+    <!-- Hamburger button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span>
+    </button>
+
+    <!-- Navbar links / overlay -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="mobile-menu-content d-flex w-100 h-100">
+        <!-- Vertical image links (mobile only) -->
+        <div class="overlay-image d-lg-none">
+          <img src="/images/BLANCKMEDIA-LogoVertical.png" alt="Vertical Image">
+        </div>
+
+        <!-- Menu items rechts -->
+        <ul class="navbar-nav ms-auto menu-items">
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq title 'Work')}}active{{/if}}" href="/work">
+      WORK
+      <span class="menu-icon"><img src="/svg/arrow-right-black.svg" alt=""></span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq title 'Services')}}active{{/if}}" href="/services">
+      SERVICES
+      <span class="menu-icon"><img src="/svg/arrow-right-black.svg" alt=""></span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq title 'About')}}active{{/if}}" href="/about">
+      ABOUT
+      <span class="menu-icon"><img src="/svg/arrow-right-black.svg" alt=""></span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {{#if (eq title 'Contact')}}active{{/if}}" href="/contact">
+      CONTACT
+      <span class="menu-icon"><img src="/svg/arrow-right-black.svg" alt=""></span>
+    </a>
+  </li>
+</ul>
+
+      </div>
+    </div>
+  </div>
+</nav>

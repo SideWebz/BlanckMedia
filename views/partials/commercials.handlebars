@@ -1,0 +1,193 @@
+<section class="tab-page">
+  <div>
+    <!-- Titel rij -->
+    <div class="row align-items-center mb-8">
+      <div class="col-12 col-lg-6">
+        <h1 class="pp-mon">COMMERCIALS</h1>
+      </div>
+      <div class="col-12 col-lg-6 text-lg-end">
+        <p class="mb-2 small-p">Cinematic commercials<br>crafted to elevate your brand<br>and captivate audiences.</p>
+      </div>
+    </div>
+
+    <!-- Overlappende kaartjes -->
+    <div class="overlapping-cards">
+      <div class="card-item card-gray">
+        <h3>PREPRODUCTION</h3>
+        <p>Scripting<br>Storyboarding<br>Preparation<br>Location scouting<br>Casting</p>
+          <div class="person-details">
+          <img src="/images/Niels-Face.jpg" alt="Niels">
+          <div>
+            <p>Niels cloetens</p>
+            <p>Lead photographer</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-item card-orange">
+        <h3>PRODUCTION</h3>
+        <p>Crew assembly<br>Lighting<br>Make up<br>Set design<br>Aerial service</p>
+        <div class="person-details">
+          <img src="/images/Jonathan-Face.jpg" alt="Jonathan">
+          <div>
+            <p>Jonathan Blanckaert</p>
+            <p>Producer // cinematographer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-item card-white">
+        <h3>POST PRODUCTION</h3>
+        <p>Video Editing<br>Color grading<br>Narrating<br>Visual effects<br>Marketing</p>
+        <div class="person-details">
+          <img src="/images/Jonathan-Face.jpg" alt="Jonathan">
+          <div>
+            <p>Jonathan Blanckaert</p>
+            <p>Producer // cinematographer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ <!-- Packages Cards -->
+<div class="packages-cards mt-10">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Card 1 -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="package-card featured">
+        <h4 class="pp-mon smaller">BRAND STARTER</h4>
+
+        <ul>
+          <li>1 Hero commercial (15–30 sec)</li>
+          <li>Vertical version (9:16)</li>
+          <li>2 Short snippets</li>
+          <li>Marketing and advertisement strategy</li>
+        </ul>
+
+        <a href="#" class="plan-btn">
+          PLAN MEETING
+          <img src="/svg/arrow-right-black.svg" alt="Arrow right">
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="package-card">
+        <h4 class="pp-mon smaller">GROWTH PRO</h4>
+
+        <ul>
+          <li>1 Hero commercial (30–45 sec)</li>
+          <li>1 short variant edit (15 sec)</li>
+          <li>4 snippets</li>
+          <li>Extra: 15–30 high-end photo’s</li>
+          <li>BTS content for social media</li>
+          <li>Advertisement strategy</li>
+        </ul>
+
+        <a href="#" class="plan-btn-white">
+          PLAN MEETING
+          <img src="/svg/arrow-right.svg" alt="Arrow right">
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+<div class="col-12 col-md-6 col-lg-4">
+  <div class="package-card">
+
+    <div class="package-title">
+      <img 
+        src="/svg/BlanckMedia-OrangeArrow.svg" 
+        alt="Arrow"
+        class="title-icon"
+      >
+      <h4 class="pp-mon smaller">ELITE SIGNATURE</h4>
+    </div>
+
+    <ul>
+      <li>1 cinematic brand film (60–90 sec)</li>
+      <li>2 commercial variants (15 & 30 sec)</li>
+      <li>6–8 snippets</li>
+      <li>Extra: 30–50 high-end photo’s</li>
+      <li>BTS content</li>
+      <li>Marketing and advertisement strategy</li>
+    </ul>
+
+    <a href="#" class="plan-btn-white">
+      PLAN MEETING
+      <img src="/svg/arrow-right.svg" alt="Arrow right">
+    </a>
+
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+let scrollTriggerInstance;
+
+function initAnimation() {
+  // Kill bestaande ScrollTrigger instances
+  if (scrollTriggerInstance) {
+    scrollTriggerInstance.kill();
+  }
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  
+  const cards = document.querySelectorAll('.card-item');
+  const isDesktop = window.innerWidth >= 992;
+  const isMobile = window.innerWidth < 768;
+  
+  // Reset alle transforms
+  gsap.set(cards, { clearProps: 'all' });
+  
+  if (isDesktop) {
+    // Desktop: alle kaarten starten op positie van kaart 1 (meest links)
+    gsap.set(cards[0], { x: 0, opacity: 1 }); // meest links, al zichtbaar
+    gsap.set(cards[1], { x: -200, opacity: 1 }); // start links
+    gsap.set(cards[2], { x: -400, opacity: 1 }); // start ver links
+    
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.overlapping-cards',
+        start: 'top 85%',
+        end: 'top 30%',
+        scrub: 1.2,
+      }
+    });
+    
+    scrollTriggerInstance = tl.scrollTrigger;
+    
+    tl.to(cards[1], { x: 0, opacity: 1, duration: 1 }, 0)
+      .to(cards[2], { x: 0, opacity: 1, duration: 1 }, 0);
+    
+  } 
+  // Tablet heeft geen animatie
+}
+
+// Initialize on load
+window.addEventListener('load', initAnimation);
+
+// Reinitialize on resize met debounce
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    initAnimation();
+    ScrollTrigger.refresh();
+  }, 250);
+});
+</script>

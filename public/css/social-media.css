@@ -1,0 +1,210 @@
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1.0fr 1.4fr;
+    grid-template-rows: repeat(8, 1fr);
+    gap: 20px;
+    height: 750px;
+}
+
+/* Grid positioning */
+.card:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1 / 6;
+}
+
+.card:nth-child(2) {
+    grid-column: 1;
+    grid-row: 6 / 9;
+}
+
+.card:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / 5;
+}
+
+.card:nth-child(4) {
+    grid-column: 2;
+    grid-row: 5 / 9;
+}
+/* Card base styling */
+.card {
+    padding: clamp(20px, 3vw, 30px);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+/* Card content area */
+.card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2vw, 15px);
+}
+
+.card-content h2 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin: 0;
+}
+
+.card-text {
+    font-size: clamp(0.98rem, 1.6vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+/* Card footer (images + buttons) */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: clamp(15px, 2vw, 25px);
+    flex-wrap: nowrap;
+    background-color: transparent;
+    border-top: none;
+}
+
+/* Image styling */
+.card-image {
+    width: clamp(60px, 8vw, 120px);
+    height: auto;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* Base button styling */
+.contact-button {
+    background-color: transparent;
+    font-family: "Brand-Light", system-ui, sans-serif;
+    color: white;
+    border: 1px solid white;
+    padding: clamp(10px, 1.5vw, 14px) clamp(20px, 2.5vw, 28px);
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 100;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Jonathan button - Orange card */
+.contact-button-jonathan {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+.contact-button-jonathan:hover {
+    background-color: white;
+    color: #ff6b35;
+    border-color: white;
+}
+
+/* Niels button - White card */
+.contact-button-niels {
+    background-color: transparent;
+    color: #333;
+    border-color: #333;
+}
+
+.contact-button-niels:hover {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
+
+/* Tablet responsive */
+@media (max-width: 992px) {
+    .grid-container {
+        height: 700px;
+    }
+    
+    .card-text {
+        max-width: 95%;
+    }
+    
+    .card-image {
+        width: clamp(50px, 7vw, 100px);
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        height: auto;
+        gap: 15px;
+    }
+
+    .card {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        min-height: 200px;
+        padding: 25px;
+    }
+    
+    .card:nth-child(1),
+    .card:nth-child(3) {
+        min-height: 300px;
+    }
+    
+    .card-text {
+        max-width: 100%;
+    }
+    
+    .card-footer {
+        margin-top: 20px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 576px) {
+    .card {
+        padding: 20px;
+    }
+    
+    .card-content h2 {
+        font-size: 1.75rem;
+    }
+    
+    .card-text {
+        font-size: 0.875rem;
+    }
+    
+    .card-image {
+        width: 70px;
+    }
+    
+    .contact-button {
+        padding: 10px 18px;
+        font-size: 0.8rem;
+    }
+    
+    .card-footer {
+        gap: 10px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+    .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .contact-button {
+        width: 100%;
+    }
+    
+    .card-image {
+        align-self: flex-start;
+    }
+}

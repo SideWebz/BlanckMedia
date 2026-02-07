@@ -1,0 +1,61 @@
+<section class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">Projects</h1>
+      <a href="/admin/projects/new" class="btn btn-primary">+ New Project</a>
+    </div>
+
+    {{#if projects.length}}
+    <div class="table-responsive">
+      <table class="table table-dark table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Preview</th>
+            <th>Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each projects}}
+          <tr>
+            <td style="width:120px;"><img src="{{this.coverImage}}" alt="{{this.title}}" class="img-fluid rounded" /></td>
+            <td>{{this.title}}</td>
+            <td>
+              <a href="/projects/{{this.id}}" class="btn btn-sm btn-outline-light me-2">View</a>
+              <button class="btn btn-sm btn-outline-warning me-2" onclick="moveProjectUp({{this.id}})" {{#if @first}}disabled{{/if}} title="Move Up">↑</button>
+              <button class="btn btn-sm btn-outline-warning me-2" onclick="moveProjectDown({{this.id}})" {{#if @last}}disabled{{/if}} title="Move Down">↓</button>
+              <button class="btn btn-sm btn-danger" onclick="deleteProject({{this.id}})">Delete</button>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="alert alert-secondary">No projects yet. Create one to get started.</div>
+    {{/if}}
+
+<script>
+async function deleteProject(id) {
+  if (!confirm('Delete this project?')) return;
+  try {
+    const res = await fetch(`/admin/projects/delete/${id}`, { method: 'POST' });
+    if (res.ok) location.reload();
+  } catch (e) { alert('Error deleting project'); }
+}
+
+async function moveProjectUp(id) {
+  try {
+    const res = await fetch(`/admin/projects/move-up/${id}`, { method: 'POST' });
+    if (res.ok) location.reload();
+  } catch (e) { alert('Error moving project'); }
+}
+
+async function moveProjectDown(id) {
+  try {
+    const res = await fetch(`/admin/projects/move-down/${id}`, { method: 'POST' });
+    if (res.ok) location.reload();
+  } catch (e) { alert('Error moving project'); }
+}
+</script>
+</section>

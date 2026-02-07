@@ -1,41 +1,51 @@
-.tape {
-  position: absolute;
-  top: -100px;
-  right: 1000px;
-  object-fit: contain;
-  z-index: -1;
-  pointer-events: none;
-  transition: right 0.3s ease; /* optioneel, voor vloeiende beweging */
+/* Home page styles */
+/* Bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
 }
 
-/* Laptop */
-@media (max-width: 1600px) {
-  .tape {
-    right: 700px;
-    height: 90vh;
-  }
+.scroll-arrow {
+  width: clamp(25px, 5vw, 35px);
+  height: clamp(25px, 5vw, 35px);
+  cursor: pointer;
+  animation: bounce 2s infinite;
+  transition: transform 0.2s ease;
 }
 
-/* Tablet landscape */
-@media (max-width: 1200px) {
-  .tape {
-    right: 400px;
-    height: 80vh;
-  }
+/* Optional: hover slightly enlarge */
+.scroll-arrow:hover {
+  transform: scale(1.1);
 }
 
-/* Tablet portrait */
-@media (max-width: 992px) {
-  .tape {
-    right: 200px;
-    height: 70vh;
-  }
+/* Home media item - consistent aspect ratio */
+.home-media-item {
+  aspect-ratio: 3 / 4; /* Vertical portrait: width:height = 3:4 */
+  object-fit: cover;   /* Crop to maintain aspect ratio */
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem; /* Rounded corners */
 }
 
-/* Mobiel */
-@media (max-width: 768px) {
-  .tape {
-    right: 50px;
-    height: 60vh;
-  }
+/* Home media link styles */
+.home-media-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: 0.5rem;
 }
+
+.home-media-image {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.home-media-link:hover .home-media-image {
+  transform: scale(1.05);
+  filter: brightness(0.85);
+}
+
+/* Note: Header styling is now handled by /css/headers.css with .page-header and .page-header--image */

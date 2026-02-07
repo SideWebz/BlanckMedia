@@ -1,0 +1,36 @@
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Admin Dashboard</h1>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Home Page</h5>
+            <p class="card-text">Configure media slots on home page</p>
+            <a href="/admin/home" class="btn btn-primary">Manage</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Projects</h5>
+            <p class="card-text">Manage your projects and portfolios</p>
+            <a href="/admin/projects" class="btn btn-primary">Manage</a>
+          </div>
+        </div>
+      </div>
+      {{#if isAdmin}}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Users</h5>
+            <p class="card-text">Manage admin users and their accounts</p>
+            <a href="/admin/users" class="btn btn-primary">Manage</a>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</section>

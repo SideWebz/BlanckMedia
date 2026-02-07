@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header page-header--image" style="background-image: url('/images/header-image-blanckmedia.png');">
+    <div class="page-header__content">
+      <h1 class="page-header__title page-header__title--with-icon">
+        SELECTED WORK
+      </h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row g-4">
+      {{#each projects}}
+      <div class="col-sm-12 col-lg-6 mb-5">
+        <a href="/projects/{{this.id}}" class="text-decoration-none">
+          <img src="{{getCoverImage this}}" class="img-fluid w-100 rounded-3" style="aspect-ratio: 800/500; object-fit: cover;" alt="{{this.title}}">
+          <h5 class="text-white mt-3 mb-0">{{this.title}}</h5>
+          <p class="text-white mb-0" style="font-size: 1.2rem;">{{this.slug}}</p>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>

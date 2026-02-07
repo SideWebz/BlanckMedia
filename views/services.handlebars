@@ -1,0 +1,66 @@
+<section>
+  <div class="page-header page-header--no-image">
+    <div class="container">
+      <div class="page-header__content">
+        <h1 class="page-header__title">WHAT WE OFFER?</h1>
+        
+<div class="page-header__actions page-header__actions--grid">
+  <button class="page-header__tab-button active" data-tab="commercials">Commercials</button>
+  <button class="page-header__tab-button" data-tab="social">Social Media</button>
+  <button class="page-header__tab-button" data-tab="brand">Brand Stories</button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tabs-content">
+      <div id="commercials" class="tab-panel active-panel">
+        {{> commercials }}
+      </div>
+
+      <div id="social" class="tab-panel">
+        {{> social-media }}
+      </div>
+
+      <div id="brand" class="tab-panel">
+        {{> brand-stories }}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active-panel {
+  display: block;
+}
+</style>
+
+<script>
+const tabs = document.querySelectorAll('.page-header__tab-button[data-tab]')
+const panels = document.querySelectorAll('.tab-panel')
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.tab
+
+    tabs.forEach(t => t.classList.remove('active'))
+    panels.forEach(p => p.classList.remove('active-panel'))
+
+    tab.classList.add('active')
+    document.getElementById(target).classList.add('active-panel')
+    history.replaceState(null, '', `#${target}`)
+  })
+})
+
+// deep-link support
+const hash = location.hash.replace('#', '')
+if (hash) {
+  document.querySelector(`[data-tab="${hash}"]`)?.click()
+}
+</script>

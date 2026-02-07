@@ -1,0 +1,409 @@
+/* Commercials page styles */
+
+/* Overlapping cards container */
+.overlapping-cards {
+  display: flex;
+  position: relative;
+  margin-top: clamp(2rem, 4vw, 4rem);
+  width: 100%;
+}
+
+/* Basis card styling - ALLE KAARTEN ZELFDE BREEDTE */
+.card-item {
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 2rem;
+  position: relative;
+  min-height: 350px;
+  max-height: 350px;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Desktop: Overlap effect horizontaal */
+.card-item:nth-child(1) {
+  z-index: 1;
+  margin-right: -80px;
+}
+
+.card-item:nth-child(2) {
+  z-index: 2;
+  margin-right: -80px;
+}
+
+.card-item:nth-child(3) {
+  z-index: 3;
+}
+
+/* Kleuren */
+.card-gray {
+  background: #1A1A1A;
+  color: #ffffff;
+}
+
+.card-orange {
+  background: linear-gradient(135deg, #B03800 0%, #F5C252 100%);
+  color: #ffffff;
+}
+
+.card-white {
+  background: #F3F3E9;
+  color: #020617;
+}
+
+.card-white.card-title{
+  color: #000000;
+}
+
+.card-item.card-white h3 {
+  color: #000000;
+}
+
+.card-item h3 {
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.card-title{
+  margin-bottom: 1rem;
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.small-p{
+  opacity: 0.95;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+}
+
+.card-item p {
+  margin: 0;
+  opacity: 0.95;
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  line-height: 1.5;
+  font-family: "Syne", system-ui, sans-serif;
+}
+
+.card-text{
+  margin: 0;
+  opacity: 0.95;
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  line-height: 1.5;
+  font-family: "Syne", system-ui, sans-serif;
+}
+
+/* Person details styling */
+.person-details {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  margin-top: 1.5rem;
+}
+
+.person-details img {
+  width: clamp(2.5rem, 4vw, 3.5rem);
+  height: clamp(2.5rem, 4vw, 3.5rem);
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+
+.package-card {
+  height: 700px!important;
+
+  padding: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border-radius: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+
+.person-details > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.person-details p {
+  margin: 0;
+  line-height: 1.2;
+  font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+}
+
+.person-details p:first-of-type {
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.person-details p:last-of-type {
+  opacity: 0.8;
+  font-size: clamp(0.7rem, 0.85vw, 0.85rem);
+}
+
+/* Mobile: verticaal met overlap naar boven */
+@media (max-width: 767px) {
+
+
+  .package-card {
+  height: 500px!important;
+
+  padding: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border-radius: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+  .overlapping-cards {
+    flex-direction: column;
+  }
+  
+  .card-item {
+    max-height: 320px;
+    width: 100%;
+  }
+  
+  .card-item:nth-child(1) {
+    margin-right: 0;
+    margin-bottom: -60px;
+    z-index: 3;
+  }
+  
+  .card-item:nth-child(2) {
+    margin-right: 0;
+    margin-bottom: -60px;
+    z-index: 2;
+  }
+  
+  .card-item:nth-child(3) {
+    margin-right: 0;
+    z-index: 1;
+  }
+}
+
+/* Tablet: 2 boven naast elkaar, 1 onder */
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .package-card {
+  height: 600px!important;
+
+  padding: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border-radius: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+  .overlapping-cards {
+    flex-wrap: wrap;
+  }
+  
+  .card-item {
+    max-height: 330px;
+  }
+  
+  .card-item:nth-child(1) {
+    flex: 1 1 50%;
+    margin-right: -60px;
+    margin-bottom: -60px;
+    z-index: 2;
+  }
+  
+  .card-item:nth-child(2) {
+    flex: 1 1 50%;
+    margin-right: 0;
+    margin-bottom: -60px;
+    z-index: 2;
+  }
+  
+  .card-item:nth-child(3) {
+    flex: 1 1 100%;
+    margin-right: 0;
+    z-index: 1;
+  }
+}
+
+
+
+/* Tablet: 2 boven naast elkaar, 1 onder */
+@media (min-width: 1400px) and (max-width: 2000px) {
+  
+
+  .card-item {
+    max-height: 500px !important;
+  }
+  .card-item{
+    height: 400px !important;
+  }
+}
+
+
+
+/* Eerste kaart – gevuld */
+.packages-cards .col-12:first-child .package-card {
+  background-color: #F3F3E9;
+  border: 2px solid #F3F3E9;
+  color: #000;
+}
+
+.packages-cards .col-12:not(:first-child) .package-card {
+  border: 2px solid #F3F3E9;
+  color: #F3F3E9;
+}
+
+
+/* Zorg dat tekst in lijsten meeschakelt */
+.package-card ul,
+.package-card li,
+.package-card h3,
+.package-card p {
+  color: inherit;
+}
+
+.package-card ul{
+  text-align: left;
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+}
+
+
+.package-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Titel boven */
+.package-card h4 {
+    text-align: left !important;
+  margin-bottom: 2rem;
+  margin-left: 20px;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+}
+
+/* Knop onderaan */
+.plan-btn {
+  margin-top: auto;
+  align-self: center;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  border: 2px solid black;
+  color: black;
+
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+
+/* Knop onderaan */
+.plan-btn-white {
+  margin-top: auto;
+  align-self: center;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  border: 2px solid #F3F3E9;
+  color: #F3F3E9;
+
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+/* SVG icon */
+.plan-btn img,
+.plan-btn-white img {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+/* Hover: kaart schuift + arrow draait */
+.plan-btn:hover img,
+.plan-btn-white:hover img {
+  transform: rotate(45deg);
+}
+
+/* Bestaande hover blijft */
+.plan-btn:hover,
+.plan-btn-white:hover {
+  transform: translateX(4px);
+}
+
+.package-title {
+  display: flex;
+  align-items: start !important;
+  justify-content: start !important;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.package-title h4 {
+  margin: 0;
+}
+
+.title-icon {
+  width: 22px;
+  height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+/* ==================================================
+   HEADER NO IMAGE
+   ================================================== */
+
+.header-no-image {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+/* EXACT ZELFDE aspect ratio spacer als header-image-2 */
+.header-no-image::before {
+  content: '';
+  display: block;
+  padding-top: 45%; /* exact zelfde als header-image-2 */
+}
+
+.header-no-image > * {
+  position: relative;
+  z-index: 1; /* content boven de spacer */
+}
+
+
+
