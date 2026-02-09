@@ -266,7 +266,6 @@ height: clamp(40vh, 60vh + 10vw, 70vh);
   font-family: 'Monument Extended', sans-serif;
   font-size: clamp(1rem, 3vw, 1.5rem);
   font-weight: 900;
-  max-width: 1200px;
   margin: 0 auto 2rem;
   
 }
@@ -283,7 +282,6 @@ margin-bottom: 10rem;
   display: grid;
   gap: 1.5rem;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
 
   /* desktop & tablet default */
@@ -401,7 +399,6 @@ margin-bottom: 10rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1.5rem;
-  max-width: 1200px;
   margin: 0 auto;
 
 }

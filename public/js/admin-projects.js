@@ -347,7 +347,19 @@ if (projectForm) {
 if (isEditMode) {
   // Sections will be loaded from the server-rendered form
   // Parse the existing sections from the hidden input
-  const existingSectionsStr = sectionsInput.value;
+  let existingSectionsStr = sectionsInput.value;
+  
+  // Decode HTML entities
+  if (existingSectionsStr) {
+    existingSectionsStr = existingSectionsStr
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&#039;/g, "'");
+  }
+  
+  console.log('Decoded sectionsInput.value:', existingSectionsStr);
   if (existingSectionsStr) {
     try {
       const parsed = JSON.parse(existingSectionsStr);
@@ -359,6 +371,7 @@ if (isEditMode) {
       renderSections();
     } catch (e) {
       console.error('Error parsing sections:', e);
+      console.error('Failed string was:', existingSectionsStr);
     }
   }
 }

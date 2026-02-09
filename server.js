@@ -256,7 +256,9 @@ case 'WebVideos':
     },
     json: (value) => {
       const h = require('handlebars');
-      return new h.SafeString(JSON.stringify(value));
+      const jsonStr = JSON.stringify(value);
+      // Escape for HTML attribute
+      return h.escapeExpression(jsonStr);
     }
   }
 }));
