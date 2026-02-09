@@ -1,1 +1,169 @@
-[]
+[
+  {
+    "id": 1770583916935,
+    "title": "DIY Mortextable",
+    "slug": "DIY Atelier - Commercial",
+    "brand": "DIY Atelier",
+    "coverImage": "/uploads/1770583874396-nxl0b7.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/DIY%20atelier/Videos/DIY%20atelier%20Commercial.mp4",
+          "text": "For this project, we collaborated with DIY Atelier, a brand that inspires and empowers people to create their own high-end furniture. The shoot was all about capturing the beauty of craftsmanship — the textures, the focus, the joy of making something by hand. It became a blend of design and storytelling, where creativity met precision. We loved bringing to life the warm, authentic atmosphere of a space where imagination truly takes shape.",
+          "thumbnail": "/uploads/1770583903607-61j1bf.jpg"
+        }
+      }
+    ],
+    "createdAt": "2026-02-08T20:51:56.935Z"
+  },
+  {
+    "id": 1770566781052,
+    "title": "Steel&Barnett",
+    "slug": "Companyvideo",
+    "brand": "Steel&Barnett",
+    "coverImage": "/uploads/1770566590439-nggae9.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Companyvideo%20SB%202025/Productievideo%20Steel%26Barnett%20UK.mp4",
+          "text": "For Steel & Barnett, we produced a fully custom company video designed to clearly communicate the brand’s story, values, and craftsmanship. The goal was to create an informative yet engaging film that could be used as a powerful sales and communication tool.\n\nTo capture every aspect of the brand, the production was spread across four separate shoots. We started with a studio shoot focused entirely on the jewelry itself, highlighting the details, materials, and presentation options. This was complemented by an on-location shoot at the Steel & Barnett office, offering insight into the team and daily brand experience.\n\nTo showcase the production process, we coordinated a shoot in Hong Kong by sourcing and directing a local videographer, ensuring the footage aligned seamlessly with the rest of the production. A dedicated campaign shoot was also included to capture lifestyle and in-use visuals, enriching the video with dynamic and relatable content.\n\nThe final video was distributed to clients via PixieCards and quickly proved its value. After sending out over 500 cards, Steel & Barnett achieved a positive return on investment and is continuing the campaign by distributing more cards to turn clients into long-term brand ambassadors.\n\nTo support their international audience, the company video was delivered in three voice-over versions: UK English, US English, and German—ensuring consistent messaging across multiple markets.",
+          "thumbnail": "/uploads/1770566602872-4r9b5x.jpg"
+        }
+      },
+      {
+        "type": "WebVideos",
+        "data": {
+          "videos": [
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Companyvideo%20SB%202025/SB%20Productionwebvideos_V1-0027.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Companyvideo%20SB%202025/FX3_0710.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Companyvideo%20SB%202025/SB%20Productionwebvideos_V1-0022.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Companyvideo%20SB%202025/SB%20Productionwebvideos_V1-0003.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Companyvideo%20SB%202025/SB%20Productionwebvideos_V1-0026.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Companyvideo%20SB%202025/FX3_0718.mp4"
+          ]
+        }
+      }
+    ],
+    "createdAt": "2026-02-08T16:06:21.052Z"
+  },
+  {
+    "id": 1770566488920,
+    "title": "Cuban Spiced",
+    "slug": "Gutss - Commercial",
+    "brand": "Gutss",
+    "coverImage": "/uploads/1770566426902-npbq0n.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/Gutss/Video/Gutss%20Cuban%20spiced%20Website.mov",
+          "text": "For this project, we created a commercial for Cuban Spiced Gutss, a non-alcoholic drink with a rich, adventurous spirit. The aim was to capture the bold flavors and vibrant energy of the brand, a sense of warmth, spice, and confidence without compromise. A visual journey that celebrates taste, attitude, and the art of enjoying life on your own terms.",
+          "thumbnail": "/uploads/1770566446050-v9g1r1.jpg"
+        }
+      }
+    ],
+    "createdAt": "2026-02-08T16:01:28.920Z"
+  },
+  {
+    "id": 1770566396649,
+    "title": "GymSixteen",
+    "slug": "New years commercial",
+    "brand": "GymSixteen",
+    "coverImage": "/uploads/1770566309045-c02dbq.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/GymSixteen/Videos/Gymsixteen%20commercial.mp4",
+          "text": "For this project, I created a commercial for GymSixteen, a women-only gym located in Bruges. The goal was to inspire new members to begin their fitness journey at the start of the new year on January 1st.\n\nThrough energetic visuals, uplifting music, and a clean, modern aesthetic, the commercial showcases that GymSixteen is more than just a workout space, it’s a place where women can feel empowered, supported, and motivated to reach their goals. With coach Deva, members benefit from a personal and tailored approach to fitness.",
+          "thumbnail": "/uploads/1770566395861-tzlb1i.jpg"
+        }
+      }
+    ],
+    "createdAt": "2026-02-08T15:59:56.649Z"
+  },
+  {
+    "id": 1770588837571,
+    "title": "La Seiche",
+    "slug": "BLACKFISK - Social Media",
+    "brand": "BLACKFISK",
+    "coverImage": null,
+    "sections": [
+      {
+        "type": "CollageHeader",
+        "data": {
+          "images": [
+            "/uploads/1770588769762-m7dbl6.jpg",
+            "/uploads/1770588772124-lqpet6.jpg",
+            "/uploads/1770588776001-xo3e4l.jpg",
+            "/uploads/1770588771039-o4i5ym.jpg",
+            "/uploads/1770588773452-cb17k7.jpg",
+            "/uploads/1770588776298-gdq82m.jpg",
+            "/uploads/1770588775702-pl4qnw.jpg",
+            "/uploads/1770588774193-5ub34l.jpg",
+            "/uploads/1770588777155-rjmma0.jpg",
+            "/uploads/1770588778067-uxx0s3.jpg"
+          ],
+          "text": "For this project, we created a series of dynamic reels and high-quality photos for Blackfisk, designed to strengthen their presence and connection with their audience on social media. In addition, the images will be used on their website to ensure a consistent and visually appealing brand identity.\n\nThe content highlights La Seiche, their unique event location dedicated to workshops and culinary creations. Through authentic visuals and storytelling, we captured the atmosphere, creativity, and passion that define this inspiring space."
+        }
+      },
+      {
+        "type": "Reels",
+        "data": {
+          "videos": [
+            "https://blanckmedia-videos.b-cdn.net/BLACKFISK/VIDEOS/BF25S1-REEL4-LesGoutsEtLesCouleurs.mp4",
+            "https://blanckmedia-videos.b-cdn.net/BLACKFISK/VIDEOS/BF25S1-REEL1-Gerechten.mp4",
+            "https://blanckmedia-videos.b-cdn.net/BLACKFISK/VIDEOS/BF25S1-REEL8-static.mp4",
+            "https://blanckmedia-videos.b-cdn.net/BLACKFISK/VIDEOS/BF25S1-REEL7-Sfeer%20workshop.mp4"
+          ],
+          "thumbnails": [
+            "/uploads/1770588686838-u11i26.jpg",
+            "/uploads/1770588691765-h93iq8.jpg",
+            "/uploads/1770588695144-lxx0tk.jpg",
+            "/uploads/1770588699940-76fq7v.jpg"
+          ]
+        }
+      }
+    ],
+    "createdAt": "2026-02-08T22:13:57.571Z"
+  },
+  {
+    "id": 1770565929745,
+    "title": "Salt & Stone",
+    "slug": "Steel&Barnett - Summercampaign",
+    "brand": "Steel&Barnett",
+    "coverImage": "/uploads/1770565724995-x0qrkl.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Summercampaign%202025/Campaignvideo%20SB%20Website.mp4",
+          "text": "For this project, we created a campaign for Steel & Barnett, a men’s jewelry brand with a strong yet refined aesthetic. The focus was on capturing the contrast between power and elegance, translating the brand’s identity into visuals that feel confident, modern, and timeless. A story of craftsmanship and character, told through detail and design. This campaign was filmed during summer with beautiful weather and landscapes. ",
+          "thumbnail": "/uploads/1770565739491-7fonzj.jpg"
+        }
+      },
+      {
+        "type": "WebVideos",
+        "data": {
+          "videos": [
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Summercampaign%202025/SB%20Web%20Clip%20A.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Summercampaign%202025/SB%20Web%20Clip%20B.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Summercampaign%202025/SB%20web%20Clip%20C.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Summercampaign%202025/SB%20Web%20Clip%20D.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Summercampaign%202025/SB%20Web%20Clip%20E.mp4",
+            "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Summercampaign%202025/SB%20web%20clip%20F.mp4"
+          ]
+        }
+      },
+      {
+        "type": "TextSection",
+        "data": {
+          "text": "We also delivered short videos that are used to put on the website to showcase the jewelry in a fluid motion. "
+        }
+      }
+    ],
+    "createdAt": "2026-02-08T15:52:09.746Z"
+  }
+]
