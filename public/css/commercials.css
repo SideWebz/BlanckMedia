@@ -292,67 +292,6 @@
     font-size: clamp(1.3rem, 2.5vw, 1.8rem);
 }
 
-/* Knop onderaan */
-.plan-btn {
-  margin-top: auto;
-  align-self: center;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  padding: 0.75rem 1.75rem;
-  border-radius: 999px;
-  border: 2px solid black;
-  color: black;
-
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.25s ease;
-}
-
-
-/* Knop onderaan */
-.plan-btn-white {
-  margin-top: auto;
-  align-self: center;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  padding: 0.75rem 1.75rem;
-  border-radius: 999px;
-  border: 2px solid #F3F3E9;
-  color: #F3F3E9;
-
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.25s ease;
-}
-
-/* SVG icon */
-.plan-btn img,
-.plan-btn-white img {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.25s ease;
-}
-
-/* Hover: kaart schuift + arrow draait */
-.plan-btn:hover img,
-.plan-btn-white:hover img {
-  transform: rotate(45deg);
-}
-
-/* Bestaande hover blijft */
-.plan-btn:hover,
-.plan-btn-white:hover {
-  transform: translateX(4px);
-}
-
 .package-title {
   display: flex;
   align-items: start !important;
@@ -407,3 +346,139 @@
 
 
 
+
+
+
+/* Knop onderaan */
+.plan-btn-black {
+  margin-top: auto;
+  align-self: center;
+  background-color: black;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Syne", system-ui, sans-serif;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  color: rgb(255, 255, 255);
+  font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+  text-decoration: none;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.plan-btn-black::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, #D94A00, #FFD96A);
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.plan-btn-black:hover::before {
+  opacity: 1;
+}
+
+/* Knop onderaan */
+.plan-btn-white {
+  margin-top: auto;
+  align-self: center;
+  background-color: rgb(255, 255, 255);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Syne", system-ui, sans-serif;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  color: rgb(0, 0, 0);
+  font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+  text-decoration: none;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.4s ease;
+  z-index: 1;
+}
+
+.plan-btn-white::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, #D94A00, #FFD96A);
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.plan-btn-white:hover::before {
+  opacity: 1;
+}
+
+.plan-btn-white:hover {
+  color: rgb(255, 255, 255);
+}
+
+.plan-btn-orange {
+  margin-top: auto;
+  align-self: center;
+  background: linear-gradient(120deg, #B03800, #F5C252);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Syne", system-ui, sans-serif;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  color: rgb(255, 255, 255);
+  font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+  text-decoration: none;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.plan-btn-orange::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, #D94A00, #FFD96A);
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.plan-btn-orange:hover::before {
+  opacity: 1;
+}
+
+/* SVG icon */
+.plan-btn-black svg,
+.plan-btn-white svg,
+.plan-btn-orange svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+/* Hover: arrow draait */
+.plan-btn-black:hover svg,
+.plan-btn-white:hover svg,
+.plan-btn-orange:hover svg {
+  transform: rotate(45deg);
+}

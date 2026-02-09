@@ -211,16 +211,15 @@ span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 1rem;
 
   text-decoration: none;
-  font-family: "Brand-Regular", system-ui, sans-serif;
-  font-size: clamp(0.80rem, 0.7rem + 0.3vw, 1.5rem);
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: clamp(0.90rem, 1.5vw, 1.7rem);
   letter-spacing: 0.06em;
-  text-transform: uppercase;
 
-  padding: clamp(0.65rem, 1vw, 0.85rem)
-           clamp(1.2rem, 2.5vw, 1.75rem);
+  padding: clamp(0.65rem, 1vw, 0.95rem)
+           clamp(1.2rem, 2.5vw, 1.97rem);
 
   border-radius: 9999px;
   border: 2px solid #ffffff;

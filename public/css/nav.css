@@ -196,19 +196,21 @@
   }
 
   /* Verticale afbeelding links (mobiel only) */
-  .overlay-image {
-    flex: 0 0 40%;
-    height: 100%;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-  }
+.overlay-image {
+  flex: 0 0 40%;
+  height: 100dvh;  /* ← gebruik dvh (dynamic viewport height) */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* voorkom overflow */
+}
 
-  .overlay-image img {
-    height: 100%;
-    width: auto;
-    object-fit: cover;
-  }
+.overlay-image img {
+  height: 100%;
+  width: auto;
+  object-fit: contain; /* ← verander van 'cover' naar 'contain' */
+  max-height: 100%;
+}
 
   /* Menu items rechts */
   .menu-items {
