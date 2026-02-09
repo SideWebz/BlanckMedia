@@ -97,7 +97,6 @@
 .team-role {
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     font-weight: 500;
-    color: #ff8a00;
     margin-bottom: 1rem;
 }
 
