@@ -5,14 +5,29 @@ const { getAllProjects, getProjectById, getProjectsByBrand } = require('../utils
 const { getAllSlots, getHeader } = require('../utils/homePageManager');
 
 // Initialize transporter for Nodemailer
+// Initialize transporter for Nodemailer
 const transporter = nodemailer.createTransport({
-  service: process.env.EMAIL_SERVICE || 'gmail',
-  port: process.env.EMAIL_PORT || 587,
-  secure: false,
+  host: process.env.EMAIL_HOST || 'smtp.gmail.com', // Explicit SMTP host
+  port: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT) : 587, // Port must be a number
+  secure: false, // use TLS STARTTLS
   auth: {
-    user: process.env.EMAIL_USER,
-    from: process.env.EMAIL_FROM,
-    pass: process.env.EMAIL_PASSWORD
+    user: process.env.EMAIL_USER,    // your SMTP user
+    pass: process.env.EMAIL_PASSWORD // your SMTP password / app password
+  },
+  tls: {
+    rejectUnauthorized: false // allow self-signed certs (debugging)
+  },
+  connectionTimeout: 15000, // 15s connection timeout
+  greetingTimeout: 15000,   // 15s greeting timeout
+  debug: true                // enable debug output to console
+});
+
+// Optional: verify connection immediately
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('SMTP connection failed:', error);
+  } else {
+    console.log('SMTP server is ready to send emails');
   }
 });
 
