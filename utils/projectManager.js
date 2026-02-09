@@ -16,6 +16,66 @@ const writeProjects = (projects) => {
   fs.writeFileSync(projectsFile, JSON.stringify(projects, null, 2));
 };
 
+// Helper function to delete a file from uploads folder
+const deleteUploadedFile = (filePath) => {
+  if (!filePath || typeof filePath !== 'string') return false;
+  
+  // Only delete files from the uploads folder (safety check)
+  if (!filePath.includes('/uploads/')) return false;
+  
+  // Extract filename from path like "/uploads/filename.ext"
+  const filename = filePath.split('/uploads/')[1];
+  if (!filename) return false;
+  
+  const fullPath = path.join(__dirname, '../public/uploads', filename);
+  
+  try {
+    if (fs.existsSync(fullPath)) {
+      fs.unlinkSync(fullPath);
+      return true;
+    }
+  } catch (err) {
+    console.error('Error deleting file:', err);
+  }
+  return false;
+};
+
+// Helper function to delete all images in a section
+const deleteImagesInSection = (section) => {
+  if (!section || !section.data) return;
+  
+  const data = section.data;
+  
+  // Delete single image fields
+  if (data.image) deleteUploadedFile(data.image);
+  if (data.thumbnail) deleteUploadedFile(data.thumbnail);
+  
+  // Delete image arrays
+  if (Array.isArray(data.images)) {
+    data.images.forEach(img => deleteUploadedFile(img));
+  }
+  
+  // Delete thumbnail arrays
+  if (Array.isArray(data.thumbnails)) {
+    data.thumbnails.forEach(thumb => deleteUploadedFile(thumb));
+  }
+};
+
+// Helper function to delete all files associated with a project
+const deleteProjectFiles = (project) => {
+  if (!project) return;
+  
+  // Delete cover image
+  if (project.coverImage) {
+    deleteUploadedFile(project.coverImage);
+  }
+  
+  // Delete all images in sections
+  if (Array.isArray(project.sections)) {
+    project.sections.forEach(section => deleteImagesInSection(section));
+  }
+};
+
 const getAllProjects = () => readProjects();
 
 const getProjectById = (id) => {
@@ -43,7 +103,28 @@ const updateProject = (id, updates) => {
   const projects = readProjects();
   const idx = projects.findIndex(p => String(p.id) === String(id));
   if (idx === -1) return null;
-  projects[idx] = Object.assign({}, projects[idx], updates);
+  
+  const oldProject = projects[idx];
+  
+  // Handle image deletions if specified in updates
+  if (updates.imagesToDelete && Array.isArray(updates.imagesToDelete)) {
+    updates.imagesToDelete.forEach(imgPath => deleteUploadedFile(imgPath));
+    delete updates.imagesToDelete; // Remove this from the actual update
+  }
+  
+  // Merge updates, preserving existing values for fields that are empty/null
+  const merged = Object.assign({}, oldProject);
+  
+  // For each update field, only update if provided and not empty
+  Object.keys(updates).forEach(key => {
+    if (updates[key] !== undefined && updates[key] !== null && updates[key] !== '') {
+      merged[key] = updates[key];
+    }
+    // If empty/null but explicitly set to preserve existing, skip
+    // Otherwise let the undefined/null pass through
+  });
+  
+  projects[idx] = merged;
   writeProjects(projects);
   return projects[idx];
 };
@@ -64,6 +145,13 @@ const getAllBrands = () => {
 
 const deleteProject = (id) => {
   const projects = readProjects();
+  const projectToDelete = projects.find(p => String(p.id) === String(id));
+  
+  // Delete all associated files before removing from database
+  if (projectToDelete) {
+    deleteProjectFiles(projectToDelete);
+  }
+  
   const filtered = projects.filter(p => String(p.id) !== String(id));
   writeProjects(filtered);
   return filtered;
@@ -106,5 +194,8 @@ module.exports = {
   getProjectsByBrand,
   getAllBrands,
   moveProjectUp,
-  moveProjectDown
+  moveProjectDown,
+  deleteUploadedFile,
+  deleteImagesInSection,
+  deleteProjectFiles
 };

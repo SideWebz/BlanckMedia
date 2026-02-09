@@ -253,6 +253,10 @@ case 'WebVideos':
         default:
           return '';
       }
+    },
+    json: (value) => {
+      const h = require('handlebars');
+      return new h.SafeString(JSON.stringify(value));
     }
   }
 }));

@@ -22,6 +22,7 @@
             <td>{{this.title}}</td>
             <td>
               <a href="/projects/{{this.id}}" class="btn btn-sm btn-outline-light me-2">View</a>
+              <a href="/admin/projects/{{this.id}}/edit" class="btn btn-sm btn-outline-info me-2">Edit</a>
               <button class="btn btn-sm btn-outline-warning me-2" onclick="moveProjectUp({{this.id}})" {{#if @first}}disabled{{/if}} title="Move Up">↑</button>
               <button class="btn btn-sm btn-outline-warning me-2" onclick="moveProjectDown({{this.id}})" {{#if @last}}disabled{{/if}} title="Move Down">↓</button>
               <button class="btn btn-sm btn-danger" onclick="deleteProject({{this.id}})">Delete</button>

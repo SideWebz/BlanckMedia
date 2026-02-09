@@ -159,6 +159,27 @@ router.get('/projects/new', isAuthenticated, (req, res) => {
   });
 });
 
+// Projects - edit form
+router.get('/projects/:id/edit', isAuthenticated, (req, res) => {
+  const id = req.params.id;
+  const project = getProjectById(id);
+  
+  if (!project) {
+    return res.status(404).render('error', { 
+      layout: 'admin', 
+      message: 'Project not found' 
+    });
+  }
+  
+  const brands = getAllBrands();
+  res.render('admin/project_form', {
+    layout: 'admin',
+    username: req.session.username,
+    project,
+    brands
+  });
+});
+
 // Projects - add
 router.post('/projects/add', isAuthenticated, (req, res) => {
   const { title, slug, brand, coverImage, sections } = req.body;
@@ -170,6 +191,39 @@ router.post('/projects/add', isAuthenticated, (req, res) => {
   }
 
   const proj = addProject({ title, slug, brand, coverImage, sections: parsedSections });
+  res.json({ success: true, project: proj });
+});
+
+// Projects - update
+router.post('/projects/:id/update', isAuthenticated, (req, res) => {
+  const id = req.params.id;
+  const { title, slug, brand, coverImage, sections, imagesToDelete } = req.body;
+  
+  let parsedSections = [];
+  try {
+    parsedSections = sections ? JSON.parse(sections) : [];
+  } catch (e) {
+    return res.status(400).json({ error: 'Invalid sections data' });
+  }
+
+  const updates = {
+    title,
+    slug,
+    brand,
+    coverImage: coverImage || null,
+    sections: parsedSections
+  };
+  
+  // Pass imagesToDelete array to the update function for cleanup
+  if (imagesToDelete) {
+    updates.imagesToDelete = imagesToDelete;
+  }
+
+  const proj = updateProject(id, updates);
+  if (!proj) {
+    return res.status(404).json({ error: 'Project not found' });
+  }
+
   res.json({ success: true, project: proj });
 });
 

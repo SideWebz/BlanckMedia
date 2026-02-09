@@ -2,13 +2,40 @@ const sectionsContainer = document.getElementById('sectionsContainer');
 const sectionsInput = document.getElementById('sectionsInput');
 const coverImageFile = document.getElementById('coverImageFile');
 const coverImageInput = document.getElementById('coverImage');
+const projectIdInput = document.getElementById('projectId');
+const imagesToDeleteInput = document.getElementById('imagesToDelete');
 
 let sections = [];
+let imagesToDelete = [];
+let isEditMode = false;
+
+// Detect if we're in edit mode
+if (projectIdInput && projectIdInput.value) {
+  isEditMode = true;
+}
+
+// Helper function to remove cover image
+window.removeCoverImage = function() {
+  const currentImage = coverImageInput.value;
+  if (currentImage) {
+    imagesToDelete.push(currentImage);
+    coverImageInput.value = '';
+    // Update the display
+    const displayDiv = document.querySelector('[id*="cover"]').parentElement.querySelector('.alert-info');
+    if (displayDiv) {
+      displayDiv.style.display = 'none';
+    }
+  }
+};
 
 // Handle cover image upload
 if (coverImageFile) {
   coverImageFile.addEventListener('change', function() {
     if (this.files[0]) {
+      // If in edit mode and there's an old image, mark it for deletion
+      if (isEditMode && coverImageInput.value && !imagesToDelete.includes(coverImageInput.value)) {
+        imagesToDelete.push(coverImageInput.value);
+      }
       uploadFileToServer(this.files[0]).then(url => {
         coverImageInput.value = url;
       }).catch(() => alert('Cover image upload failed'));
@@ -61,13 +88,20 @@ function renderSections() {
     if (s.type === 'VideoText') {
       inner += `<div class="mb-3"><label class="form-label">Video URL</label><input type="text" class="form-control" placeholder="YouTube, Vimeo, etc." value="${escapeHTML(s.data.video || '')}" onchange="updateSectionField(${s.id}, 'video', this.value)"></div>`;
       inner += `<div class="mb-3"><label class="form-label">Video Thumbnail / Poster Image (optional)</label><input type="file" accept="image/*" class="form-control" onchange="uploadSectionFile(${s.id}, this.files[0], 'thumbnail')"></div>`;
-      inner += `${s.data.thumbnail ? `<p class="alert alert-success py-2 mb-3">✓ Thumbnail uploaded</p>` : ''}`;
+      inner += `${s.data.thumbnail ? `<p class="alert alert-success py-2 mb-3">✓ Thumbnail uploaded <button type="button" class="btn btn-sm btn-outline-danger ms-2" onclick="removeImageFromSection(${s.id}, 'thumbnail')">Remove</button></p>` : ''}`;
       inner += `<div class="mb-3"><label class="form-label">Text</label><textarea class="form-control" rows="4" onchange="updateSectionField(${s.id}, 'text', this.value)">${escapeHTML(s.data.text || '')}</textarea></div>`;
     }
 
     if (s.type === 'CollageHeader') {
       inner += `<div class="mb-3"><label class="form-label">Images (6-10 images, upload)</label><input type="file" accept="image/*" multiple class="form-control" onchange="uploadMultipleSectionFiles(${s.id}, this.files)"></div>`;
       inner += `${s.data.images.length > 0 ? `<p class="alert alert-success py-2 mb-3">✓ ${s.data.images.length} images uploaded</p>` : ''}`;
+      if (s.data.images.length > 0) {
+        inner += `<div class="mb-3">`;
+        s.data.images.forEach((img, idx) => {
+          inner += `<div class="d-flex align-items-center justify-content-between mb-2"><small>${img}</small><button type="button" class="btn btn-sm btn-outline-danger" onclick="removeImageFromArray(${s.id}, 'images', ${idx})">Remove</button></div>`;
+        });
+        inner += `</div>`;
+      }
       inner += `<div class="mb-3"><label class="form-label">Brand Text</label><textarea class="form-control" rows="4" onchange="updateSectionField(${s.id}, 'text', this.value)">${escapeHTML(s.data.text || '')}</textarea></div>`;
     }
 
@@ -82,7 +116,7 @@ function renderSections() {
         inner += `<div class="mb-2">`;
         inner += `<label class="form-label mb-1">Thumbnail ${i+1}</label>`;
         inner += `<input type="file" accept="image/*" class="form-control" onchange="uploadReelThumbnail(${s.id}, ${i}, this.files[0])">`;
-        inner += `${s.data.thumbnails && s.data.thumbnails[i] ? `<p class="alert alert-success py-1 mt-1 mb-0">✓ Uploaded</p>` : ''}`;
+        inner += `${s.data.thumbnails && s.data.thumbnails[i] ? `<p class="alert alert-success py-1 mt-1 mb-0">✓ Uploaded <button type="button" class="btn btn-sm btn-outline-danger ms-2" onclick="removeImageFromArray(${s.id}, 'thumbnails', ${i})">Remove</button></p>` : ''}`;
         inner += `</div>`;
       }
       inner += `</div>`;
@@ -98,13 +132,20 @@ function renderSections() {
 
     if (s.type === 'Results') {
       inner += `<div class="mb-3"><label class="form-label">Image (upload)</label><input type="file" accept="image/*" class="form-control" onchange="uploadSectionFile(${s.id}, this.files[0], 'image')"></div>`;
-      inner += `${s.data.image ? `<p class="alert alert-success py-2 mb-3">✓ Image: ${s.data.image}</p>` : ''}`;
+      inner += `${s.data.image ? `<p class="alert alert-success py-2 mb-3">✓ Image: ${s.data.image} <button type="button" class="btn btn-sm btn-outline-danger ms-2" onclick="removeImageFromSection(${s.id}, 'image')">Remove</button></p>` : ''}`;
       inner += `<div class="mb-3"><label class="form-label">Text</label><textarea class="form-control" rows="4" onchange="updateSectionField(${s.id}, 'text', this.value)">${escapeHTML(s.data.text || '')}</textarea></div>`;
     }
 
     if (s.type === 'Collage') {
       inner += `<div class="mb-3"><label class="form-label">Images (6-10 images, upload)</label><input type="file" accept="image/*" multiple class="form-control" onchange="uploadMultipleSectionFiles(${s.id}, this.files)"></div>`;
       inner += `${s.data.images.length > 0 ? `<p class="alert alert-success py-2">✓ ${s.data.images.length} images uploaded</p>` : ''}`;
+      if (s.data.images.length > 0) {
+        inner += `<div class="mb-3">`;
+        s.data.images.forEach((img, idx) => {
+          inner += `<div class="d-flex align-items-center justify-content-between mb-2"><small>${img}</small><button type="button" class="btn btn-sm btn-outline-danger" onclick="removeImageFromArray(${s.id}, 'images', ${idx})">Remove</button></div>`;
+        });
+        inner += `</div>`;
+      }
     }
 
     if (s.type === 'TextSection') {
@@ -135,8 +176,45 @@ function updateVideoField(id, index, value) {
 }
 
 function removeSection(id) {
+  const section = sections.find(x => x.id === id);
+  if (section) {
+    // Mark all images in this section for deletion
+    if (section.data.image) imagesToDelete.push(section.data.image);
+    if (section.data.thumbnail) imagesToDelete.push(section.data.thumbnail);
+    if (Array.isArray(section.data.images)) {
+      section.data.images.forEach(img => {
+        if (img && !imagesToDelete.includes(img)) imagesToDelete.push(img);
+      });
+    }
+    if (Array.isArray(section.data.thumbnails)) {
+      section.data.thumbnails.forEach(thumb => {
+        if (thumb && !imagesToDelete.includes(thumb)) imagesToDelete.push(thumb);
+      });
+    }
+  }
   sections = sections.filter(s => s.id !== id);
   renderSections();
+}
+
+function removeImageFromSection(sectionId, field) {
+  const section = sections.find(x => x.id === sectionId);
+  if (section && section.data[field]) {
+    imagesToDelete.push(section.data[field]);
+    section.data[field] = '';
+    renderSections();
+  }
+}
+
+function removeImageFromArray(sectionId, field, index) {
+  const section = sections.find(x => x.id === sectionId);
+  if (section && Array.isArray(section.data[field])) {
+    const img = section.data[field][index];
+    if (img && !imagesToDelete.includes(img)) {
+      imagesToDelete.push(img);
+    }
+    section.data[field].splice(index, 1);
+    renderSections();
+  }
 }
 
 function moveUp(id) {
@@ -243,10 +321,14 @@ if (projectForm) {
     if (!brand) return alert('Brand is required');
 
     sectionsInput.value = JSON.stringify(sections.map(s => ({ type: s.type, data: s.data })));
+    imagesToDeleteInput.value = JSON.stringify(imagesToDelete);
 
-    const body = { title, slug, brand, coverImage, sections: sectionsInput.value };
+    const body = { title, slug, brand, coverImage, sections: sectionsInput.value, imagesToDelete };
+    
     try {
-      const res = await fetch('/admin/projects/add', {
+      const projectId = projectIdInput.value;
+      const endpoint = projectId ? `/admin/projects/${projectId}/update` : '/admin/projects/add';
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
@@ -259,4 +341,24 @@ if (projectForm) {
       }
     } catch (err) { alert('Error saving project'); }
   });
+}
+
+// Initialize form if editing
+if (isEditMode) {
+  // Sections will be loaded from the server-rendered form
+  // Parse the existing sections from the hidden input
+  const existingSectionsStr = sectionsInput.value;
+  if (existingSectionsStr) {
+    try {
+      const parsed = JSON.parse(existingSectionsStr);
+      sections = parsed.map((s, idx) => ({
+        id: Date.now() + idx, // Generate new IDs for runtime
+        type: s.type,
+        data: s.data || {}
+      }));
+      renderSections();
+    } catch (e) {
+      console.error('Error parsing sections:', e);
+    }
+  }
 }
