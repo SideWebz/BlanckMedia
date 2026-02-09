@@ -4,22 +4,13 @@ const nodemailer = require('nodemailer');
 const { getAllProjects, getProjectById, getProjectsByBrand } = require('../utils/projectManager');
 const { getAllSlots, getHeader } = require('../utils/homePageManager');
 
-// Initialize transporter for Nodemailer
-// Initialize transporter for Nodemailer
+// Initialize transporter for Nodemailer (simplified)
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com', // Explicit SMTP host
-  port: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT) : 587, // Port must be a number
-  secure: false, // use TLS STARTTLS
+  service: 'gmail', // kan ook 'hotmail', 'yahoo', etc.
   auth: {
-    user: process.env.EMAIL_USER,    // your SMTP user
-    pass: process.env.EMAIL_PASSWORD // your SMTP password / app password
-  },
-  tls: {
-    rejectUnauthorized: false // allow self-signed certs (debugging)
-  },
-  connectionTimeout: 15000, // 15s connection timeout
-  greetingTimeout: 15000,   // 15s greeting timeout
-  debug: true                // enable debug output to console
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
+  }
 });
 
 // Optional: verify connection immediately
@@ -60,48 +51,30 @@ router.get('/contact', (req, res) => {
 
 // Contact form submission
 router.post('/contact', async (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  // Validate inputs
+  if (!name || !email || !subject || !message) {
+    return res.status(400).json({ success: false, message: 'All fields are required' });
+  }
+
   try {
-    const { name, email, subject, message } = req.body;
-
-    // Validate inputs
-    if (!name || !email || !subject || !message) {
-      return res.status(400).json({ success: false, message: 'All fields are required' });
-    }
-
-    // Email to admin
-    const adminMailOptions = {
-      from: process.env.EMAIL_FROM,
+    // Mail to admin
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
-      subject: `New Contact Form: ${subject}`,
       replyTo: email,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `
-    };
+      subject: `New Contact Form: ${subject}`,
+      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage:\n${message}`
+    });
 
-    // Confirmation email to user
-    const userMailOptions = {
+    // Confirmation mail to user
+    await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
       subject: 'We received your message - Blanck Media',
-      html: `
-        <h2>Thank you for contacting us!</h2>
-        <p>Hi ${name},</p>
-        <p>We've received your message and will get back to you as soon as possible.</p>
-        <p><strong>Your message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-        <p>Best regards,<br>Blanck Media</p>
-      `
-    };
-
-    // Send both emails
-    await transporter.sendMail(adminMailOptions);
-    await transporter.sendMail(userMailOptions);
+      text: `Hi ${name},\n\nThanks for contacting us! We received your message:\n\n${message}\n\nBest regards,\nBlanck Media`
+    });
 
     res.json({ success: true, message: 'Message sent successfully!' });
   } catch (error) {
@@ -132,7 +105,9 @@ router.get('/projects/:id', (req, res) => {
   if (!project) return res.status(404).render('404', { layout: 'main' });
   
   // Get related projects from same brand
-  const relatedProjects = project.brand ? getProjectsByBrand(project.brand).filter(p => String(p.id) !== String(project.id)).slice(0, 3) : [];
+  const relatedProjects = project.brand
+    ? getProjectsByBrand(project.brand).filter(p => String(p.id) !== String(project.id)).slice(0, 3)
+    : [];
   
   res.render('project', { 
     title: project.title, 
