@@ -106,6 +106,11 @@ router.get('/work', (req, res) => {
   res.render('work', { title: 'Work', projects, includeWork: true });
 });
 
+// Careers page
+router.get('/careers', (req, res) => {
+  res.render('careers', { title: 'Careers', includeCareers: true });
+});
+
 // Individual project page
 router.get('/projects/:id', (req, res) => {
   const project = getProjectById(req.params.id);

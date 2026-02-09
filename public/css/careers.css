@@ -1,0 +1,214 @@
+/* ==================================================
+   CAREERS PAGE STYLES
+   ================================================== */
+
+/* Page header for careers */
+.page-header--careers {
+  min-height: 25vh;
+}
+
+/* Jobs container - grey background */
+.careers-jobs-container {
+  background-color: #1A1A1A;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+/* Individual job card */
+.job-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 2rem;
+  padding-bottom: 5rem;}
+
+/* Remove border from last card */
+.job-card:last-child {
+  border-bottom: none;
+}
+
+.job-card__header {
+  display: flex;
+  align-items: center;
+}
+
+.job-card__title {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 100;
+  color: #ffffff;
+  margin: 0;
+  word-break: break-word;
+}
+
+.job-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+
+}
+
+.job-card__description {
+  color: #ffffff;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .job-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .job-card__title {
+    font-size: 1.25rem;
+  }
+
+  .careers-jobs-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 576px) {
+  .job-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .job-card__title {
+    font-size: 1.1rem;
+  }
+
+  .careers-jobs-container {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+
+/* CTA Button met gradient */
+.cta-button {
+  margin-top: 5rem;
+  display: inline-block;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect */
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  color: #fff;
+}
+
+/* Gradient shift on hover */
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.cta-button:hover::before {
+  opacity: 1;
+}
+
+/* Text boven gradient */
+.cta-button {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cta-button {
+    font-size: 1rem;
+    padding: 14px 28px;
+  }
+}
+
+
+.plan-btn-orange {
+  margin-top: auto;
+  background: linear-gradient(120deg, #B03800, #F5C252);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* ← VOEG DIT TOE */
+  text-align: center;
+  gap: 0.75rem;
+  font-family: "Syne", system-ui, sans-serif;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  color: rgb(255, 255, 255);
+  font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+  text-decoration: none;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.plan-btn-orange::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, #D94A00, #FFD96A);
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.plan-btn-orange:hover::before {
+  opacity: 1;
+}
+
+/* SVG icon */
+.plan-btn-black svg,
+.plan-btn-white svg,
+.plan-btn-orange svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+/* Hover: arrow draait */
+.plan-btn-black:hover svg,
+.plan-btn-white:hover svg,
+.plan-btn-orange:hover svg {
+  transform: rotate(45deg);
+}
+
+
+.careers-jobs-container .job-card:last-child {
+    padding-bottom: 3rem;
+}
+.margin-top-4{
+    margin-top: 4rem;
+}

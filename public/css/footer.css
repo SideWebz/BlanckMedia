@@ -132,3 +132,14 @@ nav {
     margin-bottom: 1.5rem;
   }
 }
+
+.click{
+  font-family: "Syne", system-ui, sans-serif;
+  color: #c6c6c6;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.click:hover {
+  opacity: 0.7;
+}
