@@ -4,14 +4,17 @@ const nodemailer = require('nodemailer');
 const { getAllProjects, getProjectById, getProjectsByBrand } = require('../utils/projectManager');
 const { getAllSlots, getHeader } = require('../utils/homePageManager');
 
-// Initialize transporter for Nodemailer (simplified)
+// Initialize transporter for Nodemailer (port 587, STARTTLS)
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // kan ook 'hotmail', 'yahoo', etc.
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // STARTTLS
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD
   }
 });
+
 
 // Optional: verify connection immediately
 transporter.verify((error, success) => {
