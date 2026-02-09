@@ -100,7 +100,6 @@ footer .container {
 
 s{
   text-decoration: none;
-  font-family: "Syne", system-ui, sans-serif;
 }
 
 .social-icon:hover {
@@ -134,12 +133,29 @@ nav {
 }
 
 .click{
-  font-family: "Syne", system-ui, sans-serif;
   color: #c6c6c6;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .click:hover {
+  opacity: 0.7;
+}
+.font-smaller{
+  font-family: "Brand-Light", system-ui, sans-serif;
+}
+
+.spacing{
+  font-family: "Syne", system-ui, sans-serif;
+  font-weight: 600;
+  color: #fff;
+}
+.click2{
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.click2:hover {
   opacity: 0.7;
 }
