@@ -9,22 +9,22 @@
       "id": 1,
       "type": "video",
       "image_path": null,
-      "video_url": "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Wintercampaign%202025/Reel%204%20%20-%20Christmas%20%20-%20instagramsong.mp4",
-      "projectId": "1769627475346"
+      "video_url": "https://blanckmedia-videos.b-cdn.net/DIY%20atelier/Videos/DIY%20atelier%20Commercial.mp4",
+      "projectId": "1770583916935"
     },
     {
       "id": 2,
-      "type": "image",
-      "image_path": "/uploads/1769178135062-lt5cy2.png",
-      "video_url": null,
-      "projectId": null
+      "type": "video",
+      "image_path": null,
+      "video_url": "https://blanckmedia-videos.b-cdn.net/Gutss/Video/Gutss%20Cuban%20spiced%20Website.mov",
+      "projectId": "1770566488920"
     },
     {
       "id": 3,
       "type": "video",
       "image_path": null,
       "video_url": "https://blanckmedia-videos.b-cdn.net/Steel%26Barnett/Summercampaign%202025/Campaignvideo%20SB%20Website.mp4",
-      "projectId": null
+      "projectId": "1770565929745"
     }
   ]
 }
