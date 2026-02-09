@@ -65,7 +65,7 @@ router.post('/contact', async (req, res) => {
     // Mail to admin
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+      to: process.env.EMAIL_TO,
       replyTo: email,
       subject: `New Contact Form: ${subject}`,
       text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage:\n${message}`
