@@ -83,7 +83,7 @@ const getProjectById = (id) => {
   return projects.find(p => String(p.id) === String(id));
 };
 
-const addProject = ({ title, slug, brand, coverImage, sections }) => {
+const addProject = ({ title, slug, brand, coverImage, sections, visible }) => {
   const projects = readProjects();
   const newProject = {
     id: Date.now(),
@@ -92,6 +92,7 @@ const addProject = ({ title, slug, brand, coverImage, sections }) => {
     brand: brand || '',
     coverImage: coverImage || null,
     sections: sections || [],
+    visible: visible !== false && visible !== 'false' ? true : false,
     createdAt: new Date().toISOString()
   };
   projects.unshift(newProject);
@@ -185,6 +186,16 @@ const moveProjectDown = (id) => {
   return projects[idx + 1];
 };
 
+const toggleProjectVisibility = (id) => {
+  const projects = readProjects();
+  const idx = projects.findIndex(p => String(p.id) === String(id));
+  if (idx === -1) return null;
+  
+  projects[idx].visible = !projects[idx].visible;
+  writeProjects(projects);
+  return projects[idx];
+};
+
 module.exports = {
   getAllProjects,
   getProjectById,
@@ -195,6 +206,7 @@ module.exports = {
   getAllBrands,
   moveProjectUp,
   moveProjectDown,
+  toggleProjectVisibility,
   deleteUploadedFile,
   deleteImagesInSection,
   deleteProjectFiles

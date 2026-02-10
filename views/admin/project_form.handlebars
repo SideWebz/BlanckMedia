@@ -49,6 +49,17 @@
         <input type="hidden" id="coverImage" name="coverImage" value="{{#if project}}{{project.coverImage}}{{/if}}">
       </div>
 
+      <div class="mb-3">
+        <div class="form-check form-switch">
+          <input type="hidden" id="visible" name="visible" value="false">
+          <input class="form-check-input" type="checkbox" id="visibleCheck" {{#if project}}{{#if project.visible}}checked{{/if}}{{else}}checked{{/if}}>
+          <label class="form-check-label" for="visibleCheck">
+            Visible on Work page
+          </label>
+          <small class="d-block mt-1 text-muted">When enabled, this project will show on the public Work page. Direct links will always work.</small>
+        </div>
+      </div>
+
       <hr>
       <h3>Sections</h3>
       <p>Choose a section type and upload images. Videos use links.</p>

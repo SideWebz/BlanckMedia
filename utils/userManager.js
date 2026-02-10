@@ -2,21 +2,38 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const usersFile = path.join(__dirname, '../data/users.json');
+const usersEnvFile = path.join(__dirname, '../users.env');
 
-// Read users from JSON file
+// Read users from users.env file
 const readUsers = () => {
   try {
-    const data = fs.readFileSync(usersFile, 'utf8');
-    return JSON.parse(data);
+    const data = fs.readFileSync(usersEnvFile, 'utf8');
+    const lines = data.split('\n').filter(line => line.trim() && !line.startsWith('#'));
+    return lines.map(line => {
+      const parts = line.split('|');
+      if (parts.length < 7) return null;
+      return {
+        id: parseInt(parts[0]),
+        username: parts[1],
+        firstName: parts[2],
+        lastName: parts[3],
+        password: parts[4],
+        role: parts[5],
+        createdAt: parts[6]
+      };
+    }).filter(u => u !== null);
   } catch (err) {
     return [];
   }
 };
 
-// Write users to JSON file
+// Write users to users.env file
 const writeUsers = (users) => {
-  fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
+  const lines = ['# User credentials stored in format: id|username|firstName|lastName|hashedPassword|role|createdAt'];
+  users.forEach(u => {
+    lines.push(`${u.id}|${u.username}|${u.firstName}|${u.lastName}|${u.password}|${u.role}|${u.createdAt}`);
+  });
+  fs.writeFileSync(usersEnvFile, lines.join('\n') + '\n');
 };
 
 // Get all users

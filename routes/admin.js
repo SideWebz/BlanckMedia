@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllUsers, addUser, deleteUser, findUserByUsername, isUserAdmin, getUserById } = require('../utils/userManager');
 const bcrypt = require('bcryptjs');
-const { getAllProjects, getProjectById, addProject, updateProject, deleteProject, getProjectsByBrand, getAllBrands, moveProjectUp, moveProjectDown } = require('../utils/projectManager');
+const { getAllProjects, getProjectById, addProject, updateProject, deleteProject, getProjectsByBrand, getAllBrands, moveProjectUp, moveProjectDown, toggleProjectVisibility } = require('../utils/projectManager');
 const { getAllSlots, updateSlot, getHeader, updateHeader, isValidVideoUrl } = require('../utils/homePageManager');
 // multer will be required at runtime if installed
 let multer;
@@ -182,7 +182,7 @@ router.get('/projects/:id/edit', isAuthenticated, (req, res) => {
 
 // Projects - add
 router.post('/projects/add', isAuthenticated, (req, res) => {
-  const { title, slug, brand, coverImage, sections } = req.body;
+  const { title, slug, brand, coverImage, sections, visible } = req.body;
   let parsedSections = [];
   try {
     parsedSections = sections ? JSON.parse(sections) : [];
@@ -190,14 +190,14 @@ router.post('/projects/add', isAuthenticated, (req, res) => {
     return res.status(400).json({ error: 'Invalid sections data' });
   }
 
-  const proj = addProject({ title, slug, brand, coverImage, sections: parsedSections });
+  const proj = addProject({ title, slug, brand, coverImage, sections: parsedSections, visible: visible === 'true' || visible === true });
   res.json({ success: true, project: proj });
 });
 
 // Projects - update
 router.post('/projects/:id/update', isAuthenticated, (req, res) => {
   const id = req.params.id;
-  const { title, slug, brand, coverImage, sections, imagesToDelete } = req.body;
+  const { title, slug, brand, coverImage, sections, imagesToDelete, visible } = req.body;
   
   let parsedSections = [];
   try {
@@ -211,7 +211,8 @@ router.post('/projects/:id/update', isAuthenticated, (req, res) => {
     slug,
     brand,
     coverImage: coverImage || null,
-    sections: parsedSections
+    sections: parsedSections,
+    visible: visible === 'true' || visible === true
   };
   
   // Pass imagesToDelete array to the update function for cleanup
@@ -246,6 +247,16 @@ router.post('/projects/move-down/:id', isAuthenticated, (req, res) => {
   const id = req.params.id;
   const project = moveProjectDown(id);
   res.json({ success: true, project });
+});
+
+// Projects - toggle visibility
+router.post('/projects/toggle-visibility/:id', isAuthenticated, (req, res) => {
+  const id = req.params.id;
+  const project = toggleProjectVisibility(id);
+  if (!project) {
+    return res.status(404).json({ error: 'Project not found' });
+  }
+  res.json({ success: true, project, visible: project.visible });
 });
 
 // Upload base64 file (simple, no external deps)

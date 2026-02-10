@@ -12,6 +12,7 @@
           <tr>
             <th>Preview</th>
             <th>Title</th>
+            <th>Visible</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -20,6 +21,14 @@
           <tr>
             <td style="width:120px;"><img src="{{this.coverImage}}" alt="{{this.title}}" class="img-fluid rounded" /></td>
             <td>{{this.title}}</td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="visibility-{{this.id}}" {{#if this.visible}}checked{{/if}} onchange="toggleVisibility({{this.id}})">
+                <label class="form-check-label" for="visibility-{{this.id}}">
+                  <span id="visibility-text-{{this.id}}">{{#if this.visible}}Visible{{else}}Hidden{{/if}}</span>
+                </label>
+              </div>
+            </td>
             <td>
               <a href="/projects/{{this.id}}" class="btn btn-sm btn-outline-light me-2">View</a>
               <a href="/admin/projects/{{this.id}}/edit" class="btn btn-sm btn-outline-info me-2">Edit</a>
@@ -43,6 +52,21 @@ async function deleteProject(id) {
     const res = await fetch(`/admin/projects/delete/${id}`, { method: 'POST' });
     if (res.ok) location.reload();
   } catch (e) { alert('Error deleting project'); }
+}
+
+async function toggleVisibility(id) {
+  try {
+    const res = await fetch(`/admin/projects/toggle-visibility/${id}`, { method: 'POST' });
+    if (res.ok) {
+      const data = await res.json();
+      const checkbox = document.getElementById(`visibility-${id}`);
+      const textLabel = document.getElementById(`visibility-text-${id}`);
+      checkbox.checked = data.visible;
+      textLabel.textContent = data.visible ? 'Visible' : 'Hidden';
+    } else {
+      alert('Error toggling visibility');
+    }
+  } catch (e) { alert('Error toggling visibility'); }
 }
 
 async function moveProjectUp(id) {

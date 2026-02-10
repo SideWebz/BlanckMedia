@@ -317,13 +317,14 @@ if (projectForm) {
     const slug = document.getElementById('slug').value;
     const brand = document.getElementById('brand').value;
     const coverImage = document.getElementById('coverImage').value || null;
+    const visible = document.getElementById('visibleCheck').checked ? true : false;
 
     if (!brand) return alert('Brand is required');
 
     sectionsInput.value = JSON.stringify(sections.map(s => ({ type: s.type, data: s.data })));
     imagesToDeleteInput.value = JSON.stringify(imagesToDelete);
 
-    const body = { title, slug, brand, coverImage, sections: sectionsInput.value, imagesToDelete };
+    const body = { title, slug, brand, coverImage, sections: sectionsInput.value, imagesToDelete, visible };
     
     try {
       const projectId = projectIdInput.value;

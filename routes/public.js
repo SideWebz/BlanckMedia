@@ -93,7 +93,9 @@ router.get('/about', (req, res) => {
 
 // Work (projects list)
 router.get('/work', (req, res) => {
-  const projects = getAllProjects();
+  const allProjects = getAllProjects();
+  // Filter to only show visible projects on the work page
+  const projects = allProjects.filter(p => p.visible !== false);
   res.render('work', { title: 'Work', projects, includeWork: true });
 });
 

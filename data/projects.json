@@ -15,6 +15,7 @@
         }
       }
     ],
+    "visible": true,
     "createdAt": "2026-02-08T20:51:56.935Z"
   },
   {
@@ -46,6 +47,7 @@
         }
       }
     ],
+    "visible": true,
     "createdAt": "2026-02-08T16:06:21.052Z"
   },
   {
@@ -64,6 +66,7 @@
         }
       }
     ],
+    "visible": true,
     "createdAt": "2026-02-08T16:01:28.920Z"
   },
   {
@@ -82,6 +85,7 @@
         }
       }
     ],
+    "visible": true,
     "createdAt": "2026-02-08T15:59:56.649Z"
   },
   {
@@ -89,7 +93,7 @@
     "title": "La Seiche",
     "slug": "BLACKFISK - Social Media",
     "brand": "BLACKFISK",
-    "coverImage": null,
+    "coverImage": "/uploads/1770736678909-olu7tb.jpg",
     "sections": [
       {
         "type": "CollageHeader",
@@ -127,6 +131,7 @@
         }
       }
     ],
+    "visible": true,
     "createdAt": "2026-02-08T22:13:57.571Z"
   },
   {
@@ -164,6 +169,7 @@
         }
       }
     ],
+    "visible": true,
     "createdAt": "2026-02-08T15:52:09.746Z"
   }
 ]
