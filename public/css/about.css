@@ -58,72 +58,157 @@
 }
 
 /* ===========================
-   TEAM MEMBER CARDS - FIXED
+   TEAM MEMBER CARDS - IMPROVED RESPONSIVE
 =========================== */
 
 .team-card {
     background-color: #1b1b1b;
 }
 
-/* Image column styling */
-.team-card .col-md-4 {
-    padding: 1rem;
-}
-
+/* Image styling - responsive */
 .team-img {
     border-radius: 2rem;
     object-fit: cover;
     width: 100%;
-    max-width: 350px; /* prevents image from getting too large */
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Text column styling */
-.team-card .col-md-8 {
-    padding: 2rem;
-    display: flex;
-}
-
 .text-column {
     width: 100%;
-    max-width: 100% !important; /* override inline style */
 }
 
 .team-name {
-    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
     font-weight: 700;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
 }
 
 .team-role {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 500;
     margin-bottom: 1rem;
+    opacity: 0.9;
 }
 
 .team-description {
-    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-    line-height: 1.6;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    line-height: 1.7;
     color: #e0e0e0;
 }
 
-
-/* MOBILE: stack image above text */
-@media (max-width: 768px) {
-    .team-card .row {
-        gap: 0;
+/* DESKTOP (large screens): proper spacing and alignment */
+@media (min-width: 993px) {
+    .team-img {
+        max-width: 350px;
     }
     
-    .team-card .col-md-4,
-    .team-card .col-md-8 {
-        padding: 1rem;
+    .team-card .col-md-4 {
+        padding: 1.5rem;
+    }
+    
+    .team-card .col-md-7 {
+        padding: 2rem 2.5rem;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* TABLET (medium screens): balanced layout */
+@media (max-width: 992px) and (min-width: 769px) {
+    .team-card {
+        padding: 1.5rem !important;
     }
     
     .team-img {
-        max-width: 250px;
-        margin: 0 auto;
+        max-width: 280px;
+    }
+    
+    .team-card .col-md-4 {
+        padding: 1rem;
+    }
+    
+    .team-card .col-md-7 {
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .team-description {
+        font-size: 0.95rem;
+    }
+}
+
+/* MOBILE & SMALL TABLETS: stack vertically, centered */
+@media (max-width: 768px) {
+    .team-card {
+        padding: 1.5rem !important;
+    }
+    
+    .team-card .row {
+        gap: 1.5rem;
+    }
+    
+    .team-card .col-md-4,
+    .team-card .col-md-7 {
+        padding: 0 !important;
+    }
+    
+    .team-img {
+        max-width: 220px;
+        margin-bottom: 0.5rem;
     }
     
     .text-column {
         text-align: center !important;
+        padding: 0 0.5rem;
+    }
+    
+    /* Override text-md-end on mobile */
+    .text-column.text-md-end {
+        text-align: center !important;
+    }
+    
+    .team-name {
+        font-size: 1.6rem;
+    }
+    
+    .team-role {
+        font-size: 1rem;
+    }
+    
+    .team-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+/* VERY SMALL MOBILE: tighter spacing */
+@media (max-width: 480px) {
+    .team-card {
+        padding: 1rem !important;
+    }
+    
+    .team-card .row {
+        gap: 1rem;
+    }
+    
+    .team-img {
+        max-width: 180px;
+    }
+    
+    .team-name {
+        font-size: 1.4rem;
+    }
+    
+    .team-role {
+        font-size: 0.9rem;
+    }
+    
+    .team-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
 }
