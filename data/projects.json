@@ -93,7 +93,7 @@
     "title": "La Seiche",
     "slug": "BLACKFISK - Social Media",
     "brand": "BLACKFISK",
-    "coverImage": "/uploads/1770736678909-olu7tb.jpg",
+    "coverImage": "/uploads/1770758808746-n5jaub.jpg",
     "sections": [
       {
         "type": "CollageHeader",
@@ -171,5 +171,51 @@
     ],
     "visible": true,
     "createdAt": "2026-02-08T15:52:09.746Z"
+  },
+  {
+    "id": 1770762346073,
+    "title": "Energized with Tuur",
+    "slug": "Tuur - Commercial",
+    "brand": "TUUR",
+    "coverImage": "/uploads/1770761967542-pibt4f.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/TUUR/TUUR%20x%20Yara%20commercial%2060%20sec.mp4",
+          "text": "This commercial for Tuur captures Yara’s day, fueled by movement and restored by rest. From her morning ride to peaceful nights, we show how great sleep supports an active life.\nClient: Tuur\nAgency: Captiv\nProduction: Blanckmedia\nDOP: Jonathan Blanckaert\nGaffer/AC: Simon Blondeel\nStyling: Tuur",
+          "thumbnail": "/uploads/1770761993362-hax13h.jpg"
+        }
+      }
+    ],
+    "visible": true,
+    "createdAt": "2026-02-10T22:25:46.073Z"
+  },
+  {
+    "id": 1770760233056,
+    "title": "Companyvideos",
+    "slug": "A few videos about companies",
+    "brand": "Companyvideos",
+    "coverImage": "/uploads/1770759483319-rofsi7.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/Arthur%20vandendorpe/Horizontale%20bedrijfsvideo%20Arthur%20Vandendorpe.mp4",
+          "text": "Dit is de bedrijfsvideo die we maakten voor Arthur Vandendorpe. \nIn deze video brengen we hun visie, werkwijze en persoonlijkheid in beeld op een authentieke en krachtige manier.",
+          "thumbnail": "/uploads/1770759908947-991ezy.jpg"
+        }
+      },
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/Eurolook/Bedrijfsvideo%20Eurolook.mov",
+          "text": "Voor brillenwinkel Eurolook realiseerden we deze bedrijfsvideo waarin kwaliteit, service en stijl centraal staan. Zo krijgt de kijker een helder beeld van de zaak en haar waarden.",
+          "thumbnail": "/uploads/1770760229301-x8ln8u.jpg"
+        }
+      }
+    ],
+    "visible": false,
+    "createdAt": "2026-02-10T21:50:33.056Z"
   }
 ]
