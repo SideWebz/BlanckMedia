@@ -78,7 +78,7 @@ app.engine('handlebars', engine({
         ${videoHtml}
         <div class="video-play-button" onclick="playVideoText(this)"></div>
       </div>
-      <p class="section-text">${h.escapeExpression((data.text || '').replace(/\n/g, '<br>'))}</p>
+      <p class="section-text">${new h.SafeString(h.escapeExpression(data.text || '').replace(/\n/g, '<br>'))}</p>
     </section>
     <script>
       function playVideoText(btn) {
