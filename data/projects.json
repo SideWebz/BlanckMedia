@@ -1,5 +1,24 @@
 [
   {
+    "id": 1772016385937,
+    "title": "Bultech",
+    "slug": "Bedrijfsvideo",
+    "brand": "Bultech",
+    "coverImage": "/uploads/1772016370268-cgxcle.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/Bulltech/Bedrijfsvideo%20Bultech.mp4",
+          "text": "Voor dit project werkten we samen met Bultech Kraanspecialisten, een team dat elke uitdaging op hoogte met kennis en precisie aanpakt. De shoot focuste op kracht, controle en veiligheid, van indrukwekkende machines tot de geconcentreerde samenwerking op de werf. Het werd een visueel verhaal waarin techniek en vakmanschap samenkomen, en waar elk detail het vertrouwen en de expertise van echte kraanspecialisten uitstraalt. We brachten met plezier de dynamiek en betrouwbaarheid tot leven die Bultech elke dag opnieuw definieert.",
+          "thumbnail": "/uploads/1772016333730-j962ot.jpg"
+        }
+      }
+    ],
+    "visible": false,
+    "createdAt": "2026-02-25T10:46:25.937Z"
+  },
+  {
     "id": 1770583916935,
     "title": "DIY Mortextable",
     "slug": "DIY Atelier - Commercial",
@@ -135,6 +154,25 @@
     "createdAt": "2026-02-08T22:13:57.571Z"
   },
   {
+    "id": 1770917279519,
+    "title": "Familyday",
+    "slug": "Christiaens - Eventvideo",
+    "brand": "Christiaens",
+    "coverImage": "/uploads/1770917128887-xmxo7s.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/Events/Familiedag%20christiaens.mov",
+          "text": "We created this fun and engaging event video for Christiaens’ building company event. It was a joy to capture the pure happiness of the children and the laughter shared by everyone.",
+          "thumbnail": "/uploads/1770917156523-9ki3nn.jpg"
+        }
+      }
+    ],
+    "visible": true,
+    "createdAt": "2026-02-12T17:27:59.519Z"
+  },
+  {
     "id": 1770565929745,
     "title": "Salt & Stone",
     "slug": "Steel&Barnett - Summercampaign",
@@ -193,29 +231,40 @@
   },
   {
     "id": 1770760233056,
-    "title": "Companyvideos",
-    "slug": "A few videos about companies",
-    "brand": "Companyvideos",
-    "coverImage": "/uploads/1770759483319-rofsi7.jpg",
+    "title": "Eurolook",
+    "slug": "Eurolook - companyvideo",
+    "brand": "Eurolook",
+    "coverImage": "/uploads/1771946988706-vjll3l.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/Eurolook/Bedrijfsvideo%20Eurolook.mov",
+          "text": "Voor brillenwinkel Eurolook realiseerden we deze bedrijfsvideo waarin kwaliteit, service en stijl centraal staan. Zo krijgt de kijker een helder beeld van de zaak en haar waarden. ",
+          "thumbnail": "/uploads/1770760229301-x8ln8u.jpg"
+        }
+      }
+    ],
+    "visible": true,
+    "createdAt": "2026-02-10T21:50:33.056Z"
+  },
+  {
+    "id": 1772016040427,
+    "title": "Arthur Vandendorpe",
+    "slug": "Bedrijfsvideo",
+    "brand": "Arthur Vandendorpe",
+    "coverImage": "/uploads/1772015903723-hwvl18.jpg",
     "sections": [
       {
         "type": "VideoText",
         "data": {
           "video": "https://blanckmedia-videos.b-cdn.net/Arthur%20vandendorpe/Horizontale%20bedrijfsvideo%20Arthur%20Vandendorpe.mp4",
-          "text": "Dit is de bedrijfsvideo die we maakten voor Arthur Vandendorpe. \nIn deze video brengen we hun visie, werkwijze en persoonlijkheid in beeld op een authentieke en krachtige manier.",
-          "thumbnail": "/uploads/1770759908947-991ezy.jpg"
-        }
-      },
-      {
-        "type": "VideoText",
-        "data": {
-          "video": "https://blanckmedia-videos.b-cdn.net/Eurolook/Bedrijfsvideo%20Eurolook.mov",
-          "text": "Voor brillenwinkel Eurolook realiseerden we deze bedrijfsvideo waarin kwaliteit, service en stijl centraal staan. Zo krijgt de kijker een helder beeld van de zaak en haar waarden.",
-          "thumbnail": "/uploads/1770760229301-x8ln8u.jpg"
+          "text": "Voor dit project werkten we samen met Arthur Vandendorpe, een toonaangevend renovatie- en restauratiebedrijf met een diep respect voor authentiek vakmanschap. De shoot draaide om het vastleggen van het proces achter het werk — de materialen, de precisie en de toewijding waarmee historisch erfgoed nieuw leven wordt ingeblazen. Het werd een verhaal waarin traditie en expertise samenkomen, met oog voor detail en kwaliteit. We brachten met plezier de eerlijke, ambachtelijke sfeer in beeld waarin verleden en toekomst elkaar ontmoeten.",
+          "thumbnail": "/uploads/1772015916321-9jyhrg.jpg"
         }
       }
     ],
     "visible": false,
-    "createdAt": "2026-02-10T21:50:33.056Z"
+    "createdAt": "2026-02-25T10:40:40.427Z"
   }
 ]
