@@ -162,7 +162,14 @@
                   Reach out with inquiries about tickets, partnerships, or event details.
                 </p>
 
-                <form class="d-flex flex-column flex-grow-1" id="contactForm">
+                <form class="d-flex flex-column flex-grow-1" id="contactForm" autocomplete="on">
+
+                  {{!-- Honeypot veld: verborgen voor echte gebruikers, bots vullen het in --}}
+                  <div class="honeypot-field" aria-hidden="true">
+                    <label for="website">Website (laat leeg)</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                  </div>
+
                   <div class="mb-3">
                     <input type="text" class="form-control form-clean" placeholder="Name" name="name" required>
                   </div>

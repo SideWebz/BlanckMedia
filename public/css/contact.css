@@ -116,6 +116,20 @@ textarea {
 }
 
 
+/* ================= HONEYPOT (anti-spam) ================= */
+/* Visually hidden from real users, but present in the DOM for bots */
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  tab-index: -1;
+}
+
 /* ================= MOBILE ================= */
 
 @media (max-width: 576px) {

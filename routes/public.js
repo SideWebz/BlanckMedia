@@ -4,6 +4,49 @@ const nodemailer = require('nodemailer');
 const { getAllProjects, getProjectById, getProjectsByBrand } = require('../utils/projectManager');
 const { getAllSlots, getHeader } = require('../utils/homePageManager');
 
+// ─── Rate limiter configuratie ─────────────────────────────────────────────
+// Maximaal aantal contactformulier-inzendingen per IP binnen het tijdvenster.
+const RATE_LIMIT_MAX     = 5;                  // max. aanvragen
+const RATE_LIMIT_WINDOW  = 15 * 60 * 1000;    // tijdvenster in ms (15 minuten)
+
+/**
+ * In-memory opslag: { [ip]: { count: number, resetAt: number } }
+ * Bij hoge belasting kan dit vervangen worden door Redis of een externe store.
+ */
+const rateLimitStore = new Map();
+
+/**
+ * Controleert of het opgegeven IP-adres de rate limit heeft bereikt.
+ * @param {string} ip - Het IP-adres van de aanvrager.
+ * @returns {{ allowed: boolean, remaining: number, resetAt: number }}
+ */
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const record = rateLimitStore.get(ip);
+
+  if (!record || now > record.resetAt) {
+    // Eerste aanvraag of tijdvenster verlopen: reset de teller
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+    return { allowed: true, remaining: RATE_LIMIT_MAX - 1, resetAt: now + RATE_LIMIT_WINDOW };
+  }
+
+  if (record.count >= RATE_LIMIT_MAX) {
+    return { allowed: false, remaining: 0, resetAt: record.resetAt };
+  }
+
+  record.count += 1;
+  return { allowed: true, remaining: RATE_LIMIT_MAX - record.count, resetAt: record.resetAt };
+}
+
+// Verwijder verlopen records periodiek om geheugenlek te voorkomen (elke 30 min)
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, record] of rateLimitStore.entries()) {
+    if (now > record.resetAt) rateLimitStore.delete(ip);
+  }
+}, 30 * 60 * 1000);
+// ──────────────────────────────────────────────────────────────────────────
+
 // Initialize transporter for Nodemailer (port 587, STARTTLS)
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -54,9 +97,30 @@ router.get('/contact', (req, res) => {
 
 // Contact form submission
 router.post('/contact', async (req, res) => {
+  // ── 1. Honeypot-controle ──────────────────────────────────────────────────
+  // Het 'website'-veld is verborgen voor echte gebruikers.
+  // Als het ingevuld is, is de aanvrager hoogstwaarschijnlijk een bot.
+  if (req.body.website) {
+    // Stille weigering: de bot krijgt een 200-respons zodat hij niet opnieuw probeert.
+    return res.json({ success: true, message: 'Message sent successfully!' });
+  }
+
+  // ── 2. Rate limiting op basis van IP-adres ────────────────────────────────
+  // Haal het echte IP op (rekening houdend met proxies via X-Forwarded-For).
+  const clientIp = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const rateCheck = checkRateLimit(clientIp);
+
+  if (!rateCheck.allowed) {
+    const resetMinutes = Math.ceil((rateCheck.resetAt - Date.now()) / 60000);
+    return res.status(429).json({
+      success: false,
+      message: `Te veel aanvragen. Probeer het opnieuw over ${resetMinutes} minut${resetMinutes === 1 ? '' : 'en'}.`
+    });
+  }
+
+  // ── 3. Server-side veldvalidatie ──────────────────────────────────────────
   const { name, email, subject, message } = req.body;
 
-  // Validate inputs
   if (!name || !email || !subject || !message) {
     return res.status(400).json({ success: false, message: 'All fields are required' });
   }
