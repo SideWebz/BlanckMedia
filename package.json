@@ -4,6 +4,7 @@
   "description": "A Node.js server with Handlebars templating",
   "main": "server.js",
   "scripts": {
+    "build": "echo \"No build step required\"",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
