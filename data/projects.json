@@ -1,5 +1,24 @@
 [
   {
+    "id": 1782048773509,
+    "title": "Retropress",
+    "slug": "Companyvideo",
+    "brand": "Retropress",
+    "coverImage": "/uploads/1782048923281-k53i5b.jpg",
+    "sections": [
+      {
+        "type": "VideoText",
+        "data": {
+          "video": "https://blanckmedia-videos.b-cdn.net/RETROPRESS/RETROPRESS%20-%20De%20authentieke%20drukkerij%20v3%2016x9.mp4",
+          "text": "Retropress is an authentic print shop based in Ostend. For this project, we created a unique company video that captures the craftsmanship, passion, and dedication behind every print. By combining cinematic visuals with the rich character of the workshop, we brought their story, heritage, and attention to detail to life.",
+          "thumbnail": "/uploads/1782048880787-9d54c1.jpg"
+        }
+      }
+    ],
+    "visible": true,
+    "createdAt": "2026-06-21T13:32:53.509Z"
+  },
+  {
     "id": 1772016385937,
     "title": "Bultech",
     "slug": "Bedrijfsvideo",
