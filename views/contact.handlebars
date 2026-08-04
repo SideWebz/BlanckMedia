@@ -170,6 +170,9 @@
                     <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                   </div>
 
+                  <input type="hidden" name="formStartTime" id="formStartTime" value="">
+                  <input type="hidden" name="turnstileToken" id="turnstileToken" value="">
+
                   <div class="mb-3">
                     <input type="text" class="form-control form-clean" placeholder="Name" name="name" required>
                   </div>
@@ -183,56 +186,96 @@
                     <textarea class="form-control form-clean" rows="4" placeholder="Message" name="message" required></textarea>
                   </div>
 
+                  <div class="mb-4 d-flex justify-content-center">
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAEGOoKDTtQQsykdB" data-theme="light" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired"></div>
+                  </div>
+
                   <button type="submit" class="btn gradient-btn mt-auto">
                     Send message
                   </button>
                   <div id="formMessage" class="mt-3" style="display: none;"></div>
                 </form>
 
+                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
                 <script>
-                  document.getElementById('contactForm').addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    
-                    const form = e.target;
+                  window.onTurnstileSuccess = function(token) {
+                    const turnstileTokenInput = document.getElementById('turnstileToken');
+                    if (turnstileTokenInput) {
+                      turnstileTokenInput.value = token || '';
+                    }
+                  };
+
+                  window.onTurnstileExpired = function() {
+                    const turnstileTokenInput = document.getElementById('turnstileToken');
+                    if (turnstileTokenInput) {
+                      turnstileTokenInput.value = '';
+                    }
+                  };
+
+                  document.addEventListener('DOMContentLoaded', () => {
+                    const form = document.getElementById('contactForm');
                     const messageDiv = document.getElementById('formMessage');
                     const button = form.querySelector('button[type="submit"]');
-                    
-                    const formData = new FormData(form);
-                    const data = Object.fromEntries(formData);
-                    
-                    button.disabled = true;
-                    button.textContent = 'Sending...';
-                    messageDiv.style.display = 'none';
-                    
-                    try {
-                      const response = await fetch('/contact', {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                      });
-                      
-                      const result = await response.json();
-                      
-                      if (result.success) {
-                        messageDiv.className = 'mt-3 alert alert-success';
-                        messageDiv.textContent = 'Message sent successfully! We\'ll get back to you soon.';
-                        form.reset();
-                      } else {
-                        messageDiv.className = 'mt-3 alert alert-danger';
-                        messageDiv.textContent = result.message || 'Error sending message. Please try again.';
-                      }
-                      messageDiv.style.display = 'block';
-                    } catch (error) {
-                      messageDiv.className = 'mt-3 alert alert-danger';
-                      messageDiv.textContent = 'Error sending message. Please try again.';
-                      messageDiv.style.display = 'block';
-                      console.error('Error:', error);
-                    } finally {
-                      button.disabled = false;
-                      button.textContent = 'Send message';
+                    const formStartTimeInput = document.getElementById('formStartTime');
+                    const turnstileTokenInput = document.getElementById('turnstileToken');
+
+                    if (formStartTimeInput) {
+                      formStartTimeInput.value = Date.now();
                     }
+
+                    form.addEventListener('submit', async (e) => {
+                      e.preventDefault();
+                      
+                      const formData = new FormData(form);
+                      const data = Object.fromEntries(formData);
+                      
+                      if (!turnstileTokenInput.value) {
+                        messageDiv.className = 'mt-3 alert alert-danger';
+                        messageDiv.textContent = 'Please complete the security check before sending your message.';
+                        messageDiv.style.display = 'block';
+                        return;
+                      }
+
+                      button.disabled = true;
+                      button.textContent = 'Sending...';
+                      messageDiv.style.display = 'none';
+                      messageDiv.className = 'mt-3';
+                      
+                      try {
+                        const response = await fetch('/contact', {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify(data)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                          messageDiv.className = 'mt-3 alert alert-success';
+                          messageDiv.textContent = 'Message sent successfully! We\'ll get back to you soon.';
+                          form.reset();
+                          formStartTimeInput.value = Date.now();
+                          turnstileTokenInput.value = '';
+                          if (window.turnstile) {
+                            window.turnstile.reset();
+                          }
+                        } else {
+                          messageDiv.className = 'mt-3 alert alert-danger';
+                          messageDiv.textContent = result.message || 'Error sending message. Please try again.';
+                        }
+                        messageDiv.style.display = 'block';
+                      } catch (error) {
+                        messageDiv.className = 'mt-3 alert alert-danger';
+                        messageDiv.textContent = 'Error sending message. Please try again.';
+                        messageDiv.style.display = 'block';
+                        console.error('Error:', error);
+                      } finally {
+                        button.disabled = false;
+                        button.textContent = 'Send message';
+                      }
+                    });
                   });
                 </script>
 

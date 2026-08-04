@@ -8,6 +8,7 @@ const { getAllSlots, getHeader } = require('../utils/homePageManager');
 // Maximaal aantal contactformulier-inzendingen per IP binnen het tijdvenster.
 const RATE_LIMIT_MAX     = 5;                  // max. aanvragen
 const RATE_LIMIT_WINDOW  = 15 * 60 * 1000;    // tijdvenster in ms (15 minuten)
+const MIN_FORM_TIME_MS   = 3 * 1000;          // minimale invultijd in ms
 
 /**
  * In-memory opslag: { [ip]: { count: number, resetAt: number } }
@@ -15,17 +16,15 @@ const RATE_LIMIT_WINDOW  = 15 * 60 * 1000;    // tijdvenster in ms (15 minuten)
  */
 const rateLimitStore = new Map();
 
-/**
- * Controleert of het opgegeven IP-adres de rate limit heeft bereikt.
- * @param {string} ip - Het IP-adres van de aanvrager.
- * @returns {{ allowed: boolean, remaining: number, resetAt: number }}
- */
+function getClientIp(req) {
+  return (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+}
+
 function checkRateLimit(ip) {
   const now = Date.now();
   const record = rateLimitStore.get(ip);
 
   if (!record || now > record.resetAt) {
-    // Eerste aanvraag of tijdvenster verlopen: reset de teller
     rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
     return { allowed: true, remaining: RATE_LIMIT_MAX - 1, resetAt: now + RATE_LIMIT_WINDOW };
   }
@@ -36,6 +35,79 @@ function checkRateLimit(ip) {
 
   record.count += 1;
   return { allowed: true, remaining: RATE_LIMIT_MAX - record.count, resetAt: record.resetAt };
+}
+
+function sanitizeInput(value) {
+  if (typeof value !== 'string') return '';
+  return value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function validateContactPayload(body) {
+  const payload = body || {};
+  const sanitized = {
+    name: sanitizeInput(payload.name),
+    email: sanitizeInput(payload.email),
+    subject: sanitizeInput(payload.subject),
+    message: sanitizeInput(payload.message),
+    website: sanitizeInput(payload.website),
+    turnstileToken: sanitizeInput(payload.turnstileToken),
+    formStartTime: sanitizeInput(payload.formStartTime)
+  };
+
+  if (sanitized.website) {
+    return { ok: true, silent: true, data: sanitized };
+  }
+
+  if (!sanitized.name || sanitized.name.length < 2 || sanitized.name.length > 80) {
+    return { ok: false, message: 'Please enter a valid name.' };
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sanitized.email)) {
+    return { ok: false, message: 'Please enter a valid email address.' };
+  }
+
+  if (!sanitized.subject || sanitized.subject.length < 3 || sanitized.subject.length > 120) {
+    return { ok: false, message: 'Please enter a valid subject.' };
+  }
+
+  if (!sanitized.message || sanitized.message.length < 10 || sanitized.message.length > 2000) {
+    return { ok: false, message: 'Please enter a message between 10 and 2000 characters.' };
+  }
+
+  const startTime = Number.parseInt(sanitized.formStartTime, 10);
+  if (!Number.isFinite(startTime) || Date.now() - startTime < MIN_FORM_TIME_MS) {
+    return { ok: false, message: 'Please wait a moment before submitting the form.' };
+  }
+
+  if (!sanitized.turnstileToken) {
+    return { ok: false, message: 'Please complete the security check.' };
+  }
+
+  return { ok: true, silent: false, data: sanitized };
+}
+
+async function verifyTurnstileToken(token, ip) {
+  if (!process.env.TURNSTILE_SECRET_KEY) {
+    throw new Error('TURNSTILE_SECRET_KEY is not configured.');
+  }
+
+  const params = new URLSearchParams({
+    secret: process.env.TURNSTILE_SECRET_KEY,
+    response: token,
+    remoteip: ip
+  });
+
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params.toString()
+  });
+
+  const result = await response.json();
+  return result.success === true;
 }
 
 // Verwijder verlopen records periodiek om geheugenlek te voorkomen (elke 30 min)
@@ -98,16 +170,12 @@ router.get('/contact', (req, res) => {
 // Contact form submission
 router.post('/contact', async (req, res) => {
   // ── 1. Honeypot-controle ──────────────────────────────────────────────────
-  // Het 'website'-veld is verborgen voor echte gebruikers.
-  // Als het ingevuld is, is de aanvrager hoogstwaarschijnlijk een bot.
-  if (req.body.website) {
-    // Stille weigering: de bot krijgt een 200-respons zodat hij niet opnieuw probeert.
+  if (req.body?.website) {
     return res.json({ success: true, message: 'Message sent successfully!' });
   }
 
   // ── 2. Rate limiting op basis van IP-adres ────────────────────────────────
-  // Haal het echte IP op (rekening houdend met proxies via X-Forwarded-For).
-  const clientIp = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const clientIp = getClientIp(req);
   const rateCheck = checkRateLimit(clientIp);
 
   if (!rateCheck.allowed) {
@@ -118,29 +186,41 @@ router.post('/contact', async (req, res) => {
     });
   }
 
-  // ── 3. Server-side veldvalidatie ──────────────────────────────────────────
-  const { name, email, subject, message } = req.body;
+  // ── 3. Server-side veldvalidatie en sanitatie ───────────────────────────
+  const validation = validateContactPayload(req.body);
 
-  if (!name || !email || !subject || !message) {
-    return res.status(400).json({ success: false, message: 'All fields are required' });
+  if (!validation.ok) {
+    return res.status(400).json({ success: false, message: validation.message });
   }
 
+  if (validation.silent) {
+    return res.json({ success: true, message: 'Message sent successfully!' });
+  }
+
+  const { data } = validation;
+
   try {
+    const turnstileVerified = await verifyTurnstileToken(data.turnstileToken, clientIp);
+
+    if (!turnstileVerified) {
+      return res.status(403).json({ success: false, message: 'Security verification failed. Please try again.' });
+    }
+
     // Mail to admin
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
-      replyTo: email,
-      subject: `New Contact Form: ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage:\n${message}`
+      replyTo: data.email,
+      subject: `New Contact Form: ${data.subject}`,
+      text: `Name: ${data.name}\nEmail: ${data.email}\nSubject: ${data.subject}\nMessage:\n${data.message}`
     });
 
     // Confirmation mail to user
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: email,
+      to: data.email,
       subject: 'We received your message - Blanck Media',
-      text: `Hi ${name},\n\nThanks for contacting us! We received your message:\n\n${message}\n\nBest regards,\nBlanck Media`
+      text: `Hi ${data.name},\n\nThanks for contacting us! We received your message:\n\n${data.message}\n\nBest regards,\nBlanck Media`
     });
 
     res.json({ success: true, message: 'Message sent successfully!' });

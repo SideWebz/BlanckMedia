@@ -83,6 +83,19 @@ textarea {
   color: #999;
 }
 
+/* ================= TURNSTILE ================= */
+
+.cf-turnstile {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 65px;
+}
+
+.cf-turnstile > div {
+  max-width: 100%;
+}
+
 /* ================= BUTTON ================= */
 
 .gradient-btn {
